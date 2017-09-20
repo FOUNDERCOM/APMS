@@ -1,0 +1,294 @@
+{
+    "result": {
+        "root": {
+            "code": "root",
+            "name": "根菜单",
+            "desc": "无",
+            "type": "root",
+            "icon": "icon-home",
+            "isEnabled": true,
+            "isBuiltIn": false,
+            "level": 0,
+            "children": [
+                {
+                    "code": "",
+                    "name": "辅警管理系统",
+                    "desc": "分组",
+                    "type": "group",
+                    "icon": "icon-home",
+                    "isEnabled": true,
+                    "isBuiltIn": false,
+                    "level": 1,
+                    "children": [
+                        {
+                            "code": "home",
+                            "name": "首页",
+                            "desc": "通用工作台",
+                            "type": "link",
+                            "icon": "icon-home",
+                            "isEnabled": true,
+                            "isBuiltIn": true,
+                            "level": 2
+                        },
+                        {
+                            "code": "aux",
+                            "name": "辅警管理",
+                            "desc": "菜单",
+                            "type": "menu",
+                            "icon": "icon-users",
+                            "isEnabled": true,
+                            "level": 2,
+                            "children": [
+                                {
+                                    "code": "aux_apply",
+                                    "name": "辅警登记",
+                                    "desc": "科所队，登记辅警人员情况",
+                                    "type": "link",
+                                    "icon": "icon-user-follow",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "aux_approve",
+                                    "name": "辅警审核",
+                                    "desc": "审核科所队上报注册登记的辅警人员信息",
+                                    "type": "link",
+                                    "icon": "icon-eye",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "aux_log",
+                                    "name": "申请记录",
+                                    "desc": "在辅警上报注册审批过程中的工作记录",
+                                    "type": "link",
+                                    "icon": "icon-book-open",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "aux_dept",
+                                    "name": "本部辅警",
+                                    "desc": "本单位拥有的辅警",
+                                    "type": "link",
+                                    "icon": "icon-check",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                }
+                            ]
+                        },
+                        {
+                            "code": "salary",
+                            "name": "辅警工资",
+                            "desc": "菜单",
+                            "type": "menu",
+                            "icon": "icon-credit-card",
+                            "isEnabled": true,
+                            "level": 2,
+                            "children": [
+                                {
+                                    "code": "salary_mgmt",
+                                    "name": "工资维护",
+                                    "desc": "维护本单位的辅警工资信息",
+                                    "type": "link",
+                                    "icon": "icon-note",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "salary_book",
+                                    "name": "花名册",
+                                    "desc": "本单位的辅警人员工资花名册",
+                                    "type": "link",
+                                    "icon": "icon-notebook",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                }
+                            ]
+                        },
+                        {
+                            "code": "analysis",
+                            "name": "分析决策",
+                            "desc": "菜单",
+                            "type": "menu",
+                            "icon": "icon-rocket",
+                            "isEnabled": true,
+                            "level": 2,
+                            "children": [
+                                {
+                                    "code": "analysis_capability",
+                                    "name": "战力分析",
+                                    "desc": "各分局、科所队团队配置情况及人员战斗力分析",
+                                    "type": "link",
+                                    "icon": "icon-like",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "analysis_check",
+                                    "name": "辅警抽查",
+                                    "desc": "政工抽查各级科所队辅警人员情况",
+                                    "type": "link",
+                                    "icon": "icon-eyeglasses",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "analysis_supervise",
+                                    "name": "检查分析",
+                                    "desc": "分析各级科所队相应辅警情况",
+                                    "type": "link",
+                                    "icon": "icon-speedometer",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "code": "",
+                    "name": "系统配置",
+                    "desc": "分组",
+                    "type": "group",
+                    "icon": "icon-home",
+                    "isEnabled": true,
+                    "level": 1,
+                    "children": [
+                        {
+                            "code": "dept",
+                            "name": "部门管理",
+                            "desc": "菜单",
+                            "type": "menu",
+                            "icon": "icon-globe",
+                            "isEnabled": true,
+                            "level": 2,
+                            "children": [
+                                {
+                                    "code": "dept_bureau",
+                                    "name": "分局管理",
+                                    "desc": "管理分局基本信息",
+                                    "type": "link",
+                                    "icon": "icon-puzzle",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "dept_station",
+                                    "name": "科所队",
+                                    "desc": "管理本单位的科所队信息",
+                                    "type": "link",
+                                    "icon": "icon-paper-clip",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                }
+                            ]
+                        },
+                        {
+                            "code": "sys",
+                            "name": "系统管理",
+                            "desc": "菜单",
+                            "type": "menu",
+                            "icon": "icon-settings",
+                            "isEnabled": true,
+                            "level": 2,
+                            "children": [
+                                {
+                                    "code": "sys_dict",
+                                    "name": "字典管理",
+                                    "desc": "管理系统字典标准信息",
+                                    "type": "link",
+                                    "icon": "icon-layers",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "sys_func",
+                                    "name": "功能管理",
+                                    "desc": "管理系统功能",
+                                    "type": "link",
+                                    "icon": "icon-flag",
+                                    "isEnabled": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "sys_user",
+                                    "name": "用户管理",
+                                    "desc": "管理本单位下辖直属单位用户",
+                                    "type": "link",
+                                    "icon": "icon-users",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                },
+                                {
+                                    "code": "sys_auth",
+                                    "name": "权限管理",
+                                    "desc": "管理本单位下辖直属单位的用户权限",
+                                    "type": "link",
+                                    "icon": "icon-key",
+                                    "isEnabled": true,
+                                    "isBuiltIn": true,
+                                    "level": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "code": "",
+                    "name": "通用",
+                    "desc": "分组",
+                    "type": "group",
+                    "icon": "icon-cursor",
+                    "isEnabled": false,
+                    "level": 1,
+                    "children": [
+                        {
+                            "code": "home",
+                            "name": "关于我们",
+                            "desc": "关于我们",
+                            "type": "link",
+                            "icon": "icon-info",
+                            "isEnabled": false,
+                            "isBuiltIn": false,
+                            "level": 2
+                        },
+                        {
+                            "code": "home",
+                            "name": "系统帮助",
+                            "desc": "系统使用说明",
+                            "type": "link",
+                            "icon": "icon-support",
+                            "isEnabled": false,
+                            "isBuiltIn": false,
+                            "level": 2
+                        },
+                        {
+                            "code": "home",
+                            "name": "联系我们",
+                            "desc": "各市局分局科所队的联系方式",
+                            "type": "link",
+                            "icon": "icon-call-end",
+                            "isEnabled": false,
+                            "isBuiltIn": false,
+                            "level": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

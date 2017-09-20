@@ -1,0 +1,76 @@
+{
+    "aux_apply": {
+        "data": {
+            "nav": ["辅警信息维护"],
+            "isBuiltIn": true,
+            "pageTitle": "辅警登记",
+            "pageSubTitle": "科所队，登记辅警人员情况"
+        },
+        "templateUrl": "packages/auxpolice/views/mgmt/main.html",
+        "controller": "AuxMgmtListCtrl",
+        "files": [
+            "packages/auxpolice/css/person_info.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
+        ]
+    },
+    "aux_approve": {
+        "data": {
+            "nav": ["辅警信息维护"],
+            "isBuiltIn": true,
+            "pageTitle": "辅警审核",
+            "pageSubTitle": "审核科所队上报注册登记的辅警人员信息"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    },
+    "aux_log": {
+        "data": {
+            "nav": ["辅警信息维护"],
+            "isBuiltIn": true,
+            "pageTitle": "申请审核记录",
+            "pageSubTitle": "在辅警上报注册审批过程中的工作记录"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    },
+    "aux_dept": {
+        "data": {
+            "nav": ["辅警信息维护"],
+            "isBuiltIn": true,
+            "pageTitle": "本部辅警信息",
+            "pageSubTitle": "管理本单位拥有的辅警"
+        },
+        "templateUrl": "packages/auxpolice/views/mgmt/main.html",
+        "controller": "AuxMgmtListCtrl",
+        "files": [
+            "packages/auxpolice/css/person_info.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
+        ]
+    }
+}

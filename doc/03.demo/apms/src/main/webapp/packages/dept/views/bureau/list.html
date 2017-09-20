@@ -1,0 +1,104 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">名称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="分局名称" ng-model="condition.name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">电话</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="电话" ng-model="condition.tel">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">状态</label>
+                        <div class="col-md-9">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="org_search_zt" class="md-check" checked
+                                           ng-model="condition.isEnabled">
+                                    <label for="org_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascript:" class="btn btn-sm blue-dark" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box blue-dark">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-puzzle"></i> 分局列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#modifyBureauModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加分局
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center wid180px">分局名称</th>
+                        <th class="text-center wid160px">座机</th>
+                        <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid160px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>{{item['name']}}</td>
+                        <td class="text-center">{{item['tel']}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
+                        </td>
+                        <td>
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+                               ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+                               ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+                                <i class="fa fa-recycle"></i>
+                            </a>
+                            <!-- 编辑 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#modifyBureauModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

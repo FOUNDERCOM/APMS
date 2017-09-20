@@ -1,0 +1,71 @@
+<div class="modal fade" id="modifyDictModalDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="DictModifyCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-layers"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-boy">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">上级字典</label>
+                                        <div class="col-md-9">
+                                            <ui-select ng-model="entity.parent" theme="bootstrap">
+                                                <ui-select-match placeholder="选择或查找...">{{$select.selected.value}}</ui-select-match>
+                                                <ui-select-choices repeat="item in natureList | filter: $select.search">
+                                                    <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                                    <small ng-bind-html="item.nature | highlight: $select.search"></small>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">类型</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="类型" ng-model="entity.nature">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">编码</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="编码" ng-model="entity.code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">显示值</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="显示值" ng-model="entity.value">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">描述</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="描述" ng-model="entity.desc">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey-cascade" data-dismiss="modal" aria-hidden="true" ng-click="submit()">
+                    <i class="fa fa-save"></i> 保存字典信息</button>
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

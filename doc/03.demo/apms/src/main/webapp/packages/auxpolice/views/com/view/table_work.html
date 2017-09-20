@@ -1,0 +1,16 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid100px"><i class="icon-calendar"></i> 时间 </th>
+            <th class="text-center bold wid120px"><i class="icon-home"></i> 工作单位 </th>
+            <th class="text-center bold wid60px"><i class="icon-badge"></i> 职务 </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['workList']">
+            <td class="text-center">{{item['start']}} - {{item['end']}}</td>
+            <td class="text-center">{{item['dept']}}</td>
+            <td class="text-center">{{item['job']}}</td>
+        </tr>
+    </tbody>
+</table>

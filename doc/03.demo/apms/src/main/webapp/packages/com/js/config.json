@@ -1,0 +1,24 @@
+{
+    "auxpolice": {
+        "DSB": {
+            "msg": "待上报",
+            "color": "blue-steel"
+        },
+        "DSL": {
+            "msg": "待受理",
+            "color": "blue-madison"
+        },
+        "DSH": {
+            "msg": "待审核",
+            "color": "purple-studio"
+        },
+        "BBH": {
+            "msg": "被驳回",
+            "color": "red-mint"
+        },
+        "SHTG": {
+            "msg": "审核通过",
+            "color": "green-seagreen"
+        }
+    }
+}

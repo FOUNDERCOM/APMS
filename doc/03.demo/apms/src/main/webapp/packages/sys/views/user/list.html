@@ -1,0 +1,127 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">姓名</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="!isOrgMgmt">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">分局</label>
+                        <div class="col-md-9">
+                            <div class="input-icon right">
+                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.org = undefined"></i>
+                                <ui-select ng-model="condition.org" theme="bootstrap">
+                                    <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                    <ui-select-choices repeat="item in orgList | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否启用</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                           ng-model="condition.isEnabled">
+                                    <label for="dict_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-users"></i> {{condition.org.name}} 用户列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#modifyUserModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加用户
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th class="text-center wid100px">用户名</th>
+                        <th class="text-center wid140px">分局</th>
+                        <th class="text-center wid140px">科所队</th>
+                        <th class="text-center wid120px">固话</th>
+                        <th class="text-center wid120px">手机</th>
+                        <th class="text-center wid120px">邮箱</th>
+                        <th class="text-center wid90px">账号</th>
+                        <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid140px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td class="text-center">{{item['name']}}</td>
+                        <td class="text-center">{{item['bureau']['name']}}</td>
+                        <td class="text-center">{{item['station']['name']}}</td>
+                        <td class="text-center">{{item['tel']}}</td>
+                        <td class="text-center">{{item['mobile']}}</td>
+                        <td class="text-center">{{item['mail']}}</td>
+                        <td class="text-center">{{item.account.account}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
+                        </td>
+                        <td>
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+                               ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+                               ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+                                <i class="fa fa-recycle"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs yellow-gold"
+                               bs-tooltip data-title="重置密码" ng-click="resetPwd(item)">
+                                <i class="icon-key"></i>
+                            </a>
+                            <!-- 编辑 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#modifyUserModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

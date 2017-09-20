@@ -1,0 +1,547 @@
+
+<div class="form">
+    <form action="#">
+        <div class="form-body">
+            <div class="profile">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="list-unstyled profile-nav">
+                            <li>
+                                <img src="data:image/png;base64,{{entity.jb_zp}}" class="profile-img-responsive pic-bordered" alt="" />
+                                <!--suppress HtmlUnknownAnchorTarget -->
+                                <a href="/#uploadPhoto" data-toggle="modal" aria-hidden="true" class="profile-edit" ng-click="prepare2SetPhoto()"> 编辑 </a>
+                            </li>
+                            <li bs-tooltip data-title="电话">
+                                <a href="javascript:">
+                                    <label class="control-label">电话</label>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-phone font-yellow"></i>
+                                        <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.jb_dh">
+                                    </div>
+                                </a>
+                            </li>
+                            <li bs-tooltip data-title="手机">
+                                <a href="javascript:">
+                                    <label class="control-label has-warning">手机</label>
+                                    <div class="input-icon">
+                                        <i class="fa fa-phone-square font-yellow"></i>
+                                        <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.jb_sj">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:">
+                                    <label class="control-label">工作单位</label>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-building-o font-yellow"></i>
+                                        <input type="text" class="form-control" placeholder="..." ng-model="entity.gz_gzdw">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:">
+                                    <label class="control-label">职务</label>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-briefcase font-yellow"></i>
+                                        <input type="text" class="form-control" placeholder="..." ng-model="entity.gz_gzdw_zw">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:">
+                                    <label class="control-label" for="gz_gzdw_dz_sheng">单位地址</label>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-map-marker font-yellow"></i>
+                                        <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.gz_gzdw_dz_sheng.id"
+                                                ng-options="item.id as item.value for item in shengList"></select>
+                                    </div>
+                                    <div class="input-icon">
+                                        <i class="fa fa-map-marker"></i>
+                                        <input type="text" class="form-control" placeholder="市..." ng-model="entity.gz_gzdw_dz_shi">
+                                    </div>
+                                    <div class="input-icon">
+                                        <i class="fa fa-map-marker"></i>
+                                        <input type="text" class="form-control" placeholder="县/街道..." ng-model="entity.gz_gzdw_dz_jd">
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:">
+                                    <label class="control-label">邮编</label>
+                                    <div class="input-icon">
+                                        <i class="fa fa-code"></i>
+                                        <input type="text" class="form-control" placeholder="110001" ng-model="entity.gz_gzdw_dz_yb">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-8 profile-info">
+                                <div class="row">
+                                    <div class="form-group form-md-line-input col-md-6 has-warning">
+                                        <div class="input-icon">
+                                            <input id="jb_xm" type="text" class="form-control" ng-model="entity.jb_xm">
+                                            <label for="jb_xm">姓名</label>
+                                            <span class="help-block">专家姓名...</span>
+                                            <i class="fa fa-user font-yellow"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-md-line-input col-md-12 has-warning">
+                                        <div class="input-icon">
+                                            <textarea id="jb_jl" class="form-control" rows="8" ng-model="entity.jb_jl"></textarea>
+                                            <label for="jb_jl">简历</label>
+                                            <span class="help-block">专家信息简要描述...</span>
+                                            <i class="fa fa-align-left"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-md-line-input col-md-6 has-warning">
+                                        <div class="input-icon">
+                                            <input id="jb_sfzh" type="text" class="form-control" ng-model="entity.jb_sfzh">
+                                            <label for="jb_sfzh">身份证号</label>
+                                            <span class="help-block">18位身份证号...</span>
+                                            <i class="fa fa-newspaper-o font-yellow"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3 has-warning">
+                                        <div class="md-checkbox-inline">
+                                            <div class="md-checkbox">
+                                                <input type="checkbox" id="zj_update_gaxt" class="md-check" checked
+                                                       ng-model="entity.gz_gaxt">
+                                                <label for="zj_update_gaxt">
+                                                    <span></span>
+                                                    <span class="check" style="top: 10px;"></span>
+                                                    <span class="box" style="top: 10px;"></span>
+                                                    系统内
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-6">
+                                        <div class="input-icon">
+                                            <input id="gz_gaxt_kssj" type="text" class="form-control" ng-model="entity.gz_gaxt_kssj"
+                                                   bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                            <label for="gz_gaxt_kssj">参加系统时间</label>
+                                            <span class="help-block">xxxx年xx月xx日</span>
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-md-line-input col-md-2 has-warning">
+                                        <div class="input-icon">
+                                            <input id="jb_xb" type="text" class="form-control" ng-model="entity.jb_xb">
+                                            <label for="jb_xb">性别</label>
+                                            <span class="help-block">男/女</span>
+                                            <i class="fa fa-smile-o font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-2">
+                                        <div class="input-icon">
+                                            <input id="jb_mz" type="text" class="form-control" ng-model="entity.jb_mz">
+                                            <label for="jb_mz">民族</label>
+                                            <span class="help-block">请选择</span>
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-2">
+                                        <div class="input-icon">
+                                            <input id="jb_jkzk" type="text" class="form-control" ng-model="entity.jb_jkzk">
+                                            <label for="jb_jkzk">健康</label>
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-6">
+                                        <div class="input-icon">
+                                            <input id="jb_csrq" type="text" class="form-control" ng-model="entity.jb_csrq"
+                                                   bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                            <label for="jb_csrq">生日</label>
+                                            <span class="help-block">xxxx年xx月xx日</span>
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3">
+                                        <div class="input-icon">
+                                            <input id="jb_jg" type="text" class="form-control" ng-model="entity.jb_jg">
+                                            <label for="jb_jg">籍贯</label>
+                                            <i class="fa fa-map-marker"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <select id="jb_zzmm" class="form-control" ng-model="entity.jb_zzmm.id"
+                                                    ng-options="item.id as item.value for item in zzmmList"></select>
+                                            <label for="jb_zzmm">政治面貌</label>
+                                            <span class="help-block">党员/群众</span>
+                                            <i class="fa fa-exclamation-circle font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <select id="jy_whcd" class="form-control" ng-model="entity.jy_whcd.id"
+                                                    ng-options="item.id as item.value for item in whcdList"></select>
+                                            <label for="jy_whcd">文化程度</label>
+                                            <span class="help-block">请选择</span>
+                                            <i class="fa fa-graduation-cap font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <input id="jy_whcd_sszy" type="text" class="form-control" ng-model="entity.jy_whcd_sszy">
+                                            <label for="jy_whcd_sszy">所学专业</label>
+                                            <i class="fa fa-flask font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <input id="zy_jszc" type="text" class="form-control" ng-model="entity.zy_jszc">
+                                            <label for="zy_jszc">技术职称</label>
+                                            <i class="fa fa-graduation-cap font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <input id="zy_zgrz" type="text" class="form-control" ng-model="entity.zy_zgrz">
+                                            <label for="zy_zgrz">资格认证</label>
+                                            <i class="fa fa-thumbs-up font-yellow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
+                                        <div class="input-icon">
+                                            <input id="zy_ywzc" type="text" class="form-control" ng-model="entity.zy_ywzc">
+                                            <label for="zy_ywzc">业务专长</label>
+                                            <i class="fa fa-trophy font-yellow"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-md-8-->
+                            <div class="col-md-4">
+                                <div class="portlet sale-summary">
+                                    <div class="portlet-title">
+                                        <div class="caption font-blue-dark sbold"> 审核意见 </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <label class="control-label">所在单位意见</label>
+                                                <div class="input-icon">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                    <input type="text" class="form-control" placeholder="同意..." ng-model="entity.yj_szdw">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="control-label">推荐单位</label>
+                                                <div class="input-icon">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                    <input type="text" class="form-control" placeholder="推荐单位名称" ng-model="entity.yj_tjdw_mc">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="control-label">推荐单位意见</label>
+                                                <div class="input-icon">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                    <input type="text" class="form-control" placeholder="同意..." ng-model="entity.yj_tjdw">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label class="control-label">装财局意见</label>
+                                                <div class="input-icon">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                    <input type="text" class="form-control" placeholder="同意..." ng-model="entity.yj_zcj">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="portlet light sale-summary">
+                                    <div class="portlet-title">
+                                        <div class="caption font-green-dark sbold"> 专业类别 </div>
+                                        <div class="inputs">
+                                            <div class="portlet-input input-inline input-small">
+                                                <select class="form-control" ng-model="zylbTemp" title="专业类别"
+                                                        ng-options="item as item.value group by item.parent.value for item in zylbList"
+                                                        ng-change="onZYLBSelected(zylbTemp);">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <ul class="list-unstyled">
+                                            <li ng-repeat="item in entity.zylbList">
+                                                <span class="sale-info"> {{item.zylb.desc}} / {{item.zylb.value}}</span>
+                                                <span class="sale-num">
+                                                    <a href="javascript:" class="btn btn-xs red" ng-click="remove($index, 'zylbList', item.id, 'com.lee.ez.esh.entity.EshZJZYLB');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-md-4-->
+                        </div>
+                        <!--end row-->
+                        <div class="tabbable-line tabbable-custom-profile">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a href="/#tab_gzjl" data-toggle="tab"> 工作经历 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- tab panel -->
+                                <div class="tab-pane active" id="tab_gzjl">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><i class="icon-calendar"></i> 开始时间 </th>
+                                                <th class="text-center"><i class="icon-calendar"></i> 终止时间 </th>
+                                                <th class="text-center"><i class="icon-briefcase"></i> 所在单位 </th>
+                                                <th class="text-center"><i class="icon-users"></i> 职位/职级 </th>
+                                                <th class="text-center">
+                                                    <a href="javascript:" ng-click="entity.gzjlList.push({});">
+                                                        <i class="fa fa-plus"></i> 增加
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.gzjlList">
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.ks" bs-tooltip data-title="工作开始时间" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zz" bs-tooltip data-title="工作结束时间" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.dw" bs-tooltip data-title="工作单位" placeholder="单位名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zw" bs-tooltip data-title="职位（职级）" placeholder="职位名称...">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'gzjlList', item.id, 'com.lee.ez.esh.entity.EshZJGZJL');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabbable-line tabbable-custom-profile">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a href="/#tab_jybj" data-toggle="tab"> 教育背景 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- tab panel -->
+                                <div class="tab-pane active" id="tab_jybj">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><i class="icon-calendar"></i> 开始时间 </th>
+                                                <th class="text-center"><i class="icon-calendar"></i> 终止时间 </th>
+                                                <th class="text-center"><i class="icon-graduation"></i> 毕业院校 </th>
+                                                <th class="text-center"><i class="icon-chemistry"></i> 所学专业 </th>
+                                                <th class="text-center">
+                                                    <a href="javascript:" ng-click="entity.jybjList.push({});">
+                                                        <i class="fa fa-plus"></i> 增加
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.jybjList">
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.ks" bs-tooltip data-title="工作开始时间" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zz" bs-tooltip data-title="工作结束时间" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.yx" bs-tooltip data-title="毕业院校" placeholder="院校名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zy" bs-tooltip data-title="所学专业" placeholder="专业名称...">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jybjList', item.id, 'com.lee.ez.esh.entity.EshZJJYBJ');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabbable-line tabbable-custom-profile">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a href="/#tab_yjcg" data-toggle="tab"> 研究成果 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- tab panel -->
+                                <div class="tab-pane active" id="tab_yjcg">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><i class="icon-trophy"></i> 发表文章或者项目 </th>
+                                                <th class="text-center"><i class="icon-book-open"></i> 发布刊物 </th>
+                                                <th class="text-center"><i class="icon-briefcase"></i> 立项单位 </th>
+                                                <th class="text-center"><i class="icon-badge"></i> 研究级别 </th>
+                                                <th class="text-center"><i class="icon-calendar"></i> 发布日期 </th>
+                                                <th class="text-center">
+                                                    <a href="javascript:" ng-click="entity.yjcgList.push({});">
+                                                        <i class="fa fa-plus"></i> 增加
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.yjcgList">
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.mc" bs-tooltip data-title="发表文章或者项目" placeholder="文章名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.kw" bs-tooltip data-title="发布刊物" placeholder="刊物名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.dw" bs-tooltip data-title="立项单位" placeholder="单位名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.jb" bs-tooltip data-title="研究级别" placeholder="级别名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.rq" bs-tooltip data-title="发布日期" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'yjcgList', item.id, 'com.lee.ez.esh.entity.EshZJYJCG');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabbable-line tabbable-custom-profile">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a href="/#tab_jlqk" data-toggle="tab"> 奖励情况 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- tab panel -->
+                                <div class="tab-pane active" id="tab_jlqk">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><i class="icon-badge"></i> 奖励或荣誉 </th>
+                                                <th class="text-center"><i class="icon-home"></i> 授予单位 </th>
+                                                <th class="text-center"><i class="icon-calendar"></i> 奖励日期 </th>
+                                                <th class="text-center">
+                                                    <a href="javascript:" ng-click="entity.jlqkList.push({});">
+                                                        <i class="fa fa-plus"></i> 增加
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.jlqkList">
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.mc" bs-tooltip data-title="奖励或荣誉" placeholder="奖励名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.dw" bs-tooltip data-title="授予单位" placeholder="单位名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.rq" bs-tooltip data-title="奖励日期" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jlqkList', item.id, 'com.lee.ez.esh.entity.EshZJJLQK');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabbable-line tabbable-custom-profile">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a href="/#tab_jz" data-toggle="tab"> 学术组织、行业协会兼职情况 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- tab panel -->
+                                <div class="tab-pane active" id="tab_jz">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center"><i class="icon-social-dropbox"></i> 组织名称 </th>
+                                                <th class="text-center"><i class="icon-user-following"></i> 担任职务 </th>
+                                                <th class="text-center"><i class="icon-calendar"></i> 参加时间 </th>
+                                                <th class="text-center">
+                                                    <a href="javascript:" ng-click="entity.jzList.push({});">
+                                                        <i class="fa fa-plus"></i> 增加
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.jzList">
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zzmc" bs-tooltip data-title="组织名称" placeholder="组织名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.zw" bs-tooltip data-title="职务" placeholder="职务名称...">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" ng-model="item.rq" bs-tooltip data-title="参加时间" placeholder="yyyy年MM月dd日"
+                                                           bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jzList', item.id, 'com.lee.ez.esh.entity.EshZJJZ');">
+                                                        <i class="fa fa-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="updateZJErrorMsgDiv"></div>
+        </div>
+    </form>
+</div>

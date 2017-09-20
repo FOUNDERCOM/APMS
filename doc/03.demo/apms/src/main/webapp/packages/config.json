@@ -1,0 +1,20 @@
+{
+    "analysis": {
+        "url": "packages/analysis/state.json"
+    },
+    "auxpolice" : {
+        "url": "packages/auxpolice/state.json"
+    },
+    "dept": {
+        "url": "packages/dept/state.json"
+    },
+    "index": {
+        "url": "packages/index/state.json"
+    },
+    "salary": {
+        "url": "packages/salary/state.json"
+    },
+    "sys": {
+        "url": "packages/sys/state.json"
+    }
+}

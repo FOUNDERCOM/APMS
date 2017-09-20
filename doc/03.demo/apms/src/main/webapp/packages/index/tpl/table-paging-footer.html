@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<div class="row form-inline">
+    <div class="col-md-6">
+        <label>总共<span ng-bind="pageResponse.total"></span>条记录，每页显示</label>
+        <select class="pagenuml" ng-model='pageRequest.pageSize' ng-change="pageRequest.getResponse()" title="每页显示"
+            ng-options='Pagenum as Pagenum for Pagenum in pageSizeList'>
+        </select>
+        条记录
+    </div>
+    <div class="col-md-6 text-right">
+        <uib-pagination
+            total-items="pageResponse.total"
+            ng-model="pageRequest.pageNum"
+            max-size="4"
+            class="pagination-sm"
+            boundary-links="true"
+            force-ellipses="false"
+            rotate="false"
+            first-text="&laquo;"
+            last-text="&raquo;"
+            previous-text="&lsaquo;"
+            next-text="&rsaquo;"
+            ng-change="pageRequest.getResponse()"
+            items-per-page="pageRequest.pageSize">
+        </uib-pagination>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<!-- BEGIN HEADER INNER -->
+<div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+        <a ui-sref="dashboard"></a>
+        <div class="menu-toggler sidebar-toggler">
+            <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+        </div>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+
+    <!-- BEGIN PAGE TOP -->
+    <div class="page-top">
+        <!-- BEGIN HEADER SEARCH BOX -->
+        <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+        <form class="search-form" action="#" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control input-sm" placeholder="搜索..." name="query">
+                <span class="input-group-btn">
+                    <a href="javascript:" class="btn submit">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <!-- END HEADER SEARCH BOX -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+
+                <li class="separator hide"></li>
+
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar"
+                    data-ng-include="'packages/index/tpl/header_announcements.html'">
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+
+                <li class="separator hide"></li>
+
+                <!-- BEGIN INBOX DROPDOWN -->
+                <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar"
+                    data-ng-include="'packages/index/tpl/header_messages.html'">
+                </li>
+                <!-- END INBOX DROPDOWN -->
+
+                <li class="separator hide"></li>
+
+                <!-- BEGIN TASK DROPDOWN -->
+                <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar"
+                    data-ng-include="'packages/index/tpl/header_tasks.html'">
+                </li>
+                <!-- END TASK DROPDOWN -->
+
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li class="dropdown dropdown-user dropdown-dark" data-ng-include="'packages/index/tpl/header_user.html'">
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END PAGE TOP -->
+</div>
+<!-- END HEADER INNER -->

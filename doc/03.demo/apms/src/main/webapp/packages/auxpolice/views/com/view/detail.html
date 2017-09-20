@@ -1,0 +1,36 @@
+<h1 class="font-green sbold uppercase">{{entity["name"]}}</h1>
+<p> {{entity['resume']}} </p>
+<p>
+    <span class="text-primary margin-right-10" bs-tooltip data-title="身份证号">
+        <i class="fa fa-newspaper-o"></i> {{entity['identityCard']}}
+    </span>
+</p>
+<ul class="list-inline">
+    <li bs-tooltip data-title="性别">
+        <i class="fa fa-smile-o"></i> {{entity['sex']['value']}}
+    </li>
+    <li bs-tooltip data-title="民族">
+        <i class="fa fa-users"></i> {{entity['nation']['value']}}
+    </li>
+    <li bs-tooltip data-title="健康状况">
+        <i class="fa fa-heart"></i> {{entity['health']['value']}}
+    </li>
+    <li bs-tooltip data-title="出生年月">
+        <i class="fa fa-calendar"></i> {{entity['birthday']}}
+    </li>
+    <li bs-tooltip data-title="籍贯">
+        <i class="fa fa-map-marker"></i> {{entity['nativePlace']}}
+    </li>
+    <li bs-tooltip data-title="政治面貌">
+        <i class="fa fa-exclamation-circle"></i> {{entity['politicalStatus']['value']}}
+    </li>
+    <li bs-tooltip data-title="文化程度">
+        <i class="fa fa-graduation-cap"></i> {{entity['educationDegree']['value']}}
+    </li>
+    <li bs-tooltip data-title="毕业院校">
+        <i class="fa fa-building-o"></i> {{entity['institutions']}}
+    </li>
+    <li bs-tooltip data-title="所学专业">
+        <i class="fa fa-flask"></i> {{entity['major']}}
+    </li>
+</ul>

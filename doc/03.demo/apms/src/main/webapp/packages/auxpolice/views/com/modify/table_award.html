@@ -1,0 +1,31 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid120px"><i class="icon-trophy"></i> 奖励 </th>
+            <th class="text-center bold wid160px"><i class="icon-home"></i> 颁发单位 </th>
+            <th class="text-center bold wid100px"><i class="icon-calendar"></i> 颁发时间 </th>
+            <th class="text-center bold hidden-xs wid240px"><i class="icon-info"></i> 说明 </th>
+            <th class="text-right bold wid90px">
+                <a href="javascript:" ng-click="entity.awardList.push({});">
+                    <i class="fa fa-plus"></i> 增加
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['awardList']">
+            <td><input type="text" class="form-control" ng-model="item.title" bs-tooltip data-title="奖励" placeholder="奖励..."></td>
+            <td><input type="text" class="form-control" ng-model="item.dept" bs-tooltip data-title="颁发单位" placeholder="颁发单位..."></td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.date" bs-tooltip data-title="颁发时间" placeholder="yyyy年MM月dd日"
+                       bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+            </td>
+            <td><input type="text" class="form-control" ng-model="item.desc" bs-tooltip data-title="说明" placeholder="说明..."></td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity['awardList'].splice($index, 1);">
+                    <i class="fa fa-close"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

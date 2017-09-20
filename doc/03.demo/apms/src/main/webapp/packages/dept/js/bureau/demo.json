@@ -1,0 +1,20 @@
+{
+    "total": 9,
+    "result": [
+        {
+            "name": "七星关分局",
+            "tel": "0785-12343465",
+            "isEnabled": true
+        },
+        {
+            "name": "黔西县分局",
+            "tel": "0785-12345678",
+            "isEnabled": true
+        },
+        {
+            "name": "纳雍县分局",
+            "tel": "0785-12349857",
+            "isEnabled": true
+        }
+    ]
+}
