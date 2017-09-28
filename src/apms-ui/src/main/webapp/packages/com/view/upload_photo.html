@@ -1,0 +1,60 @@
+<div class="modal fade" id="uploadPhoto" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="UploadPhotoCtrl">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-drawer"></i> 上传照片</h4>
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form">
+                        <form action="#" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <h4>请上传图片并选择区域</h4>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <img id="sourceImageDom" src="data:image/png;base64,{{sourceImage}}"/>
+                                            </div>
+                                            <div class="col-md-12 text-center fileupload-buttonbar">
+                                            <span class="btn blue fileinput-button mt10">
+                                                <i class="fa fa-upload"></i>
+                                                <span>上传照片</span>
+                                                <input type="file" accept="image/png, image/gif, image/jpeg"
+                                                       name="photo"
+                                                       onchange="angular.element(this).scope().upload()">
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 text-center">
+                                            <h4>预览</h4>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                            <img src="data:image/png;base64,{{previewImage}}"
+                                                 style="height: 300px; width: 300px; border: 1px solid black;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn green" ng-click="preview()">
+                        <i class="fa fa-save"></i> 预览
+                    </button>
+                    <button type="button" class="btn blue" data-dismiss="modal" aria-hidden="true" ng-click="submit()">
+                        <i class="fa fa-save"></i> 确认
+                    </button>
+                    <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="modal fade" id="modifyUserModalDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="UserModifyCtrl">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-user"></i> {{title}}</h4>
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form">
+                        <form action="#" class="form-horizontal">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <img src="data:image/png;base64,{{entity.photo.data}}" style="height: 300px;"/>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <!--suppress HtmlUnknownAnchorTarget -->
+                                                <a href="/#uploadPhoto" data-toggle="modal" aria-hidden="true"
+                                                   class="btn btn-sm blue mt10" ng-click="prepare2SetPhoto()">
+                                                    <i class="icon-picture"></i> 设置照片
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">姓名</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" placeholder="姓名"
+                                                               ng-model="entity.name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">部门</label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-icon right">
+                                                            <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="entity.org = undefined"></i>
+                                                            <ui-select ng-model="entity.org" theme="bootstrap">
+                                                                <ui-select-match placeholder="选择或查找...">{{$select.selected.name}}</ui-select-match>
+                                                                <ui-select-choices repeat="item in orgList | filter: $select.search">
+                                                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                                    <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
+                                                                </ui-select-choices>
+                                                            </ui-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">联系电话</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" placeholder="010-xxx"
+                                                               ng-model="entity.tel">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">邮箱</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="abc@def.com"
+                                                               ng-model="entity.mail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">账号</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" placeholder="abc"
+                                                               ng-model="entity.account.account">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn blue" data-dismiss="modal" aria-hidden="true" ng-click="submit()">
+                        <i class="fa fa-save"></i> 保存用户信息
+                    </button>
+                    <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

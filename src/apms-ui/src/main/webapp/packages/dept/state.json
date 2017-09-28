@@ -1,0 +1,30 @@
+{
+    "dept_bureau": {
+        "data": {
+            "nav": ["机构管理", "分局管理"],
+            "isBuiltIn": true,
+            "pageTitle": "分局管理",
+            "pageSubTitle": "管理分局基本信息"
+        },
+        "templateUrl": "packages/dept/views/bureau/main.html",
+        "controller": "BureauListCtrl",
+        "files": [
+            "packages/dept/js/bureau/BureauListCtrl.js",
+            "packages/dept/js/bureau/BureauModifyCtrl.js"
+        ]
+    },
+    "dept_station": {
+        "data": {
+            "nav": ["机构管理", "科所队管理"],
+            "isBuiltIn": true,
+            "pageTitle": "科所队管理",
+            "pageSubTitle": "管理本单位的科所队信息"
+        },
+        "templateUrl": "packages/dept/views/station/main.html",
+        "controller": "StationListCtrl",
+        "files": [
+            "packages/dept/js/station/StationListCtrl.js",
+            "packages/dept/js/station/StationModifyCtrl.js"
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "total": 9,
+    "result": [
+        {
+            "bureau": {
+                "name": "七星关分局"
+            },
+            "name": "某派出所",
+            "tel": "0785-12343465",
+            "isEnabled": true
+        },
+        {
+            "bureau": {
+                "name": "黔西县分局"
+            },
+            "name": "某派出所",
+            "tel": "0785-12345678",
+            "isEnabled": true
+        },
+        {
+            "bureau": {
+                "name": "纳雍县分局"
+            },
+            "name": "某派出所",
+            "tel": "0785-12349857",
+            "isEnabled": true
+        }
+    ]
+}

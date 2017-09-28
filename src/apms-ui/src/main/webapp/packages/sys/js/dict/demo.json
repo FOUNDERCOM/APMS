@@ -1,0 +1,96 @@
+{
+    "result": [
+        {
+            "parent": {
+                "nature": "ROOT",
+                "code": "NATURE_TYPE",
+                "value": "系统字典"
+            },
+            "nature": "SEX",
+            "code": "NATURE_TYPE",
+            "value": "性别",
+            "desc": "性别",
+            "isEnabled": true,
+            "isNature": true
+        },
+        {
+            "parent": {
+                "nature": "SEX",
+                "code": "NATURE_TYPE",
+                "value": "性别"
+            },
+            "nature": "SEX",
+            "code": "0",
+            "value": "男",
+            "desc": "男性",
+            "isEnabled": true,
+            "isNature": false
+        },
+        {
+            "parent": {
+                "nature": "SEX",
+                "code": "NATURE_TYPE",
+                "value": "性别"
+            },
+            "nature": "SEX",
+            "code": "1",
+            "value": "女",
+            "desc": "女性",
+            "isEnabled": true,
+            "isNature": false
+        },
+        {
+            "parent": {
+                "nature": "SEX",
+                "code": "NATURE_TYPE",
+                "value": "性别"
+            },
+            "nature": "SEX",
+            "code": "2",
+            "value": "未知",
+            "desc": "未知",
+            "isEnabled": false,
+            "isNature": false
+        },
+        {
+            "parent": {
+                "nature": "ROOT",
+                "code": "NATURE_TYPE",
+                "value": "系统字典"
+            },
+            "nature": "YESNO",
+            "code": "NATURE_TYPE",
+            "value": "是否",
+            "desc": "是否判断",
+            "isEnabled": true,
+            "isNature": true
+        },
+        {
+            "parent": {
+                "nature": "YESNO",
+                "code": "NATURE_TYPE",
+                "value": "是否"
+            },
+            "nature": "YESNO",
+            "code": "1",
+            "value": "是",
+            "desc": "是",
+            "isEnabled": true,
+            "isNature": false
+        },
+        {
+            "parent": {
+                "nature": "YESNO",
+                "code": "NATURE_TYPE",
+                "value": "是否"
+            },
+            "nature": "YESNO",
+            "code": "0",
+            "value": "否",
+            "desc": "否",
+            "isEnabled": true,
+            "isNature": false
+        }
+    ],
+    "total": 123
+}

@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.founder.bj</groupId>
+    <artifactId>apms-main-aggregator</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    
+    <name>APMS-Main</name>
+    <description>APMS(Auxiliary Police Management System) Aggregator</description>
+    
+    <modules>
+        <module>apms-build</module>
+        <module>apms-serv</module>
+        <module>apms-ui</module>
+    </modules>
+</project>

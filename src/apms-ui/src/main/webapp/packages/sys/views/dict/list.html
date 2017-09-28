@@ -1,0 +1,137 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">类型</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="类型" ng-model="condition.nature">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">编码</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="编码" ng-model="condition.code">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否类型</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_lx" class="md-check" checked
+                                           ng-change="changeConditionStatus('isNature')" ng-model="condition.isNature">
+                                    <label for="dict_search_lx">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 类型 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否启用</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                           ng-change="changeConditionStatus('isEnabled')" ng-model="condition.isEnabled">
+                                    <label for="dict_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a href="javascript:" class="btn btn-sm grey-cascade" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box grey-cascade">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers"></i> 字典列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#modifyDictModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加字典
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th class="text-center wid260px">上级</th>
+                        <th class="text-center wid100px">类型</th>
+                        <th class="text-center wid100px">编码</th>
+                        <th class="text-center wid160px">显示值</th>
+                        <th class="text-center wid160px">描述</th>
+                        <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid140px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td class="highlight">
+                            <div class="warning" ng-if="item['isNature']"></div>
+                            <div class="info" ng-if="!item['isNature']"></div>
+                            <a href="javascript:"></a>
+                            <span class="label label-sm label-primary">{{item['parent']['nature']}}</span>
+                            <span class="label label-sm label-default">{{item['parent']['code']}}</span>
+                            <span class="label label-sm label-success">{{item['parent']['value']}}</span>
+                        </td>
+                        <td class="text-center"><span class="label label-sm label-info">{{item['nature']}}</span></td>
+                        <td class="text-center">
+                            <span class="label label-sm label-danger" ng-if="item['isNature']">类型</span>
+                            <span class="label label-sm label-warning" ng-if="!item['isNature']">{{item['code']}}</span>
+                        </td>
+                        <td class="text-center">{{item['value']}}</td>
+                        <td>{{item['desc']}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
+                        </td>
+                        <td>
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+                               ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+                               ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+                                <i class="fa fa-recycle"></i>
+                            </a>
+                            <!-- 编辑 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#modifyDictModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

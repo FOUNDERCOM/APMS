@@ -1,0 +1,94 @@
+<div class="portlet box yellow-gold">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-flag"></i> 功能列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th class="text-center wid140px">标题</th>
+                        <th class="text-center wid160px">说明</th>
+                        <th class="text-center wid60px">图标</th>
+                        <th class="text-center wid60px">类型</th>
+                        <th class="text-center wid90px">编码</th>
+                        <th class="text-center wid60px">内嵌</th>
+                        <th class="text-center wid60px">状态</th>
+                        <th class="text-center wid140px">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- begin level 1 -->
+                    <tr ng-repeat-start="item in list" data-ng-include="'func-item'"></tr>
+                    <!-- begin level 2 -->
+                    <tr ng-repeat-start="item in item['children']" data-ng-include="'func-item'"></tr>
+                    <!-- begin level 3 -->
+                    <tr ng-repeat-start="item in item['children']" data-ng-include="'func-item'"></tr>
+                    <!-- begin level 4 -->
+                    <tr ng-repeat-start="item in item['children']" data-ng-include="'func-item'"></tr>
+                    <!-- begin level 5 -->
+                    <tr ng-repeat-start="item in item['children']" data-ng-include="'func-item'"></tr>
+                    <tr ng-repeat-end></tr>
+                    <!-- end level 5 -->
+                    <tr ng-repeat-end></tr>
+                    <!-- end level 4 -->
+                    <tr ng-repeat-end></tr>
+                    <!-- end level 3 -->
+                    <tr ng-repeat-end></tr>
+                    <!-- end level 2 -->
+                    <tr ng-repeat-end></tr>
+                    <!-- end level 1 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="func-item">
+    <td class="highlight">
+        <div ng-class="{
+            'danger': item['level'] === 0,
+            'warning': item['level'] === 1,
+            'info': item['level'] === 2,
+            'success': item['level'] === 3,
+            'primary': item['level'] === 4
+        }" style="margin-left: {{item['level'] * 30}}px;">
+        </div>
+        <a href="javascript:" style="margin-left: {{15 + item['level'] * 30}}px;"><i
+            class="margin-right-10 {{item['icon']}}"></i>{{item['name']}}</a>
+    </td>
+    <td>{{item['desc']}}</td>
+    <td class="text-center"><i class="{{item['icon']}}"></i></td>
+    <td class="text-center">
+        <span class="label label-sm" ng-class="{
+        'label-warning': item['type'] === 'root',
+        'label-success': item['type'] === 'group',
+        'label-info': item['type'] === 'menu',
+        'label-primary': item['type'] === 'link'
+        }">{{item['type']}}</span>
+    </td>
+    <td class="text-center">{{item['code']}}</td>
+    <td class="text-center">
+        <span class="label label-sm" ng-class="{'label-success': item.isBuiltIn,'label-danger': !item.isBuiltIn}">{{item['isBuiltIn'] ? '是' : '否'}}</span>
+    </td>
+    <td class="text-center">
+        <span class="label label-sm" ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
+    </td>
+    <td class="text-center">
+        <!-- 启用/禁用 -->
+        <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+           ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+            <i class="fa fa-ban"></i>
+        </a>
+        <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+           ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+            <i class="fa fa-recycle"></i>
+        </a>
+    </td>
+</script>

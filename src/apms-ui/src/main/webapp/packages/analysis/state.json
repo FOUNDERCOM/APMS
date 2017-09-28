@@ -1,0 +1,56 @@
+{
+    "analysis_capability": {
+        "data": {
+            "nav": ["监察与决策"],
+            "isBuiltIn": true,
+            "pageTitle": "战力分析",
+            "pageSubTitle": "各分局、科所队团队配置情况及人员战斗力分析"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    },
+    "analysis_check": {
+        "data": {
+            "nav": ["监察与决策"],
+            "isBuiltIn": true,
+            "pageTitle": "辅警抽查",
+            "pageSubTitle": "政工抽查各级科所队辅警人员情况"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    },
+    "analysis_supervise": {
+        "data": {
+            "nav": ["监察与决策"],
+            "isBuiltIn": true,
+            "pageTitle": "监察分析",
+            "pageSubTitle": "分析各级科所队相应辅警情况"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+/* here you can put your own css to customize and override the theme */
+/* 系统字体 */
+body {
+    font-family: "HelveticaNeue",Helvetica,Arial,"MicrosoftYahei","HiraginoSansGB","HeitiSC","WenQuanYiMicroHei",sans-serif;
+}
+/* 默认宽度 */
+.wid60px { width: 60px; min-width: 60px; }
+.wid90px { width: 90px; min-width: 90px; }
+.wid100px { width: 100px; min-width: 100px; }
+.wid120px { width: 120px; min-width: 120px; }
+.wid140px { width: 140px; min-width: 140px; }
+.wid160px { width: 160px; min-width: 160px; }
+.wid180px { width: 180px; min-width: 180px; }
+.wid200px { width: 200px; min-width: 200px; }
+.wid220px { width: 220px; min-width: 220px; }
+.wid240px { width: 240px; min-width: 240px; }
+.wid260px { width: 260px; min-width: 260px; }
+.wid280px { width: 280px; min-width: 280px; }
+.wid300px { width: 300px; min-width: 300px; }
+.wid330px { width: 330px; min-width: 330px; }
+
+/* 重写bootstrap的表格上下居中。 */
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td { vertical-align: middle !important; }
+
+.datepicker button { box-shadow: none !important; border: 0 !important;}
+.timepicker button { box-shadow: none !important; border: 0 !important;}

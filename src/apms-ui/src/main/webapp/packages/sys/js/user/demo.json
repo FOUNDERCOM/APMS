@@ -1,0 +1,53 @@
+{
+    "total": 123,
+    "result": [
+        {
+            "name": "张三",
+            "bureau": {
+                "name": "黔西县分局"
+            },
+            "station": {
+                "name": "某派出所"
+            },
+            "tel": "0857-828264321",
+            "mobile": "13426166123",
+            "mail": "abc@123.com",
+            "account": {
+                "account": "zhangsan"
+            },
+            "isEnabled": true
+        },
+        {
+            "name": "李四",
+            "bureau": {
+                "name": "七星关分局"
+            },
+            "station": {
+                "name": "某派出所"
+            },
+            "tel": "0857-828264321",
+            "mobile": "13426166123",
+            "mail": "abc@123.com",
+            "account": {
+                "account": "lisi"
+            },
+            "isEnabled": true
+        },
+        {
+            "name": "王五",
+            "bureau": {
+                "name": "织金县分局"
+            },
+            "station": {
+                "name": "某派出所"
+            },
+            "tel": "0857-82826524",
+            "mobile": "13426169876",
+            "mail": "abc@123.com",
+            "account": {
+                "account": "wangwu"
+            },
+            "isEnabled": false
+        }
+    ]
+}

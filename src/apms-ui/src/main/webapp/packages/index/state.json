@@ -1,0 +1,64 @@
+{
+    "403": {
+        "data": {
+            "nav": ["403"],
+            "isBuiltIn": true,
+            "pageTitle": "403",
+            "pageSubTitle": "没有权限访问对应的页面"
+        },
+        "templateUrl": "packages/index/tpl/403.html",
+        "controller": "BlankCtrl",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/ctrls/BlankCtrl.js"
+        ]
+    },
+    "404": {
+        "data": {
+            "nav": ["404"],
+            "isBuiltIn": true,
+            "pageTitle": "404",
+            "pageSubTitle": "无法找到对应的页面"
+        },
+        "templateUrl": "packages/index/tpl/404.html",
+        "controller": "BlankCtrl",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/ctrls/BlankCtrl.js"
+        ]
+    },
+    "500": {
+        "data": {
+            "nav": ["500"],
+            "isBuiltIn": true,
+            "pageTitle": "500",
+            "pageSubTitle": "系统发生了意外"
+        },
+        "templateUrl": "packages/index/tpl/500.html",
+        "controller": "BlankCtrl",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/ctrls/BlankCtrl.js"
+        ]
+    },
+    "coming": {
+        "data": {
+            "isBuiltIn": true,
+            "pageTitle": "建设中",
+            "pageSubTitle": "系统建设中"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    }
+}

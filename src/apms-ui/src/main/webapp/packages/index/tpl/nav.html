@@ -1,0 +1,12 @@
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a ui-sref="home" class="font-blue-chambray">首页</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li ng-repeat="item in $state.current.data.nav">
+        <span data-ng-bind="item"></span>
+        <i class="fa fa-circle" ng-if="$index != $state.current.data.nav.length - 1"></i>
+    </li>
+</ul>
+<!-- END PAGE BREADCRUMB -->

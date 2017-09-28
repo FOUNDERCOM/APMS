@@ -1,0 +1,267 @@
+
+<div class="profile">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-unstyled profile-nav">
+                <li>
+                    <img src="data:image/png;base64,{{entity.jb_zp}}" class="profile-img-responsive pic-bordered" alt="" />
+                </li>
+                <li bs-tooltip data-title="电话">
+                    <a href="javascript:">
+                        <i class="fa fa-phone"></i> {{entity.jb_dh}}
+                    </a>
+                </li>
+                <li bs-tooltip data-title="手机">
+                    <a href="javascript:">
+                        <i class="fa fa-phone-square"></i> {{entity.jb_sj}}
+                    </a>
+                </li>
+                <li bs-tooltip data-title="工作单位">
+                    <a href="javascript:">
+                        <i class="fa fa-building-o"></i> {{entity.gz_gzdw}}
+                    </a>
+                </li>
+                <li bs-tooltip data-title="职务">
+                    <a href="javascript:">
+                        <i class="fa fa-briefcase"></i> {{entity.gz_gzdw_zw}}
+                    </a>
+                </li>
+                <li bs-tooltip data-title="单位地址">
+                    <a href="javascript:">
+                        <i class="fa fa-map-marker"></i>{{entity.gz_gzdw_dz_sheng.value}} {{entity.gz_gzdw_dz_shi}} {{entity.gz_gzdw_dz_jd}} </a>
+                </li>
+                <li bs-tooltip data-title="单位邮编">
+                    <a href="javascript:">
+                        <i class="fa fa-code"></i>{{entity.gz_gzdw_dz_yb}} </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-8 profile-info">
+                    <h1 class="font-green sbold uppercase"> {{entity.jb_xm}}</h1>
+                    <span ng-if="entity.xt_qy" class="green"><i class="fa fa-check"></i> 启用</span>
+                    <span ng-if="!entity.xt_qy" class="red"><i class="fa fa-ban"></i> 注销</span>
+                    <span><i class="fa fa-flag"> 审核状态</i></span>
+                    <p>{{entity.jb_jl}}</p>
+                    <p>
+                        <span class="text-primary margin-right-10" bs-tooltip data-title="身份证号">
+                            <i class="fa fa-newspaper-o"></i> {{entity.jb_sfzh}}
+                        </span>
+                    </p>
+                    <ul class="list-inline">
+                        <li bs-tooltip data-title="公安系统">
+                            <i class="fa fa-black-tie"></i> {{entity.gz_gaxt ? "系统内" : "系统外"}} {{entity.gz_gaxt ? "自" + entity.gz_gaxt_kssj : ""}}
+                        </li>
+                        <li bs-tooltip data-title="性别">
+                            <i class="fa fa-smile-o"></i> {{entity.jb_xb}}
+                        </li>
+                        <li bs-tooltip data-title="民族">
+                            <i class="fa fa-users"></i> {{entity.jb_mz}}
+                        </li>
+                        <li bs-tooltip data-title="健康状况">
+                            <i class="fa fa-heart"></i> {{entity.jb_jkzk}}
+                        </li>
+                        <li bs-tooltip data-title="出生年月">
+                            <i class="fa fa-calendar"></i> {{entity.jb_csrq}}
+                        </li>
+                        <li bs-tooltip data-title="籍贯">
+                            <i class="fa fa-map-marker"></i> {{entity.jb_jg}}
+                        </li>
+                        <li bs-tooltip data-title="政治面貌">
+                            <i class="fa fa-exclamation-circle"></i> {{entity.jb_zzmm.value}}
+                        </li>
+                        <li bs-tooltip data-title="文化程度">
+                            <i class="fa fa-graduation-cap"></i> {{entity.jy_whcd.value}}
+                        </li>
+                        <li bs-tooltip data-title="所学专业">
+                            <i class="fa fa-flask"></i> {{entity.jy_whcd_sszy}}
+                        </li>
+                        <li bs-tooltip data-title="技术职称">
+                            <i class="fa fa-graduation-cap"></i> {{entity.zy_jszc}}
+                        </li>
+                        <li bs-tooltip data-title="资格认证">
+                            <i class="fa fa-thumbs-up"></i> {{entity.zy_zgrz}}
+                        </li>
+                        <li bs-tooltip data-title="业务专长">
+                            <i class="fa fa-trophy"></i> {{entity.zy_ywzc}}
+                        </li>
+                    </ul>
+                </div>
+                <!--end col-md-8-->
+                <div class="col-md-4">
+                    <div class="portlet sale-summary">
+                        <div class="portlet-title">
+                            <div class="caption font-blue-dark sbold"> 审核意见 </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <span class="sale-info"> 所在单位意见
+                                        <i class="fa fa-check-square-o"></i>
+                                    </span>
+                                    <span class="sale-num"> {{entity.gz_gzdw}}:{{entity.yj_szdw}} </span>
+                                </li>
+                                <li>
+                                    <span class="sale-info"> 推荐单位意见
+                                        <i class="fa fa-check-square-o"></i>
+                                    </span>
+                                    <span class="sale-num"> {{entity.yj_tjdw_mc}}:{{entity.yj_tjdw}} </span>
+                                </li>
+                                <li>
+                                    <span class="sale-info"> 装财局意见
+                                        <i class="fa fa-check-square-o"></i>
+                                    </span>
+                                    <span class="sale-num"> {{entity.yj_zcj}} </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portlet sale-summary">
+                        <div class="portlet-title">
+                            <div class="caption font-green-dark sbold"> 专业类别 </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="item in entity.zylbList">
+                                    <span class="sale-info"> {{item.zylb.value}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-md-4-->
+            </div>
+            <!--end row-->
+            <div class="tabbable-line tabbable-custom-profile">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <!--suppress HtmlUnknownAnchorTarget -->
+                        <a href="/#view_tab_gzjl" data-toggle="tab"> 工作经历({{entity.gzjlList.length}}) </a>
+                    </li>
+                    <li>
+                        <!--suppress HtmlUnknownAnchorTarget -->
+                        <a href="/#view_tab_jybj" data-toggle="tab"> 教育背景({{entity.jybjList.length}}) </a>
+                    </li>
+                    <li>
+                        <!--suppress HtmlUnknownAnchorTarget -->
+                        <a href="/#view_tab_yjcg" data-toggle="tab"> 研究成果({{entity.yjcgList.length}}) </a>
+                    </li>
+                    <li>
+                        <!--suppress HtmlUnknownAnchorTarget -->
+                        <a href="/#view_tab_jlqk" data-toggle="tab"> 奖励情况({{entity.jlqkList.length}}) </a>
+                    </li>
+                    <li>
+                        <!--suppress HtmlUnknownAnchorTarget -->
+                        <a href="/#view_tab_jz" data-toggle="tab"> 学术组织、行业协会兼职情况({{entity.jzList.length}}) </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <!-- tab panel -->
+                    <div class="tab-pane active" id="view_tab_gzjl">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><i class="icon-calendar"></i> 开始时间 </th>
+                                    <th class="text-center"><i class="icon-calendar"></i> 终止时间 </th>
+                                    <th class="text-center"><i class="icon-briefcase"></i> 所在单位 </th>
+                                    <th class="text-center"><i class="icon-users"></i> 职位/职级 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in entity.gzjlList">
+                                    <td>{{item.ks}}</td>
+                                    <td>{{item.zz}}</td>
+                                    <td>{{item.dw}}</td>
+                                    <td>{{item.zw}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- tab panel -->
+                    <div class="tab-pane" id="view_tab_jybj">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><i class="icon-calendar"></i> 开始时间 </th>
+                                    <th class="text-center"><i class="icon-calendar"></i> 终止时间 </th>
+                                    <th class="text-center"><i class="icon-graduation"></i> 毕业院校 </th>
+                                    <th class="text-center"><i class="icon-chemistry"></i> 所学专业 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in entity.jybjList">
+                                    <td>{{item.ks}}</td>
+                                    <td>{{item.zz}}</td>
+                                    <td>{{item.yx}}</td>
+                                    <td>{{item.zy}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- tab panel -->
+                    <div class="tab-pane" id="view_tab_yjcg">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><i class="icon-trophy"></i> 发表文章或者项目 </th>
+                                    <th class="text-center"><i class="icon-book-open"></i> 发布刊物 </th>
+                                    <th class="text-center"><i class="icon-briefcase"></i> 立项单位 </th>
+                                    <th class="text-center"><i class="icon-badge"></i> 研究级别 </th>
+                                    <th class="text-center"><i class="icon-calendar"></i> 发布日期 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in entity.yjcgList">
+                                    <td>{{item.mc}}</td>
+                                    <td>{{item.kw}}</td>
+                                    <td>{{item.dw}}</td>
+                                    <td>{{item.jb}}</td>
+                                    <td>{{item.rq}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- tab panel -->
+                    <div class="tab-pane" id="view_tab_jlqk">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><i class="icon-badge"></i> 奖励或荣誉 </th>
+                                    <th class="text-center"><i class="icon-home"></i> 授予单位 </th>
+                                    <th class="text-center"><i class="icon-calendar"></i> 奖励日期 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in entity.jlqkList">
+                                    <td>{{item.mc}}</td>
+                                    <td>{{item.dw}}</td>
+                                    <td>{{item.rq}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- tab panel -->
+                    <div class="tab-pane" id="view_tab_jz">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><i class="icon-social-dropbox"></i> 组织名称 </th>
+                                    <th class="text-center"><i class="icon-user-following"></i> 担任职务 </th>
+                                    <th class="text-center"><i class="icon-calendar"></i> 参加时间 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in entity.jzList">
+                                    <td>{{item.zzmc}}</td>
+                                    <td>{{item.zw}}</td>
+                                    <td>{{item.rq}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

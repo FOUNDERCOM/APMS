@@ -1,0 +1,49 @@
+<div class="modal fade" id="modifyStationModalDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="StationModifyCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-puzzle"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-boy">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">所属分局</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="所属分局" ng-model="entity.bureau.name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">科所队名称</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="处室名称" ng-model="entity.name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系电话</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="处室电话" ng-model="entity.tel">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-soft" data-dismiss="modal" aria-hidden="true" ng-click="submit()">
+                    <i class="fa fa-save"></i> 保存处室信息</button>
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

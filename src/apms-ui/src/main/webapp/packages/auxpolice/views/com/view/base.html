@@ -1,0 +1,35 @@
+
+<ul class="list-unstyled profile-nav">
+    <li>
+        <img src="{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
+        <a href="javascript:" class="profile-edit"> 编辑 </a>
+    </li>
+    <li bs-tooltip data-title="电话">
+        <a href="javascript:">
+            <i class="fa fa-phone"></i> {{entity['tel']}}
+        </a>
+    </li>
+    <li bs-tooltip data-title="手机">
+        <a href="javascript:">
+            <i class="fa fa-phone-square"></i> {{entity['mobile']}}
+        </a>
+    </li>
+    <li bs-tooltip data-title="工作单位">
+        <a href="javascript:">
+            <i class="fa fa-building-o"></i> {{entity['bureau']['name']}} {{entity['station']['name']}}
+        </a>
+    </li>
+    <li bs-tooltip data-title="职务">
+        <a href="javascript:">
+            <i class="fa fa-briefcase"></i> {{entity['job']}}
+        </a>
+    </li>
+    <li bs-tooltip data-title="单位地址">
+        <a href="javascript:">
+            <i class="fa fa-map-marker"></i>{{entity['addProvince']['value']}} {{entity['addCity']['value']}} {{entity['addCountry']['value']}} {{entity['addDetail']}} </a>
+    </li>
+    <li bs-tooltip data-title="单位邮编">
+        <a href="javascript:">
+            <i class="fa fa-code"></i>{{entity['station']['postCode']}} </a>
+    </li>
+</ul>

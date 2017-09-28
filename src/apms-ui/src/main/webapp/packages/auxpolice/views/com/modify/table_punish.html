@@ -1,0 +1,32 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid120px"><i class="icon-dislike"></i> 名称 </th>
+            <th class="text-center bold wid90px"><i class="icon-calendar"></i> 时间 </th>
+            <th class="text-center bold wid100px"><i class="icon-home"></i> 发布单位 </th>
+            <th class="text-center bold wid200px"><i class="icon-info"></i> 缘由 </th>
+            <th class="text-center bold wid60px"><i class="icon-user"></i> 登记人 </th>
+            <th class="text-center bold wid90px"><i class="icon-badge"></i> 登记时间 </th>
+            <th class="text-right bold wid90px">
+                <a href="javascript:" ng-click="entity.punishList.push({});">
+                    <i class="fa fa-plus"></i> 增加
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['punishList']">
+            <td class="text-center">{{item['title']}}</td>
+            <td class="text-center">{{item['date']}}</td>
+            <td class="text-center">{{item['dept']}}</td>
+            <td>{{item['desc']}}</td>
+            <td class="text-center">{{item['recorder']}}</td>
+            <td class="text-center">{{item['recordDate']}}</td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity['punishList'].splice($index, 1);">
+                    <i class="fa fa-close"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

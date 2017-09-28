@@ -1,0 +1,144 @@
+<div data-ng-include="'packages/index/tpl/nav.html'+cacheVersion"></div>
+
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label col-md-3">姓名</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" ng-if="!isOrgMgmt">
+                <div class="form-group">
+                    <label class="control-label col-md-3">部门</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right">
+                            <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.org = undefined"></i>
+                            <ui-select ng-model="condition.org" theme="bootstrap">
+                                <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                <ui-select-choices repeat="item in orgList | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label col-md-6">是否启用</label>
+                    <div class="col-md-6">
+                        <div class="md-checkbox-inline">
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                       ng-model="condition.isEnabled">
+                                <label for="dict_search_zt">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 启用 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:" class="btn btn-sm red-mint" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="portlet box red-mint">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-users"></i> 用户列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:" class="fullscreen"></a>
+                    <a href="javascript:" class="reload" ng-click="load()"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="table table-bordered table-hover table-advance">
+                        <thead>
+                            <tr>
+                                <th class="text-center wid140px">用户名</th>
+                                <th class="text-center wid140px">所属部门</th>
+                                <th class="text-center wid140px">账号</th>
+                                <th class="text-center wid90px">状态</th>
+                                <th class="text-center wid140px">操作</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="item in list">
+                                <td class="text-center">{{item['name']}}</td>
+                                <td class="text-center">{{item['org']['name']}}</td>
+                                <td class="text-center">{{item.account.account}}</td>
+                                <td class="text-center">
+                                    <span class="label label-sm"
+                                          ng-class="{
+                                          'label-success': item.isEnabled,
+                                          'label-danger': !item.isEnabled}">
+                                        {{item['isEnabled'] ? '启用' : '禁用'}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="javascript:" class="btn btn-xs red-flamingo" bs-tooltip data-title="配置权限"
+                                       ng-click="queryAuth(item)">
+                                        <i class="icon-magic-wand"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div table-paging-footer></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="portlet box red-mint">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-key"></i>{{currentUser.name}} 功能列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:" class="fullscreen"></a>
+                    <a href="javascript:" class="reload" ng-click="load()"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="table table-bordered table-hover table-advance">
+                        <thead>
+                            <tr>
+                                <th class="text-center wid140px">功能名称</th>
+                            </tr>
+                        </thead>
+
+                        <tbody ng-repeat="menu in root.children">
+                            <tr>
+                                <td>{{menu.name}}</td>
+                            </tr>
+                            <tr ng-if="!menu.isLeaf" ng-repeat="func in menu.children">
+                                <td class="text-center">
+                                    <input type="checkbox" ng-model="func.isAssigned"
+                                           bs-switch switch-label="<span><i class='{{func.icon}}'></i> {{func.name}}</span>"
+                                           switch-size="small" switch-label-width="100px" switch-on-text="有" switch-off-text="无"
+                                           switch-on-color="success" switch-off-color="info" switch-change="onAuthChange(func)">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

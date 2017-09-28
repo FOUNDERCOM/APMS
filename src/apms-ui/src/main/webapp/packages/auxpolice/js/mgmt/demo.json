@@ -1,0 +1,1886 @@
+{
+    "result": [
+        {
+            "name": "侯亮平",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "侯亮平是人民检察官，为人公正、公平、正义，为调查丁义珍的腐败贪污案而被派到汉东省担任检察院反贪局局长，是个一身正气的男子。身为检查官的他在对待嫌疑犯方面有着独树一格的方法，擅长与嫌疑犯“打太极”，以周旋的方式让嫌疑犯放松警惕，使对方摸不清他的底牌。在工作过程中，他要深入各阶层展开抽丝剥茧的调查工作，还要以身涉险，与位高权重的贪腐分子展开斗智斗勇的抉择。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/houliangping.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "吴惠芬",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "女"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "吴惠芬，汉东省委副书记兼政法委书记高育良的前妻（第一任妻子），汉东大学历史系教授，明史辅警。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/wuhuifen.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "李达康",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "李达康，首先他是一个有远大抱负的人，他想乘着中国的好时代实现中华民族的伟大复兴。为此，他积极推行发展，为了GDP可以说是有一些不择手段。于是，他曾怕投资商跑路而双规丁义珍，在“116事件”中，他一度想顶着压力趁乱拆除大风厂。但是，这些都不能否认他是一个人民的好公仆，他开会回去之后，立刻着手调查丁义珍，而在“116”中，他也很快幡然醒悟，“站在了人民当中“。但是为此，他却牺牲了很多，妻子欧阳菁埋怨他不通人情，讽刺他是“工作狂”，“害了她一生”，唯一的女儿也不理解他。但是从欧阳菁被抓之后，他魂不守舍的表现来看，他还是相当爱妻子的，只是二人的理想信念，胸怀抱负不同。他刚正无私，坚持原则，由此被赵立春一伙人称作“喂不熟的——”，遭到许多人的嫉恨，打压。因此，为了不让人抓到把柄，他过分避嫌，连他正直的两个好友都躲避着，好在后来他的心终于柔软一些，开始接纳一些正直好友。片中最后，他的一门心思发展经济，不管是否藏污纳垢，有些不择手段的做法与好友易学习的去除腐败经济的做法有一些冲突，期待人民的名义能有续，继续完善达康书记这个人物，以及他的更多细节。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/lidakang.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "沙瑞金",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "沙瑞金是从其他地方调任过来的汉东省新任省委书记，与汉东省检察院的老检察长陈岩石相熟。为人正义凛然、稳重冷静，在用人方面表现得很谨慎但又不失敏锐的眼光；喜欢亲自暗中走访深入视察来了解更多事实真相；在与汉东省各主要领导干部面前交流时声色不动，令人难以捉摸其内心真实想法，以超高智慧和心态间接帮助侯亮平等人与腐败分子周旋博弈。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/sharuijin.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "祁同伟",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "祁同伟曾为一级战斗英雄，典型“于连”式人物，用人格和尊严换来十年平步青云，为人善于伪装和剑走偏锋。在剧中前段，祁同伟是一个隐藏最深的神秘人物，他在大众面前是一个翩翩君子，在人后他又是另外一张脸，令很多人猜不透。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/qitongwei.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "程度",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "侯亮平是人民检察官，为人公正、公平、正义，为调查丁义珍的腐败贪污案而被派到汉东省担任检察院反贪局局长，是个一身正气的男子。身为检查官的他在对待嫌疑犯方面有着独树一格的方法，擅长与嫌疑犯“打太极”，以周旋的方式让嫌疑犯放松警惕，使对方摸不清他的底牌。在工作过程中，他要深入各阶层展开抽丝剥茧的调查工作，还要以身涉险，与位高权重的贪腐分子展开斗智斗勇的抉择。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/chengdu.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "赵东来",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "赵东来在剧中是汉东省京州市的公安局局长，为人沉着冷静、胆大心细。充满强烈正义感的他一向站在铁面无私的李达康市委书记一边。起初在外界形势不明朗的情况下一度与侯亮平他们保持一定距离。在熟悉侯亮平等人的为人处世后，毅然主动与他们联手侦查破案。他善于和腐败分子周旋，暗中收集证据、悄然掌握并分析敌方犯罪痕迹，突袭山水集团抓获贪官陈清泉，令对方惶惶不可终日，是一位能力出色、资历丰富的公安干部。同时，陈海和侯亮平一直努力撮合他和陆亦可。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/zhaodonglai.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "郑西坡",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "电视剧《人民的名义》讲述了因工厂拆迁、企业经济纠纷而暴露的一桩特大贪污腐败案件，以陆毅饰演的检察官侯亮平的调查行动为主线，以错综复杂的官场关系和贯穿始终的“一一六”事件为辅线，抽丝剥茧、层层递进最终一网打尽一连串的利益集团。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/zhengxipo.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        },
+        {
+            "name": "陆亦可",
+            "tel": "0857-12345678",
+            "mobile": "13426166128",
+            "job": "某职务",
+            "identityCard": "210102198209025666",
+            "joinDate": "2016年2月4日",
+            "standing": 2,
+            "sex": {
+                "value": "男"
+            },
+            "nation": {
+                "value": "汉族"
+            },
+            "health": {
+                "value": "良好"
+            },
+            "politicalStatus": {
+                "value": "党员"
+            },
+            "educationDegree": {
+                "value": "本科"
+            },
+            "institutions": "贵州大学",
+            "major": "计算机",
+            "birthday": "2017年9月2日",
+            "nativePlace": "辽宁沈阳",
+            "resume": "电视剧《人民的名义》被人民日报誉为史上尺度最大反腐剧，真的很佩服侯勇，之前他出演的形象一直都是正面人物，军官形象也深入人心，这次颠覆出演大贪官，动图感受下人家的演技，那不是小鲜肉能比的。",
+            "addProvince": {
+                "value": "贵州省"
+            },
+            "addCity": {
+                "value": "毕节市"
+            },
+            "addCountry": {
+                "value": "黔西县"
+            },
+            "addDetail": "滨江路123号",
+            "postCode": "110003",
+            "bureau": {
+                "name": "黔西分局",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "station": {
+                "name": "某某派出所",
+                "addProvince": {
+                    "value": "贵州省"
+                },
+                "addCity": {
+                    "value": "毕节市"
+                },
+                "addCountry": {
+                    "value": "黔西县"
+                },
+                "addDetail": "滨江路123号",
+                "postCode": "110003"
+            },
+            "photo": "packages/auxpolice/img/luyike.png",
+            "awardList": [
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2010年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2012年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2013年9月2日",
+                    "desc": "因为xxx获得奖励"
+                },
+                {
+                    "title": "奖励名称",
+                    "dept": "某局某派出所",
+                    "date": "2014年9月2日",
+                    "desc": "因为xxx获得奖励"
+                }
+            ],
+            "educationList": [
+                {
+                    "school": "某小学",
+                    "major": "无",
+                    "degree": "小学",
+                    "start": "1988年7月1日",
+                    "end": "1991年7月1日"
+                },
+                {
+                    "school": "某初中学",
+                    "major": "无",
+                    "degree": "初中",
+                    "start": "1991年7月1日",
+                    "end": "1994年7月1日"
+                },
+                {
+                    "school": "某高中",
+                    "major": "文科",
+                    "degree": "高中",
+                    "start": "1994年7月1日",
+                    "end": "1997年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "学士",
+                    "start": "1997年7月1日",
+                    "end": "2000年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "硕士",
+                    "start": "2000年7月1日",
+                    "end": "2002年7月1日"
+                },
+                {
+                    "school": "某大学",
+                    "major": "工商管理",
+                    "degree": "博士",
+                    "start": "2002年7月1日",
+                    "end": "2005年7月1日"
+                }
+            ],
+            "familyList": [
+                {
+                    "name": "周立梅",
+                    "rel": "妻子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "郭亮",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                },
+                {
+                    "name": "李霞",
+                    "rel": "父子",
+                    "birthday": "1986年6月3日",
+                    "mobile": "13426166128",
+                    "identityCard": "210102198209025666",
+                    "dept": "某单位",
+                    "job": "某职务",
+                    "nativePlace": "黑龙江哈尔滨"
+                }
+            ],
+            "punishList": [
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                },
+                {
+                    "title": "某处分",
+                    "date": "2013年3月2日",
+                    "dept": "处罚单位",
+                    "desc": "因为某市被处罚，或直系亲属有问题",
+                    "recorder": "某登记人",
+                    "recordDate": "2014年5月2日"
+                }
+            ],
+            "workList": [
+                {
+                    "dept": "某单位",
+                    "start": "2012年1月2日",
+                    "end": "2013年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2015年1月2日",
+                    "end": "2015年3月4日",
+                    "job": "职员"
+                },
+                {
+                    "dept": "某单位",
+                    "start": "2016年1月2日",
+                    "end": "2017年3月4日",
+                    "job": "职员"
+                }
+            ]
+        }
+    ],
+    "total": 123
+}

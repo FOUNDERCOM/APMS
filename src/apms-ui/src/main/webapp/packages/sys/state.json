@@ -1,0 +1,61 @@
+{
+    "sys_dict": {
+        "data": {
+            "nav": ["系统管理", "字典管理"],
+            "isBuiltIn": true,
+            "pageTitle": "字典管理",
+            "pageSubTitle": "管理系统字典标准信息"
+        },
+        "templateUrl": "packages/sys/views/dict/main.html",
+        "controller": "DictListCtrl",
+        "files": [
+            "packages/sys/js/dict/DictListCtrl.js",
+            "packages/sys/js/dict/DictModifyCtrl.js"
+        ]
+    },
+    "sys_user": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "用户管理",
+            "pageSubTitle": "管理本单位下辖直属单位用户"
+        },
+        "templateUrl": "packages/sys/views/user/main.html",
+        "controller": "UserListCtrl",
+        "files": [
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/sys/js/user/UserListCtrl.js",
+            "packages/sys/js/user/UserModifyCtrl.js"
+        ]
+    },
+    "sys_func": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "功能管理",
+            "pageSubTitle": "管理系统功能"
+        },
+        "templateUrl": "packages/sys/views/func/main.html",
+        "controller": "FuncListCtrl",
+        "files": [
+            "packages/sys/js/func/FuncListCtrl.js"
+        ]
+    },
+    "sys_auth": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "权限管理",
+            "pageSubTitle": "管理本单位下辖直属单位的用户权限"
+        },
+        "templateUrl": "packages/sys/views/auth/main.html",
+        "controller": "AuthCtrl",
+        "files": [
+            "packages/sys/js/auth/AuthCtrl.js"
+        ]
+    }
+}

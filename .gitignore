@@ -33,5 +33,5 @@ rebel.xml
 **/files/download
 **/workspace/run
 **/setup/temp
-/dev
-/workspace
+**/dev
+**/workspace

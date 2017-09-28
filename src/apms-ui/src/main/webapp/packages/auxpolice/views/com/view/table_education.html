@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid160px"><i class="icon-calendar"></i> 时间 </th>
+            <th class="text-center bold wid140px"><i class="icon-home"></i> 院校 </th>
+            <th class="text-center bold wid60px"><i class="icon-graduation"></i> 学位 </th>
+            <th class="text-center bold hidden-xs wid140px"><i class="icon-direction"></i> 专业 </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['educationList']">
+            <td class="text-center">{{item['start']}} - {{item['end']}}</td>
+            <td class="text-center">{{item['school']}}</td>
+            <td class="text-center">{{item['degree']}}</td>
+            <td>{{item['major']}}</td>
+        </tr>
+    </tbody>
+</table>

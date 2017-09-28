@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2009, 2010 Oracle and/or its affiliates. All rights reserved. -->
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence.xsd">
+    <persistence-unit name="apms_mgmt" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Dept Entities -->
+        <class>com.founder.bj.apms.dept.entity.DeptBureau</class>
+        <class>com.founder.bj.apms.dept.entity.DeptStation</class>
+
+        <!-- System Entities -->
+        <class>com.founder.bj.apms.sys.entity.SysDict</class>
+        <class>com.founder.bj.apms.sys.entity.SysDictionary</class>
+        <class>com.founder.bj.apms.sys.entity.SysFunc</class>
+        <class>com.founder.bj.apms.sys.entity.SysUser</class>
+        <class>com.founder.bj.apms.sys.entity.SysUserAccount</class>
+        <class>com.founder.bj.apms.sys.entity.SysUserPhoto</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.jdbc.batch_size" value="50" />
+            <property name="hibernate.jdbc.fetch_size" value="100" />
+            <property name="hibernate.search.autoregister_listeners" value="false"/>
+            <property name="hibernate.validator.autoregister_listeners" value="false" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+        </properties>
+    </persistence-unit>
+</persistence>

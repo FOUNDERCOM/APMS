@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.founder.bj</groupId>
+    <artifactId>apms-ui</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>war</packaging>
+
+    <name>APMS UI</name>
+    <description>
+        <![CDATA[
+            辅警管理系统 Auxiliary Police Management System UI
+        ]]>
+    </description>
+
+    <properties>
+		<framework.version>1.0.0.RELEASE</framework.version>
+    </properties>
+
+    <build>
+        <finalName>apms</finalName>
+        <!-- plugins -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>lee-git-repo</id>
+            <name>Jimmybly Lee's personal Github Repository</name>
+            <url>https://raw.githubusercontent.com/jimmyblylee/maven-repo/master/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

@@ -1,0 +1,38 @@
+{
+    "salary_mgmt": {
+        "data": {
+            "nav": ["工资管理"],
+            "isBuiltIn": true,
+            "pageTitle": "工资管理",
+            "pageSubTitle": "维护本单位的辅警工资信息"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    },
+    "salary_book": {
+        "data": {
+            "nav": ["工资管理"],
+            "isBuiltIn": true,
+            "pageTitle": "工资花名册",
+            "pageSubTitle": "本单位的辅警人员工资花名册"
+        },
+        "templateUrl": "packages/index/tpl/coming_soon.html",
+        "controller": "ComingCtrl",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
+            "resources/global/plugins/countdown/jquery.countdown.min.js",
+            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
+            "packages/index/js/ctrls/ComingCtrl.js"
+        ]
+    }
+}
