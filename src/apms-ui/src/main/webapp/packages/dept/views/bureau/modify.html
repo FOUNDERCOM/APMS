@@ -7,22 +7,66 @@
             </div>
             <div class="modal-body">
                 <div class="form">
-                    <form action="#" class="form-horizontal">
+                    <form action="#" class="form-horizontal modifyBureauForm">
                         <div class="form-boy">
+                            <div class="alert alert-danger display-hide">
+                                <button class="close" data-close="alert"></button> <i class="fa fa-warning"></i> 请检查输入项. </div>
+                            <div class="alert alert-success display-hide">
+                                <button class="close" data-close="alert"></button> <i class="fa fa-check"></i> 校验通过! </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">处室名称</label>
+                                        <label class="control-label col-md-3">分局名称</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" placeholder="处室名称" ng-model="entity.name">
+                                            <input type="text" class="form-control" placeholder="分局名称" name="name" ng-model="entity.name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">处室电话</label>
+                                        <label class="control-label col-md-3">编制</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" placeholder="处室电话" ng-model="entity.tel">
+                                            <input type="text" class="form-control" placeholder="编制" name="strength" ng-model="entity.strength">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">辅警额定工资</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="辅警额定工资" name="stdSalary" ng-model="entity.stdSalary">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="分局联系人" name="contactName" ng-model="entity.contactName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人座机</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人座机" name="contactTel" ng-model="entity.contactTel">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人手机</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人手机" name="contactMobile" ng-model="entity.contactMobile">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人邮箱</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人邮箱" ng-model="entity.contactMail">
                                         </div>
                                     </div>
                                 </div>
@@ -32,8 +76,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn blue-dark" data-dismiss="modal" aria-hidden="true" ng-click="submit()">
-                    <i class="fa fa-save"></i> 保存处室信息</button>
+                <button type="button" class="btn blue-dark" aria-hidden="true" ng-click="submit()">
+                    <i class="fa fa-save"></i> 保存分局信息</button>
                 <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
             </div>
         </div>

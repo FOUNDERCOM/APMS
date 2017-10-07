@@ -6,15 +6,13 @@
             "pageTitle": "工资管理",
             "pageSubTitle": "维护本单位的辅警工资信息"
         },
-        "templateUrl": "packages/index/tpl/coming_soon.html",
-        "controller": "ComingCtrl",
+        "templateUrl": "packages/salary/views/mgmt/main.html",
+        "controller": "AuxMgmtListCtrl",
         "files": [
-            "packages/index/css/coming-soon.css",
+            "packages/auxpolice/css/person_info.css",
 
-            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
-            "resources/global/plugins/countdown/jquery.countdown.min.js",
-            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
-            "packages/index/js/ctrls/ComingCtrl.js"
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
     },
     "salary_book": {
@@ -24,15 +22,13 @@
             "pageTitle": "工资花名册",
             "pageSubTitle": "本单位的辅警人员工资花名册"
         },
-        "templateUrl": "packages/index/tpl/coming_soon.html",
-        "controller": "ComingCtrl",
+        "templateUrl": "packages/salary/views/book/main.html",
+        "controller": "AuxMgmtListCtrl",
         "files": [
-            "packages/index/css/coming-soon.css",
+            "packages/auxpolice/css/person_info.css",
 
-            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
-            "resources/global/plugins/countdown/jquery.countdown.min.js",
-            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
-            "packages/index/js/ctrls/ComingCtrl.js"
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
     }
 }

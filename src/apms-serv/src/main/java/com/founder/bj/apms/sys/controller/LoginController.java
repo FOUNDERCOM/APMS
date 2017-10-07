@@ -53,7 +53,7 @@ public class LoginController extends AbstractControllerSupport {
      * 登录.
      */
     public void login() {
-        final Integer userId = authService.checkAccountAndPwd(workDTO.get("account"), workDTO.get("pwd"));
+        final Integer userId = authService.checkAccountAndPwd(workDTO.<String>get("account"), workDTO.<String>get("pwd"));
         if (ObjectUtils.isEmpty(userId)) {
             workDTO.setResult(false);
             sessionDTO.setActiveUser(authService.getTokenByUserId(-1));

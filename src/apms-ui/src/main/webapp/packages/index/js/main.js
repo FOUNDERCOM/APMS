@@ -51,6 +51,67 @@ angular.module("WebApp").config(['$controllerProvider', function($controllerProv
     $controllerProvider.allowGlobals();
 }]);
 
+angular.module('WebApp').factory('httpInterceptor', ['$q', function ($q) {
+    return {
+        'response': function (response) {
+            return response;
+        },
+        'responseError': function (response) {
+            var errorDetail = "";
+            if (response.status === 404) {
+                errorDetail += "请求发生了错误：";
+                errorDetail += "<span>" + response.status + "</span>";
+                errorDetail += ", 系统找不到请求：";
+                errorDetail += response.config.url;
+            } else if (response.status === 401 || response.status === 403 || response.status === 417) {
+                if (response.data && response.data['errLevel'] && response.data['errLevel'] === "warning") {
+                    errorDetail += response.data['errMsg'];
+                    console.log(response.data);
+                } else {
+                    errorDetail += "请求发生了错误：";
+                    errorDetail += "<span>" + response.status + "</span>";
+                    errorDetail += response.status === 417 ? ", 请求过程中发生业务异常：" : ", 您无权访问此请求：";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>请求目标:</span>" + response.config.data.controller;
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>请求函数:</span>" + response.config.data.method;
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>编码:</span>" + response.data['errCode'];
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>描述:</span> " + response.data['errMsg'];
+                }
+            }
+            var containerId = response.data["errContainer"] ? response.data["errContainer"] : ".page-container .page-content .main-error-div";
+            App.alert({
+                container: $(containerId),
+                place: 'append', // append or prepent in container
+                type: 'warning', // alert's type
+                message: errorDetail, // alert's message
+                close: true, // make alert closable
+                icon: 'fa fa-warning' // put icon class before the message
+            });
+            return $q.reject(response);
+        },
+        'request': function (config) {
+            //处理AJAX请求（否则后台IsAjaxRequest()始终false）
+            config.headers['X-Requested-With'] = 'XMLHttpRequest';
+            return config;
+        },
+        'requestError': function (config) {
+            return config;
+        }
+    };
+}]);
+
+angular.module('WebApp').config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('httpInterceptor');
+    $httpProvider.defaults.headers.post = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+}]);
 /********************************************
  END: BREAKING CHANGE in AngularJS v1.3.x:
  *********************************************/
@@ -95,7 +156,9 @@ angular.module("WebApp").config(['$stateProvider', '$urlRouterProvider', functio
             deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: "WebApp",
-                    files: ["packages/home/js/HomeCtrl.js" + cacheVersion,"packages/index/css/coming-soon.css" + cacheVersion]
+                    files: [
+                        "packages/home/js/HomeCtrl.js" + cacheVersion
+                    ]
                 });
             }]
         }
@@ -129,7 +192,7 @@ angular.module("WebApp").config(['$stateProvider', '$urlRouterProvider', functio
     });
 
     // Redirect any unmatched url
-    $urlRouterProvider.otherwise("/404.html");
+    $urlRouterProvider.otherwise("/home.html");
 
     $.ajaxSettings.async = true;
 }]);
@@ -142,5 +205,50 @@ angular.module("WebApp").run(["$rootScope", "settings", "$state", function($root
     // 一些业务上可能的默认配置
     $.getJSON("packages/index/json/config.json", function(obj) {
         $rootScope.cfg = obj;
+    });
+
+    /*
+     路由和权限配置过程，需要同步处理（不能异步）
+     1、获得当前权限
+     2、注册落于变化监听
+     */
+
+    // 1、获得当前用户令牌，并根据令牌，尝试配置跳转权限
+    $rootScope.reloadToken = function () {
+        $.ajax({
+            url: "mvc/dispatch", async: false,
+            data: {controller: "LoginController", method: "getCurrentToken"},
+            success: function (data) {
+                $rootScope.token = {"user": data.user, "funcs": data.funcs, "funcTree": data.funcTree};
+                $rootScope.token.user.photo = data.photo.data;
+                $rootScope.token.user.type = $rootScope.token.user.id === -1 ?
+                    "ANONYMOUS" : $rootScope.token.user.id === -2 ? "ADMIN" : "NORMAL";
+
+                console.log($rootScope.token);
+            }
+        });
+    };
+    $rootScope.reloadToken();
+
+    // 2、注册路由变化监听器
+    $rootScope.$on("$stateChangeStart", function (event, toState) {
+        var isValid = false;
+        var commonFuncList = ["403", "404", "500", "about", "coming", "contact", "help", "lock", "login", "home"];
+        $.each(commonFuncList, function (idx, func) {
+            if (func === toState.name) {
+                isValid = true;
+            }
+        });
+        if (!isValid) {
+            $.each($rootScope.token.funcs, function (idx, data) {
+                if (data.code === toState.name) {
+                    isValid = true;
+                }
+            });
+        }
+        if (!isValid) {
+            event.preventDefault();
+            $state.go("403");
+        }
     });
 }]);

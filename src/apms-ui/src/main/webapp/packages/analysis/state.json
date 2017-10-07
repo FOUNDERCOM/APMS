@@ -6,15 +6,10 @@
             "pageTitle": "战力分析",
             "pageSubTitle": "各分局、科所队团队配置情况及人员战斗力分析"
         },
-        "templateUrl": "packages/index/tpl/coming_soon.html",
-        "controller": "ComingCtrl",
+        "templateUrl": "packages/analysis/views/capability.html",
+        "controller": "CapabilityCtrl",
         "files": [
-            "packages/index/css/coming-soon.css",
-
-            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
-            "resources/global/plugins/countdown/jquery.countdown.min.js",
-            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
-            "packages/index/js/ctrls/ComingCtrl.js"
+            "packages/analysis/js/CapabilityCtrl.js"
         ]
     },
     "analysis_check": {
@@ -24,15 +19,16 @@
             "pageTitle": "辅警抽查",
             "pageSubTitle": "政工抽查各级科所队辅警人员情况"
         },
-        "templateUrl": "packages/index/tpl/coming_soon.html",
-        "controller": "ComingCtrl",
+        "templateUrl": "packages/analysis/views/check.html",
+        "controller": "AuxMgmtListCtrl",
         "files": [
-            "packages/index/css/coming-soon.css",
+            "packages/auxpolice/css/person_info.css",
 
-            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
-            "resources/global/plugins/countdown/jquery.countdown.min.js",
-            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
-            "packages/index/js/ctrls/ComingCtrl.js"
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
     },
     "analysis_supervise": {

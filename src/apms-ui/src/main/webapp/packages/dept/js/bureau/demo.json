@@ -4,17 +4,23 @@
         {
             "name": "七星关分局",
             "tel": "0785-12343465",
-            "isEnabled": true
+            "isEnabled": true,
+            "strength": 1000,
+            "stdSalary": 2200
         },
         {
             "name": "黔西县分局",
             "tel": "0785-12345678",
-            "isEnabled": true
+            "isEnabled": true,
+            "strength": 800,
+            "stdSalary": 1800
         },
         {
             "name": "纳雍县分局",
             "tel": "0785-12349857",
-            "isEnabled": true
+            "isEnabled": true,
+            "strength": 600,
+            "stdSalary": 2000
         }
     ]
 }

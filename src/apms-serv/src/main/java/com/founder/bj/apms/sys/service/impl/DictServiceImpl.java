@@ -52,7 +52,7 @@ public class DictServiceImpl implements DictService {
 
     // CSOFF: MemberName
     /** Hibernate 数据库操作管理器. **/
-    @PersistenceContext(unitName = "esh_mgmt")
+    @PersistenceContext(unitName = "apms_mgmt")
     private EntityManager em;
     // CSON: MemberName
 

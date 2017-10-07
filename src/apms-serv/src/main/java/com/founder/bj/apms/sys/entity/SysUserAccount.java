@@ -38,8 +38,8 @@ public class SysUserAccount implements Serializable {
     /** Id. */
     @Id
     @Column(name = "USER_ID")
-    @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
-    @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
+    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     /** 用户帐号. */

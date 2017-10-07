@@ -59,6 +59,13 @@
                 <li class="dropdown dropdown-user dropdown-dark" data-ng-include="'packages/index/tpl/header_user.html'">
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
+
+
+                <li class="dropdown dropdown-extended" ng-if="token.user.type == 'ANONYMOUS'">
+                    <a href="login.html" class="dropdown-toggle">
+                        <i class="icon-login"></i>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- END TOP NAVIGATION MENU -->

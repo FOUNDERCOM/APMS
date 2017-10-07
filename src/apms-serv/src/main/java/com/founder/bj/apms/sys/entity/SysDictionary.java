@@ -40,8 +40,8 @@ public class SysDictionary implements Serializable {
     /** Id. */
     @Id
     @Column(name = "DICT_ID")
-    @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
-    @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
+    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     /** 上级字典，往往直接是类型描述，除非是父子结构的. */

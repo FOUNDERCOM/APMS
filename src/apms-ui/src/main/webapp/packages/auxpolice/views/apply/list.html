@@ -13,14 +13,6 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label class="control-label col-md-4">推荐</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="推荐单位" ng-model="condition.yj_tjdw">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
                             <label class="control-label col-md-4">审核</label>
                             <div class="col-md-8">
                                 <select class="form-control" title="审核状态" ng-model="condition.xt_zt" ng-change="onZTConditionChange()">
@@ -49,40 +41,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">系统内</label>
-                            <div class="col-md-6">
-                                <div class="md-checkbox-inline">
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="zj_search_gaxt" class="md-check" checked
-                                               ng-model="condition.gz_gaxt">
-                                        <label for="zj_search_gaxt">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 是 </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">是否库外</label>
-                            <div class="col-md-6">
-                                <div class="md-checkbox-inline">
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="zj_search_sfkw" class="md-check" checked
-                                               ng-model="condition.xt_sfkw">
-                                        <label for="zj_search_sfkw">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 是 </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
@@ -104,10 +62,6 @@
             <!--suppress HtmlUnknownAnchorTarget -->
             <a href="/#updateZJModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
                 <i class="glyphicon glyphicon-plus"></i> 注册辅警
-            </a>
-            <!--suppress HtmlUnknownAnchorTarget -->
-            <a href="/#updateZJKWModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd(true)">
-                <i class="glyphicon glyphicon-plus"></i> 登记库外辅警
             </a>
         </div>
     </div>

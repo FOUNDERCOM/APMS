@@ -12,14 +12,6 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label class="control-label col-md-3">电话</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="电话" ng-model="condition.tel">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
                         <label class="control-label col-md-3">状态</label>
                         <div class="col-md-9">
                             <div class="md-checkbox-inline">
@@ -45,7 +37,7 @@
 <div class="portlet box blue-soft">
     <div class="portlet-title">
         <div class="caption">
-            <i class="icon-puzzle"></i> 科所队列表
+            <i class="icon-paper-clip"></i> <b>{{token.user.org.bureau.name}}</b> - 所辖科所队列表
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
@@ -63,24 +55,47 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="text-center wid180px">所属分局</th>
+                        <th class="text-center wid60px">#</th>
                         <th class="text-center wid180px">科所队名称</th>
-                        <th class="text-center wid160px">座机</th>
+                        <th class="text-center wid90px">编制</th>
+                        <th class="text-center wid90px">联系人</th>
                         <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid120px">最后一次操作</th>
                         <th class="text-center wid160px">操作</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="item in list">
-                        <td>{{item['bureau']['name']}}</td>
-                        <td>{{item['name']}}</td>
-                        <td class="text-center">{{item['tel']}}</td>
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td class="text-center">{{item['name']}}</td>
+                        <td class="text-center">{{item['strength']}}</td>
+                        <td class="text-center">
+                            <a href="javascript:" class="popovers" data-container="body"
+                               data-original-title="{{item['contactName']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                               data-content="<b><i class='icon-call-end'></i> 电话</b>: <a href='tel:{{item.contactTel}}'>{{item['contactTel']}}</a><br/>
+                                            <b><i class='icon-screen-smartphone'></i> 手机</b>: <a href='tel:{{item.contactMobile}}'>{{item['contactMobile']}}</a><br/>
+                                            <b><i class='icon-envelope-open'></i> 邮箱</b>: <a href='tel:{{item.contactMail}}'>{{item['contactMail']}}</a>"
+                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                {{item['contactName']}}
+                            </a>
+                        </td>
                         <td class="text-center">
                             <span class="label label-sm"
                                   ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
                         </td>
-                        <td>
+                        <td class="text-center">
+                            <a href="javascript:" class="popovers" data-container="body"
+                               data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                               data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>
+                                            <b><i class='icon-user'></i> 操作人名称:</b> {{item['lastUpdateUser']['name']}}<br/>
+                                            <b><i class='icon-calendar'></i> 操作时间:</b> {{item['lastUpdateDate']}}<br/>
+                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}"
+                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                {{item['lastUpdateUser']['name']}}
+                            </a>
+                        </td>
+                        <td class="text-center">
                             <!-- 启用/禁用 -->
                             <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
                                ng-if="item.isEnabled" ng-click="changeStatus(item, false)">

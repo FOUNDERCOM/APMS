@@ -22,8 +22,36 @@
  * Created by Jimmybly Lee on 2017/9/10.
  * @author Jimmybly Lee
  */
-angular.module("WebApp").controller('HeaderCtrl', ['$scope', function($scope) {
+angular.module("WebApp").controller('HeaderCtrl', ['$scope', '$ajaxCall', function($scope, $ajaxCall) {
     $scope.$on('$includeContentLoaded', function() {
         Layout.initHeader(); // init header
     });
+    $scope.logout = function() {
+        bootbox.dialog({
+            title: "请确认",
+            message: "是否确认退出?",
+            buttons: {
+                main: {
+                    label: " 取 消 ",
+                    className: "dark icon-ban btn-outline"
+                },
+                danger: {
+                    label: " 退 出！ ",
+                    className: "red icon-logout",
+                    callback: function() {
+                        $ajaxCall.post({
+                            data: {
+                                "controller": "LoginController",
+                                "method": "logout"
+                            },
+                            success: function() {
+                                window.location.href="index.html#/home.html";
+                                window.location.reload();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
 }]);

@@ -1,0 +1,140 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">分局</label>
+                        <div class="col-md-9">
+                            <div class="input-icon right">
+                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.bureau = undefined"></i>
+                                <ui-select ng-model="condition.bureau" theme="bootstrap">
+                                    <ui-select-match placeholder="选择或查找...">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">名称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="科所队名称" ng-model="condition.name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">状态</label>
+                        <div class="col-md-9">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="org_search_zt" class="md-check" checked
+                                           ng-model="condition.isEnabled">
+                                    <label for="org_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascript:" class="btn btn-sm blue-soft" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box blue-soft">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-paper-clip"></i> <b>{{token.user.org.bureau.name}}</b> - 所辖科所队列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#modifyStationallModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加科所队
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center wid60px">#</th>
+                        <th class="text-center wid120px">所属分局</th>
+                        <th class="text-center wid180px">科所队名称</th>
+                        <th class="text-center wid90px">编制</th>
+                        <th class="text-center wid90px">联系人</th>
+                        <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid120px">最后一次操作</th>
+                        <th class="text-center wid160px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td class="text-center">{{item['bureau']['name']}}</td>
+                        <td class="text-center">{{item['name']}}</td>
+                        <td class="text-center">{{item['strength']}}</td>
+                        <td class="text-center">
+                            <a href="javascript:" class="popovers" data-container="body"
+                               data-original-title="{{item['contactName']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                               data-content="<b><i class='icon-call-end'></i> 电话</b>: <a href='tel:{{item.contactTel}}'>{{item['contactTel']}}</a><br/>
+                                            <b><i class='icon-screen-smartphone'></i> 手机</b>: <a href='tel:{{item.contactMobile}}'>{{item['contactMobile']}}</a><br/>
+                                            <b><i class='icon-envelope-open'></i> 邮箱</b>: <a href='tel:{{item.contactMail}}'>{{item['contactMail']}}</a>"
+                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                {{item['contactName']}}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
+                        </td>
+                        <td class="text-center">
+                            <a href="javascript:" class="popovers" data-container="body"
+                               data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                               data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>
+                                            <b><i class='icon-user'></i> 操作人名称:</b> {{item['lastUpdateUser']['name']}}<br/>
+                                            <b><i class='icon-calendar'></i> 操作时间:</b> {{item['lastUpdateDate']}}<br/>
+                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}"
+                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                {{item['lastUpdateUser']['name']}}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+                               ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+                               ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+                                <i class="fa fa-recycle"></i>
+                            </a>
+                            <!-- 编辑 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#modifyStationallModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

@@ -7,137 +7,33 @@
     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
     <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}">
-        <li class="heading">
-            <h3>辅警管理系统</h3>
+
+        <li class="heading" ng-repeat-start="item in token.funcTree.children | orderBy:'seq':false">
+            <h3>{{item.name}}</h3>
         </li>
-        <li class="start nav-item">
-            <a ui-sref="home">
-                <i class="icon-home"></i>
-                <span class="title">首页</span>
+
+        <li class="nav-item {{sub['code'] === 'home' ? 'start' : ''}}" ng-repeat="sub in item.children | orderBy:'seq':false">
+
+            <a ui-sref="{{sub['code']}}" ng-if="sub.children.length == 0">
+                <i class="{{sub['icon']}}"></i>
+                <span class="title">{{sub.name}}</span>
             </a>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:">
-                <i class="icon-users"></i>
-                <span class="title">辅警管理</span>
+
+            <a href="javascript:" ng-if="sub.children.length > 0">
+                <i class="{{sub['icon']}}"></i>
+                <span class="title">{{sub['name']}}</span>
                 <span class="arrow "></span>
             </a>
-            <ul class="sub-menu">
-                <li>
-                    <a ui-sref="aux_apply">
-                        <span><i class="icon-user-follow"></i> 辅警登记</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="aux_approve">
-                        <span><i class="icon-eye"></i> 辅警审核</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="aux_log">
-                        <span><i class="icon-book-open"></i> 申请记录</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="aux_dept">
-                        <span><i class="icon-check"></i> 本部辅警</span>
+            <ul class="sub-menu" ng-if="sub.children.length > 0">
+                <li ng-repeat="ssub in sub.children | orderBy:'seq':false">
+                    <a ui-sref="{{ssub['code']}}">
+                        <span><i class="{{ssub['icon']}}"></i> {{ssub.name}}</span>
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
-            <a href="javascript:">
-                <i class="icon-credit-card"></i>
-                <span class="title">辅警工资</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a ui-sref="salary_mgmt">
-                        <span><i class="icon-note"></i> 工资维护</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="salary_book">
-                        <span><i class="icon-notebook"></i> 花名册</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:">
-                <i class="icon-rocket"></i>
-                <span class="title">分析决策</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a ui-sref="analysis_capability">
-                        <span><i class="icon-like"></i> 战力分析</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="analysis_check">
-                        <span><i class="icon-eyeglasses"></i> 辅警抽查</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="analysis_supervise">
-                        <span><i class="icon-speedometer"></i> 监察分析</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="heading">
-            <h3 class="uppercase">系统配置</h3>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:">
-                <i class="icon-globe"></i>
-                <span class="title">部门管理</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a ui-sref="dept_bureau">
-                        <span><i class="icon-puzzle"></i> 分局管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="dept_station">
-                        <span><i class="icon-paper-clip"></i> 科所队</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:">
-                <i class="icon-settings"></i>
-                <span class="title">系统管理</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a ui-sref="sys_dict">
-                        <span><i class="icon-layers"></i> 字典管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="sys_func">
-                        <span><i class="icon-flag"></i> 功能管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="sys_user">
-                        <span><i class="icon-users"></i> 用户管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="sys_auth">
-                        <span><i class="icon-key"></i> 权限管理</span>
-                    </a>
-                </li>
-            </ul>
+
+        <li ng-repeat-end>
         </li>
     </ul>
     <!-- END SIDEBAR MENU -->

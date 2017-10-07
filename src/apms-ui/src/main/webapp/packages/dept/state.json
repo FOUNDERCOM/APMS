@@ -26,5 +26,19 @@
             "packages/dept/js/station/StationListCtrl.js",
             "packages/dept/js/station/StationModifyCtrl.js"
         ]
+    },
+    "dept_station_all": {
+        "data": {
+            "nav": ["机构管理", "全科所队管理"],
+            "isBuiltIn": true,
+            "pageTitle": "全科所队管理",
+            "pageSubTitle": "管理所有分局的科所队信息"
+        },
+        "templateUrl": "packages/dept/views/stationall/main.html",
+        "controller": "StationallListCtrl",
+        "files": [
+            "packages/dept/js/stationall/StationallListCtrl.js",
+            "packages/dept/js/stationall/StationallModifyCtrl.js"
+        ]
     }
 }

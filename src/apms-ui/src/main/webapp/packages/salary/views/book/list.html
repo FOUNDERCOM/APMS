@@ -1,0 +1,63 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">分局</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="分局" ng-model="condition.jb_xm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
+                <a href="javascript:" class="btn btn-sm yellow-gold" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box yellow-gold">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-drawer"></i> 辅警信息
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <a href="packages/salary/demo/salary.xlsx" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出</a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th class="text-center wid260px">分局</th>
+                        <th class="text-center wid260px">科所队</th>
+                        <th class="text-center wid100px">姓名</th>
+                        <th class="text-center wid100px">性别</th>
+                        <th class="text-center wid260px">身份证号</th>
+                        <th class="text-center wid220px">工资</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td class="text-center wid260px">{{item['bureau']['name']}} </td>
+                        <td class="text-center wid100px">{{item['station']['name']}}</td>
+                        <td class="text-center wid100px">{{item['name']}}</td>
+                        <td class="text-center wid100px">{{item['sex']['value']}}</td>
+                        <td class="text-center wid100px">{{item['identityCard']}}</td>
+                        <td class="text-center wid160px">{{item['salary']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

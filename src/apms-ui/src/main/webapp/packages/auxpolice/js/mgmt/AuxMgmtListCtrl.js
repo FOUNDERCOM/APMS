@@ -24,6 +24,10 @@
  */
 angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
 
+    // 流程相关颜色和消息配置
+    $.getJSON("packages/com/js/config.json", function(data) {
+        $scope.cfg = data;
+    });
 
     /**
      * 修改给定实体的状态
@@ -37,7 +41,7 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {
-                    label: isEnabled ? " 恢 复 ！ " : " 注 销 ！",
+                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
                     className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
                     callback: function () {
                         $ajaxCall.post({

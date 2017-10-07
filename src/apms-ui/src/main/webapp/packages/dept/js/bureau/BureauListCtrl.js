@@ -18,27 +18,32 @@
  * ***************************************************************************/
 
 /**
- * Description: 处室列表控制器.<br>
+ * Description: 分局列表控制器.<br>
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('BureauListCtrl', ['$scope', "$listService", "$ajaxCall", function ($scope, $listService, $ajaxCall) {
+
+    $scope.deptName = "分局";
+    $scope.modifyDivId = "modifyBureauModalDiv";
+    $scope.controllerName = "DeptBureauController";
+
     $scope.condition = {isEnabled: true};
     $listService.init($scope, {
-        "controller": "OrgController",
+        "controller": $scope.controllerName,
         "method": "query",
         callback: function (success) {
-            // $scope.list = success.data.result;
+            $scope.list = success.data.result;
         }
     });
 
-    // /**
-    //  * 刷新数据
-    //  */
-    // $scope.load = function () {
-    //     $scope.pageRequest.getResponse();
-    // };
-    // $scope.load();
+    /**
+     * 刷新数据
+     */
+    $scope.load = function () {
+        $scope.pageRequest.getResponse();
+    };
+    $scope.load();
 
     /**
      * 修改给定实体的状态
@@ -48,7 +53,7 @@ angular.module('WebApp').controller('BureauListCtrl', ['$scope', "$listService",
     $scope.changeStatus = function (item, isEnabled) {
         bootbox.dialog({
             title: "请确认",
-            message: isEnabled ? "是否确认恢复该处室？" : "是否确认禁用该处室？",
+            message: isEnabled ? "是否确认恢复该" + $scope.deptName + "？" : "是否确认禁用该" + $scope.deptName + "？",
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {
@@ -57,7 +62,7 @@ angular.module('WebApp').controller('BureauListCtrl', ['$scope', "$listService",
                     callback: function () {
                         $ajaxCall.post({
                             data: {
-                                controller: "OrgController",
+                                controller: $scope.controllerName,
                                 method: isEnabled ? "resume" : "remove",
                                 id: item.id
                             },
@@ -75,40 +80,30 @@ angular.module('WebApp').controller('BureauListCtrl', ['$scope', "$listService",
      * 准备添加实体
      */
     $scope.prepareToAdd = function () {
-        var scope = $("#BureauModifyCtrl").scope();
-        scope.title = "添加处室信息";
+        var scope = $("#" + $scope.modifyDivId).scope();
+        scope.title = "添加" + $scope.deptName + "信息";
         scope.method = "create";
         scope.entity = {};
 
         scope.$on("submitted", function () {
             $scope.load();
         });
+        scope.clear();
     };
 
     /**
      * 准备修改实体
      */
     $scope.prepareToUpdate = function (item) {
-        var scope = $("#BureauModifyCtrl").scope();
-        scope.title = "修改处室信息";
+        var scope = $("#" + $scope.modifyDivId).scope();
+        scope.title = "修改" + $scope.deptName + "信息";
         scope.method = "update";
         scope.entity = item;
 
         scope.$on("submitted", function () {
             $scope.load();
         });
+        scope.clear();
     };
-
-    /** make demo data */
-    $scope.demo = function() {
-        $.getJSON("packages/dept/js/bureau/demo.json", function(obj) {
-            $scope.pageResponse = obj;
-            $scope.list = obj.result;
-        });
-    };
-    $scope.load = function() {
-        $scope.demo();
-    };
-    $scope.load();
 
 }]);

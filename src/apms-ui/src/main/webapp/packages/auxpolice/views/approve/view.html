@@ -1,0 +1,19 @@
+<div class="modal fade" id="viewAuxploiceMgmtModalDiv" role="dialog" aria-hidden="true" ng-controller="AuxMgmtViewCtrl">
+    <div class="modal-dialog modal-full">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-drawer"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div data-ng-include="'packages/auxpolice/views/com/view/main.html'+cacheVersion"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

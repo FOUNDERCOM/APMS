@@ -26,6 +26,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.founder.bj.apms.sys.dto.BureauDTO;
+import com.founder.bj.apms.sys.dto.StationDTO;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
 
     // CSOFF: MemberName
     /** Hibernate 数据库操作管理器. **/
-    @PersistenceContext(unitName = "esh_mgmt")
+    @PersistenceContext(unitName = "apms_mgmt")
     private EntityManager em;
     // CSON: MemberName
 
@@ -105,6 +107,9 @@ public class AuthServiceImpl implements AuthService {
         // org
         token.org().setId(user.getStation().getId());
         token.org().setName(user.getStation().getName());
+        ((StationDTO) token.org()).setBureau(new BureauDTO());
+        ((StationDTO) token.org()).getBureau().setId(user.getStation().getBureau().getId());
+        ((StationDTO) token.org()).getBureau().setName(user.getStation().getBureau().getName());
         // user
         token.user().setId(user.getId());
         token.user().setName(user.getName());
@@ -118,7 +123,7 @@ public class AuthServiceImpl implements AuthService {
         for (Number n : ids) {
             intIds.add(n.intValue());
         }
-        final SysFunc root = em.find(SysFunc.class, -1000000);
+        final SysFunc root = em.find(SysFunc.class, -10000000);
         // function tree
         //noinspection ConstantConditions
         BeanUtils.copyProperties(fetchChildren(root, intIds), token.funcTree());
@@ -178,7 +183,7 @@ public class AuthServiceImpl implements AuthService {
         func.setIcon(node.getIcon());
 
         func.setParentId(node.getParent().getId());
-        func.setChildren(new LinkedList<>());
+        func.setChildren(new LinkedList<FuncTree>());
         func.setIsRoot(node.getIsRoot());
         func.setIsLeaf(node.getIsLeaf());
 

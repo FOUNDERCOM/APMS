@@ -1,0 +1,93 @@
+<div class="modal fade" id="modifyStationallModalDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="StationallModifyCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-paper-clip"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form action="#" class="form-horizontal modifyStationallForm">
+                        <div class="form-boy">
+                            <div class="alert alert-danger display-hide">
+                                <button class="close" data-close="alert"></button> <i class="fa fa-warning"></i> 请检查输入项. </div>
+                            <div class="alert alert-success display-hide">
+                                <button class="close" data-close="alert"></button> <i class="fa fa-check"></i> 校验通过! </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">所属分局</label>
+                                        <div class="col-md-9">
+                                            <div class="input-icon right">
+                                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="entity.bureau = undefined"></i>
+                                                <ui-select ng-model="entity.bureau" theme="bootstrap">
+                                                    <ui-select-match placeholder="选择或查找...">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                        <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">科所队<span class="required"> * </span></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="分局名称" name="name" ng-model="entity.name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">编制</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="编制" name="strength" ng-model="entity.strength">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="分局联系人" ng-model="entity.contactName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人座机</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人座机" ng-model="entity.contactTel">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人手机</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人手机" ng-model="entity.contactMobile">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">联系人邮箱</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="联系人邮箱" ng-model="entity.contactMail">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-soft" aria-hidden="true" ng-click="submit()">
+                    <i class="fa fa-save"></i> 保存科所队信息</button>
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

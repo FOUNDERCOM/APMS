@@ -44,8 +44,8 @@ public class SysFunc implements Serializable {
     /** Id. */
     @Id
     @Column(name = "FUNC_ID")
-    @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
-    @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
+    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     /** 上级功能. */
@@ -108,7 +108,7 @@ public class SysFunc implements Serializable {
 
     // CSOFF: LineLength
     /** 是否为叶子节点. */
-    @Formula("(SELECT CASE WHEN (COUNT(1) > 0) THEN 0 ELSE 1 END FROM SYS_FUNC FUNC WHERE FUNC.FUNC_PARENT_ID = FUNC_ID)")
+    @Formula("(SELECT CASE WHEN (COUNT(1) > 0) THEN 0 ELSE 1 END FROM APMS_SYS_FUNC FUNC WHERE FUNC.FUNC_PARENT_ID = FUNC_ID)")
     private Boolean isLeaf;
     // CSON: LineLength
 

@@ -25,15 +25,13 @@
             "pageTitle": "辅警审核",
             "pageSubTitle": "审核科所队上报注册登记的辅警人员信息"
         },
-        "templateUrl": "packages/index/tpl/coming_soon.html",
-        "controller": "ComingCtrl",
+        "templateUrl": "packages/auxpolice/views/approve/main.html",
+        "controller": "AuxMgmtListCtrl",
         "files": [
-            "packages/index/css/coming-soon.css",
+            "packages/auxpolice/css/person_info.css",
 
-            "resources/global/plugins/backstretch/jquery.backstretch.min.js",
-            "resources/global/plugins/countdown/jquery.countdown.min.js",
-            "resources/global/plugins/countdown/plugin/jquery.countdown-zh-CN.js",
-            "packages/index/js/ctrls/ComingCtrl.js"
+            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
     },
     "aux_log": {

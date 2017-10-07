@@ -1,0 +1,76 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">姓名</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.jb_xm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
+                <a href="javascript:" class="btn btn-sm yellow-gold" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box yellow-gold">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-drawer"></i> 辅警信息
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th class="text-center wid260px">单位</th>
+                        <th class="text-center wid100px">姓名</th>
+                        <th class="text-center wid100px">性别</th>
+                        <th class="text-center wid100px">学历</th>
+                        <th class="text-center wid100px">联系电话</th>
+                        <th class="text-center wid160px">手机</th>
+                        <th class="text-center wid220px">工资</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td class="text-center wid260px">{{item['bureau']['name']}} {{item['station']['name']}}</td>
+                        <td class="text-center wid100px">
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#viewAuxploiceMgmtModalDiv" data-toggle="modal" class="btn btn-link"
+                               bs-tooltip data-title="查看" ng-click="prepareToView(item)">
+                                {{item['name']}}
+                            </a>
+                        </td>
+                        <td class="text-center wid100px">{{item['sex']['value']}}</td>
+                        <td class="text-center wid100px">{{item['educationDegree']['value']}}</td>
+                        <td class="text-center wid100px">{{item['tel']}}</td>
+                        <td class="text-center wid160px">{{item['mobile']}}</td>
+                        <td class="text-center wid90px">
+                            <div class="input-group">
+                                <span class="input-group-addon">￥</span>
+                                <input type="text" class="form-control" ng-model="item['salary']" placeholder="￥2000">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success">保存</button>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>
