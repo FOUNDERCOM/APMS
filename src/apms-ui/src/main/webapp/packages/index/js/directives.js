@@ -94,3 +94,27 @@ angular.module('WebApp').directive("tablePagingFooter", ["$rootScope", function(
         templateUrl: "packages/index/tpl/table-paging-footer.html" + $rootScope.cacheVersion
     }
 }]);
+
+angular.module('WebApp').directive("bsSwitch", [function() {
+    return {
+        link: function(scope, element) {
+            element.bootstrapSwitch();
+        }
+    }
+}]);
+
+angular.module('WebApp').directive("bsPopover", [function() {
+    return {
+        link: function(scope, element) {
+            element.popover({html:true, trigger: 'click'}).on('shown.bs.popover', function() {
+                console.log("hello");
+                var popover = $(this);
+                console.log(popover);
+                console.log($(this).parent().find('div.popover .close'));
+                $(this).parent().find('div.popover .close').on('click', function() {
+                    popover.popover('hide');
+                })
+            })
+        }
+    }
+}]);

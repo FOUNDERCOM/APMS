@@ -32,6 +32,8 @@ import com.founder.bj.apms.sys.service.UserService;
 import com.lee.jwaf.action.AbstractControllerSupport;
 import com.lee.jwaf.exception.WarnException;
 
+import java.util.List;
+
 /**
  * Description: 用户管理.<br>
  * Created by Jimmybly Lee on 2017/7/3.
@@ -52,7 +54,12 @@ public class UserController extends AbstractControllerSupport {
      */
     public void query() {
         final SysUser condition = workDTO.convertJsonToBeanByKey("condition", SysUser.class);
-        workDTO.setResult(service.query(condition, workDTO.getStart(), workDTO.getLimit()));
+        final List<SysUser> result = service.query(condition, workDTO.getStart(), workDTO.getLimit());
+        for (SysUser item : result) {
+            item.getStation().setLastUpdateUser(null);
+            item.getStation().getBureau().setLastUpdateUser(null);
+        }
+        workDTO.setResult(result);
         workDTO.setTotle(service.count(condition));
     }
 

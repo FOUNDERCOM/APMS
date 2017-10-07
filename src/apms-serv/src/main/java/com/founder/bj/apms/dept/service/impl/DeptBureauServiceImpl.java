@@ -73,7 +73,8 @@ public class DeptBureauServiceImpl implements DeptBureauService {
         if (!StringUtils.isEmpty(condition.getName())) {
             hql += " and b.name like :name";
         }
-        final Query query = em.createQuery(hql).setFirstResult(start).setMaxResults(limit);
+        final Query query = em.createQuery(hql);
+        query.setFirstResult(start).setMaxResults(limit < 0 ? Integer.MAX_VALUE : limit);
         query.setParameter("isEnabled", condition.getIsEnabled());
         if (!StringUtils.isEmpty(condition.getName())) {
             query.setParameter("name", "%" + condition.getName() + "%");

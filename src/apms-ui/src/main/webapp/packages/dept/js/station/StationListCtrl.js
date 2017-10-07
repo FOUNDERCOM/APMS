@@ -28,7 +28,7 @@ angular.module('WebApp').controller('StationListCtrl', ['$rootScope', '$scope', 
     $scope.modifyDivId = "modifyStationModalDiv";
     $scope.controllerName = "DeptStationController";
 
-    $scope.condition = {isEnabled: true, bureau:{id : $rootScope.token.user.org.bureau.id}};
+    $scope.condition = {isEnabled: true, bureau:{id : $rootScope.token['user']['org']['bureau']['id']}};
     $listService.init($scope, {
         "controller": $scope.controllerName,
         "method": "query",

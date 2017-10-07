@@ -78,7 +78,8 @@ public class DeptStationServiceImpl implements DeptStationService {
         if (!ObjectUtils.isEmpty(condition.getBureau()) && !ObjectUtils.isEmpty(condition.getBureau().getId())) {
             hql += " and s.bureau.id = :bureauId";
         }
-        final Query query = em.createQuery(hql).setFirstResult(start).setMaxResults(limit);
+        final Query query = em.createQuery(hql);
+        query.setFirstResult(start).setMaxResults(limit < 0 ? Integer.MAX_VALUE : limit);
         query.setParameter("isEnabled", condition.getIsEnabled());
         if (!StringUtils.isEmpty(condition.getName())) {
             query.setParameter("name", "%" + condition.getName() + "%");

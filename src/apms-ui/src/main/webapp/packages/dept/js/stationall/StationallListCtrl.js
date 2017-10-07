@@ -30,7 +30,7 @@ angular.module('WebApp').controller('StationallListCtrl', ['$rootScope', '$scope
             method: 'query',
             condition : JSON.stringify({isEnabled: true}),
             start: 0,
-            limit: 100
+            limit: -1
         },
         success: function(res) {
             $scope.bureauList = res['result'];

@@ -73,12 +73,10 @@
                         <td class="text-center">{{item['strength']}}</td>
                         <td class="text-center">{{item['stdSalary']}}</td>
                         <td class="text-center">
-                            <a href="javascript:" class="popovers" data-container="body"
-                               data-original-title="{{item['contactName']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                            <a href="javascript:" bs-popover data-original-title="{{item['contactName']}}<a href='javascript:' class='close'>&times;</a>"
                                data-content="<b><i class='icon-call-end'></i> 电话</b>: <a href='tel:{{item.contactTel}}'>{{item['contactTel']}}</a><br/>
                                             <b><i class='icon-screen-smartphone'></i> 手机</b>: <a href='tel:{{item.contactMobile}}'>{{item['contactMobile']}}</a><br/>
-                                            <b><i class='icon-envelope-open'></i> 邮箱</b>: <a href='tel:{{item.contactMail}}'>{{item['contactMail']}}</a>"
-                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                            <b><i class='icon-envelope-open'></i> 邮箱</b>: <a href='tel:{{item.contactMail}}'>{{item['contactMail']}}</a>">
                                 {{item['contactName']}}
                             </a>
                         </td>
@@ -87,13 +85,11 @@
                                   ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:" class="popovers" data-container="body"
-                               data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close' onclick='$(this).parents(&quot;.popover&quot;).popover(&quot;hide&quot;);'>&times;</a>"
+                            <a href="javascript:" bs-popover data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close'>&times;</a>"
                                data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>
                                             <b><i class='icon-user'></i> 操作人名称:</b> {{item['lastUpdateUser']['name']}}<br/>
                                             <b><i class='icon-calendar'></i> 操作时间:</b> {{item['lastUpdateDate']}}<br/>
-                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}"
-                               onclick="$('.popovers').popover({html:true, trigger: 'click', show: true});">
+                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}">
                                 {{item['lastUpdateUser']['name']}}
                             </a>
                         </td>

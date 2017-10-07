@@ -2,15 +2,49 @@
     <form action="#" class="form-horizontal">
         <div class="form-body">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                     <div class="form-group">
-                        <label class="control-label col-md-3">姓名</label>
-                        <div class="col-md-9">
+                        <label class="control-label col-md-4">分局</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                <ui-select ng-model="condition.station.bureau" theme="bootstrap">
+                                    <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                    <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">科所队</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right">
+                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                <ui-select ng-model="condition.station" theme="bootstrap">
+                                    <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                    <ui-select-choices repeat="item in stationList | filter: {bureau: {id : condition.station.bureau.id }}">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">姓名</label>
+                        <div class="col-md-8">
                             <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                     <div class="form-group">
                         <label class="control-label col-md-6">是否启用</label>
                         <div class="col-md-6">
@@ -27,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-1 col-md-4 col-sm-2 col-xs-4">
                     <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
                 </div>
             </div>
@@ -37,7 +71,7 @@
 <div class="portlet box blue">
     <div class="portlet-title">
         <div class="caption">
-            <i class="icon-users"></i> <b>{{token['user']['org']['bureau']['name']}}-{{token['user']['org']['name']}}</b> 用户列表
+            <i class="icon-users"></i> 用户列表
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
@@ -48,7 +82,7 @@
                    data-on="success" data-on-color="success" data-on-text="预览"
                    data-off-color="warning" data-off-text="详情" data-size="small" ng-model="showTable">
             <!--suppress HtmlUnknownAnchorTarget -->
-            <a href="/#modifyUserModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+            <a href="/#modifyUserallModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
                 <i class="glyphicon glyphicon-plus"></i> 添加用户
             </a>
         </div>
@@ -65,7 +99,7 @@
                                     <li>
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline yellow-gold"
-                                           href="/#modifyUserModalDiv" data-toggle="modal"
+                                           href="/#modifyUserallModalDiv" data-toggle="modal"
                                            ng-click="prepareToUpdate(item)" bs-tooltip data-title="修改">
                                             <i class="fa fa-edit"></i>
                                         </a>
@@ -178,7 +212,7 @@
                             </a>
                             <!-- 编辑 -->
                             <!--suppress HtmlUnknownAnchorTarget -->
-                            <a href="/#modifyUserModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                            <a href="/#modifyUserallModalDiv" data-toggle="modal" class="btn btn-xs blue"
                                bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
                                 <i class="fa fa-edit"></i>
                             </a>

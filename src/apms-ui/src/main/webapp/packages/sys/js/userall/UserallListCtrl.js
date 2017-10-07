@@ -22,9 +22,35 @@
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
+angular.module('WebApp').controller('UserallListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
     $scope.showTable = true;
-    $scope.condition = {isEnabled: true, station: {id: $rootScope.token['user']['org']['id']}};
+
+    $ajaxCall.post({
+        data : {
+            controller: "DeptBureauController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.bureauList = res['result'];
+        }
+    });
+
+    $ajaxCall.post({
+        data : {
+            controller: "DeptStationController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.stationList = res['result'];
+        }
+    });
+    $scope.condition = {isEnabled: true};
     $listService.init($scope, {
         "controller": "UserController",
         "method": "query",
@@ -76,7 +102,7 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
      * 准备添加实体
      */
     $scope.prepareToAdd = function () {
-        var scope = $("#modifyUserModalDiv").scope();
+        var scope = $("#modifyUserallModalDiv").scope();
         scope.title = "添加用户信息";
         scope.method = "create";
         scope.entity = {
@@ -105,7 +131,7 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
      * 准备修改实体
      */
     $scope.prepareToUpdate = function (item) {
-        var scope = $("#modifyUserModalDiv").scope();
+        var scope = $("#modifyUserallModalDiv").scope();
         scope.title = "修改用户信息";
         scope.method = "update";
         scope.entity = item;

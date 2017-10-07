@@ -32,6 +32,25 @@
             "packages/sys/js/user/UserModifyCtrl.js"
         ]
     },
+    "sys_user_all": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "用户管理",
+            "pageSubTitle": "管理所有系统用户"
+        },
+        "templateUrl": "packages/sys/views/userall/main.html",
+        "controller": "UserallListCtrl",
+        "files": [
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/sys/js/userall/UserallListCtrl.js",
+            "packages/sys/js/userall/UserallModifyCtrl.js"
+        ]
+    },
     "sys_func": {
         "data": {
             "nav": ["系统管理"],

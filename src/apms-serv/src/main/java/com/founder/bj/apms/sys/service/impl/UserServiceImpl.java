@@ -81,7 +81,8 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public List<SysUser> query(SysUser condition, Integer start, Integer limit) {
         String hql = "  from SysUser as u";
-        hql += " left join fetch u.org";
+        hql += " left join fetch u.station";
+        hql += " left join fetch u.station.bureau";
         hql += " left join fetch u.account";
         hql += " left join fetch u.photo";
         hql += " where u.isEnabled = :isEnabled";
@@ -89,24 +90,40 @@ public class UserServiceImpl implements UserService {
             hql += " and u.name like :userName";
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())) {
-            hql += " and u.org.id = :orgId";
+            hql += " and u.station.id = :stationId";
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !StringUtils.isEmpty(condition.getStation().getName())) {
-            hql += " and u.org.name like :orgName";
+            hql += " and u.station.name like :stationName";
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            hql += " and u.station.bureau.id = :bureauId";
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !StringUtils.isEmpty(condition.getStation().getBureau().getName())) {
+            hql += " and u.station.bureau.name like :bureauName";
         }
 
         final Query query = em.createQuery(hql);
-        query.setFirstResult(start).setMaxResults(limit);
+        query.setFirstResult(start).setMaxResults(limit < 0 ? Integer.MAX_VALUE : limit);
 
         query.setParameter("isEnabled", condition.getIsEnabled());
         if (!StringUtils.isEmpty(condition.getName())) {
             query.setParameter("userName", "%" + condition.getName() + "%");
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())) {
-            query.setParameter("orgId", condition.getStation().getId());
+            query.setParameter("stationId", condition.getStation().getId());
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !StringUtils.isEmpty(condition.getStation().getName())) {
-            query.setParameter("orgName", "%" + condition.getStation().getName() + "%");
+            query.setParameter("stationName", "%" + condition.getStation().getName() + "%");
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            query.setParameter("bureauId", condition.getStation().getBureau().getId());
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !StringUtils.isEmpty(condition.getStation().getBureau().getName())) {
+            query.setParameter("bureauName", "%" + condition.getStation().getBureau().getName() + "%");
         }
 
         //noinspection unchecked
@@ -122,10 +139,18 @@ public class UserServiceImpl implements UserService {
             hql += " and u.name like :userName";
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())) {
-            hql += " and u.org.id = :orgId";
+            hql += " and u.station.id = :stationId";
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !StringUtils.isEmpty(condition.getStation().getName())) {
-            hql += " and u.org.name like :orgName";
+            hql += " and u.station.name like :stationName";
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            hql += " and u.station.bureau.id = :bureauId";
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !StringUtils.isEmpty(condition.getStation().getBureau().getName())) {
+            hql += " and u.station.bureau.name like :bureauName";
         }
 
         final Query query = em.createQuery(hql);
@@ -135,10 +160,18 @@ public class UserServiceImpl implements UserService {
             query.setParameter("userName", "%" + condition.getName() + "%");
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())) {
-            query.setParameter("orgId", condition.getStation().getId());
+            query.setParameter("stationId", condition.getStation().getId());
         }
         if (!ObjectUtils.isEmpty(condition.getStation()) && !StringUtils.isEmpty(condition.getStation().getName())) {
-            query.setParameter("orgName", "%" + condition.getStation().getName() + "%");
+            query.setParameter("stationName", "%" + condition.getStation().getName() + "%");
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            query.setParameter("bureauId", condition.getStation().getBureau().getId());
+        }
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !StringUtils.isEmpty(condition.getStation().getBureau().getName())) {
+            query.setParameter("bureauName", "%" + condition.getStation().getBureau().getName() + "%");
         }
 
         return ((Number) query.getSingleResult()).intValue();
