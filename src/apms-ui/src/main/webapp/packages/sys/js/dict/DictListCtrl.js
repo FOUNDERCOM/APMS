@@ -24,21 +24,21 @@
  */
 angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "$ajaxCall", function ($scope, $listService, $ajaxCall) {
     $scope.condition = {isEnabled: true, isNature: true};
-    // $listService.init($scope, {
-    //     "controller": "DictController",
-    //     "method": "query",
-    //     callback: function (success) {
-    //         $scope.list = success.data.result;
-    //     }
-    // });
-    //
-    // /**
-    //  * 刷新数据
-    //  */
-    // $scope.load = function () {
-    //     $scope.pageRequest.getResponse();
-    // };
-    // $scope.load();
+    $listService.init($scope, {
+        "controller": "DictController",
+        "method": "query",
+        callback: function (success) {
+            $scope.list = success.data.result;
+        }
+    });
+
+    /**
+     * 刷新数据
+     */
+    $scope.load = function () {
+        $scope.pageRequest.getResponse();
+    };
+    $scope.load();
 
     /**
      * 修改给定实体的状态
@@ -55,16 +55,16 @@ angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "
                     label: isEnabled ? " 恢 复 ！ " : " 禁 用 ！",
                     className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
                     callback: function () {
-                        // $ajaxCall.post({
-                        //     data: {
-                        //         controller: "DictController",
-                        //         method: isEnabled ? "resume" : "remove",
-                        //         id: item.id
-                        //     },
-                        //     success: function () {
-                        //         $scope.load();
-                        //     }
-                        // });
+                        $ajaxCall.post({
+                            data: {
+                                controller: "DictController",
+                                method: isEnabled ? "resume" : "remove",
+                                id: item.id
+                            },
+                            success: function () {
+                                $scope.load();
+                            }
+                        });
                     }
                 }
             }
@@ -98,16 +98,4 @@ angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "
             $scope.load();
         });
     };
-
-    /** make demo data */
-    $scope.demo = function() {
-        $.getJSON("packages/sys/js/dict/demo.json", function(obj) {
-            $scope.pageResponse = obj;
-            $scope.list = obj.result;
-        });
-    };
-    $scope.load = function() {
-        $scope.demo();
-    };
-    $scope.load();
 }]);

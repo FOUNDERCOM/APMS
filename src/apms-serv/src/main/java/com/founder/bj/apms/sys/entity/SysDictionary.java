@@ -71,7 +71,7 @@ public class SysDictionary implements Serializable {
 
     // CSOFF: LineLength
     /** 是否有下级. */
-    @Formula("(SELECT CASE WHEN (COUNT(1) > 0) THEN 1 ELSE 0 END FROM SYS_DICT DICT WHERE DICT.DICT_PARENT_ID = DICT_ID)")
+    @Formula("(SELECT CASE WHEN (COUNT(1) > 0) THEN 1 ELSE 0 END FROM APMS_SYS_DICT DICT WHERE DICT.DICT_PARENT_ID = DICT_ID)")
     private Boolean hasChildren;
     // CSON: LineLength
 
