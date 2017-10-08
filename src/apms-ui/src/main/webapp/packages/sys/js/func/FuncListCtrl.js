@@ -23,22 +23,22 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('FuncListCtrl', ['$scope', "$listService", "$ajaxCall", function ($scope, $listService, $ajaxCall) {
-    // $scope.condition = {};
-    // $listService.init($scope, {
-    //     "controller": "FuncController",
-    //     "method": "query",
-    //     callback: function (success) {
-    //         $scope.list = success.data.result;
-    //     }
-    // });
+    $scope.condition = {};
+    $listService.init($scope, {
+        "controller": "AuthController",
+        "method": "queryFuncList",
+        callback: function (success) {
+            $scope.list = success.data.result;
+        }
+    });
 
-    // /**
-    //  * 刷新数据
-    //  */
-    // $scope.load = function () {
-    //     $scope.pageRequest.getResponse();
-    // };
-    // $scope.load();
+    /**
+     * 刷新数据
+     */
+    $scope.load = function () {
+        $scope.pageRequest.getResponse();
+    };
+    $scope.load();
 
     /**
      * 修改给定实体的状态
@@ -48,28 +48,16 @@ angular.module('WebApp').controller('FuncListCtrl', ['$scope', "$listService", "
     $scope.changeStatus = function (item, isEnabled) {
         bootbox.dialog({
             title: "请确认",
-            message: isEnabled ? "是否确认恢复该字典？" : "是否确认禁用该字典？",
+            message: isEnabled ? "是否确认恢复该菜单？" : "是否确认禁用该菜单？",
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {
                     label: isEnabled ? " 恢 复 ！ " : " 禁 用 ！",
                     className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
                     callback: function () {
-                        // TODO call service
                     }
                 }
             }
         });
     };
-
-    /** make demo data */
-    $scope.demo = function() {
-        $.getJSON("packages/sys/js/func/demo.json", function(obj) {
-            $scope.list = obj.result;
-        });
-    };
-    $scope.load = function() {
-        $scope.demo();
-    };
-    $scope.load();
 }]);

@@ -67,11 +67,12 @@
     <td class="text-center"><i class="{{item['icon']}}"></i></td>
     <td class="text-center">
         <span class="label label-sm" ng-class="{
-        'label-warning': item['type'] === 'root',
-        'label-success': item['type'] === 'group',
-        'label-info': item['type'] === 'menu',
-        'label-primary': item['type'] === 'link'
-        }">{{item['type']}}</span>
+        'label-warning': item['type']['code'] === 'ROOT',
+        'label-success': item['type']['code'] === 'GROUP',
+        'label-info': item['type']['code'] === 'MENU',
+        'label-primary': item['type']['code'] === 'LINK',
+        'label-primary': item['type']['code'] === 'FUNC'
+        }">{{item['type']['value']}}</span>
     </td>
     <td class="text-center">{{item['code']}}</td>
     <td class="text-center">

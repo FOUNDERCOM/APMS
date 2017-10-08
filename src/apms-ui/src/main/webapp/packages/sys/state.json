@@ -68,13 +68,26 @@
         "data": {
             "nav": ["系统管理"],
             "isBuiltIn": true,
-            "pageTitle": "权限管理",
+            "pageTitle": "分局权限管理",
             "pageSubTitle": "管理本单位下辖直属单位的用户权限"
         },
         "templateUrl": "packages/sys/views/auth/main.html",
         "controller": "AuthCtrl",
         "files": [
             "packages/sys/js/auth/AuthCtrl.js"
+        ]
+    },
+    "sys_auth_all": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "全权限管理",
+            "pageSubTitle": "管理全部用户权限"
+        },
+        "templateUrl": "packages/sys/views/authall/main.html",
+        "controller": "AuthallCtrl",
+        "files": [
+            "packages/sys/js/auth/AuthallCtrl.js"
         ]
     }
 }

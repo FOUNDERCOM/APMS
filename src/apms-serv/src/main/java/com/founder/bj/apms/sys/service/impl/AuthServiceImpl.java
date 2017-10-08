@@ -159,9 +159,33 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional(readOnly = true)
     public SysFunc getAllFuncByTree() {
-        final SysFunc root = em.find(SysFunc.class, -1000000);
+        final SysFunc root = em.find(SysFunc.class, -10000000);
         fetchChildren(root);
         return root;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<SysFunc> queryAllFunc() {
+        //noinspection unchecked
+        final List<SysFunc> result = em.createQuery("from SysFunc where id <> -9999999 order by id desc").getResultList();
+        for (SysFunc item : result) {
+            item.setLevel(traceLevel(item));
+        }
+        return result;
+    }
+
+    /**
+     * Trace the level of the func.
+     * @param func func entity
+     * @return level
+     */
+    private int traceLevel(SysFunc func) {
+        if (func.getIsRoot()) {
+            return -1;
+        } else {
+            return traceLevel(func.getParent()) + 1;
+        }
     }
 
     /**

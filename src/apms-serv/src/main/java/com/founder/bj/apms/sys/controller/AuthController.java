@@ -50,10 +50,17 @@ public class AuthController extends AbstractControllerSupport {
      * 获取用户权限列表.
      */
     public void queryAuth() {
-        final SysFunc root = service.getAllFuncByTree();
+        final List<SysFunc> result = service.queryAllFunc();
         final List<Number> ids = service.queryFuncIdByUser(workDTO.getInteger("userId"));
-        setStatus(root, ids);
-        workDTO.setResult(root);
+        for (SysFunc func : result) {
+            for (Number id : ids) {
+                if (func.getId().equals(id.intValue())) {
+                    func.setIsAssigned(true);
+                    break;
+                }
+            }
+        }
+        workDTO.setResult(result);
     }
 
     /**
@@ -82,5 +89,12 @@ public class AuthController extends AbstractControllerSupport {
     public void assignAuth() {
         service.assignFuncToUser(workDTO.getInteger("userId"), workDTO.getInteger("funcId"),
             "true".equals(workDTO.get("assign")));
+    }
+
+    /**
+     * 获得所有菜单的有序列表.
+     */
+    public void queryFuncList() {
+        workDTO.setResult(service.queryAllFunc());
     }
 }

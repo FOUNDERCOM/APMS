@@ -22,8 +22,8 @@
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('AuthCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
-    $scope.condition = {isEnabled: true, station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}};
+angular.module('WebApp').controller('AuthallCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
+    $scope.condition = {isEnabled: true};
     $ajaxCall.post({
         data : {
             controller: "DeptBureauController",

@@ -116,6 +116,10 @@ public class SysFunc implements Serializable {
     @Transient
     private Boolean isAssigned = false;
 
+    /** 层级. */
+    @Transient
+    private Integer level;
+
     /**
      * Get the id.
      *
@@ -402,5 +406,23 @@ public class SysFunc implements Serializable {
      */
     public void setIsAssigned(Boolean isAssigned) {
         this.isAssigned = isAssigned;
+    }
+
+    /**
+     * Get the level.
+     *
+     * @return return the level
+     */
+    public Integer getLevel() {
+        return level;
+    }
+
+    /**
+     * Set level.
+     *
+     * @param level the level to set
+     */
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

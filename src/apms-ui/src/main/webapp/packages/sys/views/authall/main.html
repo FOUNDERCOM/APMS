@@ -5,6 +5,22 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
+                    <label class="control-label col-md-3">部门</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right">
+                            <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station.bureau = undefined"></i>
+                            <ui-select ng-model="condition.station.bureau" theme="bootstrap">
+                                <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
                     <label class="control-label col-md-3">姓名</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
@@ -22,7 +38,7 @@
         <div class="portlet box red-mint">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="icon-users"></i> <b>{{token['user']['org']['bureau']['name']}}</b> - 用户列表
+                    <i class="icon-users"></i> 用户列表
                 </div>
                 <div class="tools">
                     <a href="javascript:" class="fullscreen"></a>

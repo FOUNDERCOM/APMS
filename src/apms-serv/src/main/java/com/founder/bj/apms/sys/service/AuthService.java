@@ -68,4 +68,10 @@ public interface AuthService {
      * @return 树结构功能菜单。
      */
     SysFunc getAllFuncByTree();
+
+    /**
+     * 获得有序的所有功能列表.
+     * @return 功能列表
+     */
+    List<SysFunc> queryAllFunc();
 }
