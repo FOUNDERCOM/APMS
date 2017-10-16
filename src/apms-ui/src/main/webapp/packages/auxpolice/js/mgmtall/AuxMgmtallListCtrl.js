@@ -143,7 +143,6 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
             "major": "",
             "birthday": "",
             "nativePlace": "",
-            "resume": "",
             "addProvince": "",
             "addCity": "",
             "addCountry": "",

@@ -361,7 +361,6 @@ public class AuxInfoServiceImpl implements AuxInfoService {
             Assert.notNull(entity.getInstitutions(), "毕业院校不能为空。");
             Assert.notNull(entity.getMajor(), "专业不能为空。");
             Assert.notNull(entity.getNativePlace(), "祖籍不能为空。");
-            Assert.notNull(entity.getResume(), "简历不能为空。");
             Assert.notNull(entity.getJob(), "职位不能为空。");
             Assert.notNull(entity.getJoinDate(), "入职时间不能为空。");
             Assert.notNull(entity.getAddProvince(), "住地省份不能为空。");

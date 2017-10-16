@@ -2,7 +2,6 @@
 <span ng-if="entity.isEnabled" class="font-green"><i class="fa fa-check"></i> 启用</span>
 <span ng-if="!entity.isEnabled" class="font-red"><i class="fa fa-ban"></i> 注销</span>
 <span class="font-{{cfg['FLOW'][entity['status']['code']]['color']}}"><i class="fa fa-flag"> {{entity['status']['value']}}</i></span>
-<p> {{entity['resume']}} </p>
 <p>
     <span class="text-primary margin-right-10" bs-tooltip data-title="身份证号">
         <i class="fa fa-newspaper-o"></i> {{entity['identityCard']}}

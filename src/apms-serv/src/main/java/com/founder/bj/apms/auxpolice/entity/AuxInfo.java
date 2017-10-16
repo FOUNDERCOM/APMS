@@ -34,7 +34,7 @@ import com.founder.bj.apms.sys.entity.SysDict;
 import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
- * Description: Aux Infomation Entity.<br>
+ * Description: Aux Information Entity.<br>
  * Created by Jimmybly Lee on 2017/10/9.
  *
  * @author Jimmybly Lee
@@ -138,10 +138,6 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_NATIVE_PLACE")
     private String nativePlace;
 
-    /** Resume. */
-    @Column(name = "AUX_RESUME")
-    private String resume;
-
     /** Job. */
     @Column(name = "AUX_JOB")
     private String job;
@@ -189,6 +185,7 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_SALARY")
     private Integer salary;
 
+    /** 是否是正常工资 .*/
     @Formula("(SELECT CASE WHEN (AUX_SALARY = B.BUREAU_STD_SALARY) THEN 1 ELSE 0 END FROM APMS_DEPT_BUREAU B, APMS_DEPT_STATION S WHERE B.BUREAU_ID = S.BUREAU_ID AND S.STATION_ID = STATION_ID)")
     private Boolean isSalaryNormal;
 
@@ -529,24 +526,6 @@ public class AuxInfo implements Serializable {
      */
     public void setNativePlace(String nativePlace) {
         this.nativePlace = nativePlace;
-    }
-
-    /**
-     * Get the resume.
-     *
-     * @return return the resume
-     */
-    public String getResume() {
-        return resume;
-    }
-
-    /**
-     * Set resume.
-     *
-     * @param resume the resume to set
-     */
-    public void setResume(String resume) {
-        this.resume = resume;
     }
 
     /**

@@ -101,7 +101,6 @@ angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope
 
         // detail
         nullCheck("name", "姓名");
-        nullCheck("resume", "简历");
         nullCheck("identityCard", "身份证号");
         nullCheck("joinDate", "入职时间");
         nullCheck("nation", "民族", undefined, true);
