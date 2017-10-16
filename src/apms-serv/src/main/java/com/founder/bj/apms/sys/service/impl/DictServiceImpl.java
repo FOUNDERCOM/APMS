@@ -63,6 +63,12 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    public SysDict getSysDictByNatureAndCode(String nature, String code) {
+        return (SysDict) em.createQuery("from SysDict where nature = :nature and code = :code")
+            .setParameter("nature", nature).setParameter("code", code).getSingleResult();
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<SysDictionary> query(SysDictionary condition, Integer start, Integer limit) {
         String hql = " from SysDictionary as d";

@@ -7,20 +7,23 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">姓名</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.jb_xm">
+                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                         <div class="form-group">
                             <label class="control-label col-md-4">审核</label>
                             <div class="col-md-8">
-                                <select class="form-control" title="审核状态" ng-model="condition.xt_zt" ng-change="onZTConditionChange()">
-                                    <option value="DSB">待提交</option>
-                                    <option value="DSL">待受理</option>
-                                    <option value="BBH">被驳回</option>
-                                    <option value="SHTG">审核通过</option>
-                                </select>
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.status = undefined"></i>
+                                    <ui-select ng-model="condition.status" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.value}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in statusList | filter: $select.search">
+                                            <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +34,7 @@
                                 <div class="md-checkbox-inline">
                                     <div class="md-checkbox">
                                         <input type="checkbox" id="zj_search_zt" class="md-check" checked
-                                               ng-model="condition.xt_qy">
+                                               ng-model="condition.isEnabled">
                                         <label for="zj_search_zt">
                                             <span></span>
                                             <span class="check"></span>
@@ -52,7 +55,7 @@
 <div class="portlet box blue">
     <div class="portlet-title">
         <div class="caption">
-            <i class="icon-drawer"></i> 辅警信息
+            <i class="icon-users"></i> <b>{{token['user']['org']['bureau']['name']}} - {{token['user']['org']['name']}}</b> - 辅警信息
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
@@ -60,8 +63,8 @@
         </div>
         <div class="actions">
             <!--suppress HtmlUnknownAnchorTarget -->
-            <a href="/#updateZJModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
-                <i class="glyphicon glyphicon-plus"></i> 注册辅警
+            <a href="/#modifyAuxploiceApplyModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加辅警
             </a>
         </div>
     </div>
@@ -71,55 +74,39 @@
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="item in list">
                     <div class="mt-card-item">
                         <div class="mt-card-avatar mt-overlay-1">
-                            <img src="data:image/png;base64,{{item.jb_zp}}" />
+                            <img src="data:image/jpeg;base64,{{item.photo}}" />
                             <div class="mt-overlay">
                                 <ul class="mt-info">
-                                    <li ng-if="!item.xt_sfkw">
+                                    <li>
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline blue"
-                                           href="/#viewZJModalDiv" data-toggle="modal"
+                                           href="/#viewAuxploiceApplyModalDiv" data-toggle="modal"
                                            ng-click="prepareToView(item)" bs-tooltip data-title="查看">
                                             <i class="fa fa-picture-o"></i>
                                         </a>
                                     </li>
-                                    <li ng-if="item.xt_sfkw">
-                                        <!--suppress HtmlUnknownAnchorTarget -->
-                                        <a class="btn btn-xs btn-outline blue"
-                                           href="/#viewZJKWModalDiv" data-toggle="modal"
-                                           ng-click="prepareToView(item, true)" bs-tooltip data-title="查看">
-                                            <i class="fa fa-picture-o"></i>
-                                        </a>
-                                    </li>
-                                    <li ng-if="!item.xt_sfkw">
+                                    <li>
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline yellow-gold"
-                                           href="/#updateZJModalDiv" data-toggle="modal"
-                                           ng-click="prepareToUpdate(item)" bs-tooltip data-title="修改">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </li>
-                                    <li ng-if="item.xt_sfkw">
-                                        <!--suppress HtmlUnknownAnchorTarget -->
-                                        <a class="btn btn-xs btn-outline yellow-gold"
-                                           href="/#updateZJKWModalDiv" data-toggle="modal"
-                                           ng-click="prepareToUpdate(item, true)" bs-tooltip data-title="修改">
+                                           href="/#modifyAuxploiceApplyModalDiv" data-toggle="modal"
+                                           ng-click="prepareToModify(item)" bs-tooltip data-title="修改">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-xs btn-outline red" href="javascript:" ng-if="item.xt_qy"
+                                        <a class="btn btn-xs btn-outline red" href="javascript:" ng-if="item.isEnabled"
                                            ng-click="changeStatus(item,false)" bs-tooltip data-title="注销">
                                             <i class="fa fa-ban"></i>
                                         </a>
-                                        <a class="btn default btn-outline green" href="javascript:" ng-if="!item.xt_qy"
+                                        <a class="btn btn-xs btn-outline green" href="javascript:" ng-if="!item.isEnabled"
                                            ng-click="changeStatus(item,true)" bs-tooltip data-title="启用">
                                             <i class="fa fa-recycle"></i>
                                         </a>
                                     </li>
-                                    <li ng-if="item['xt_zt'] === 'DSB'">
+                                    <li ng-if="item['status']['code'] === 'TO_APPLY'">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline blue-steel"
-                                           ng-click="take(item, 'tiJiao')" bs-tooltip data-title="上报">
+                                           ng-click="take(item, 'apply')" bs-tooltip data-title="上报">
                                             <i class="fa fa-thumbs-up"></i>
                                         </a>
                                     </li>
@@ -127,14 +114,14 @@
                             </div>
                         </div>
                         <div class="mt-card-content">
-                            <h3 class="mt-card-name">{{item['jb_xm']}}
-                                <span class="font-xs bg-{{cfg['zj'][item['xt_zt']].color}} bg-font-{{cfg['zj'][item['xt_zt']].color}}" style="padding: 0 3px;">
-                                    {{cfg['zj'][item['xt_zt']].msg}}
+                            <h3 class="mt-card-name">{{item['name']}}  <i class="icon-bubbles bold font-{{cfg['FLOW'][item['status']['code']].color}}"></i>
+                                <span class="font-xs bg-{{cfg['FLOW'][item['status']['code']].color}} bg-font-{{cfg['FLOW'][item['status']['code']].color}}" style="padding: 0 3px;">
+                                    {{item['status']['value']}}
                                 </span>
                             </h3>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item['gz_gzdw']}}</p>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_dh']}}</p>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_sj']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item['bureau']['name']}} {{item['station']['name']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['tel']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['mobile']}}</p>
                             <div class="mt-card-social">
                                 <ul>
                                     <li>
@@ -143,14 +130,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="tel:{{item['jb_sj']}}" bs-tooltip data-title="打电话给ta">
+                                        <a href="tel:{{item['mobile']}}" bs-tooltip data-title="打电话给ta">
                                             <i class="fa fa-phone"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:">
-                                            <i class="fa fa-black-tie" bs-tooltip data-title="{{item.gz_gaxt ? '系统内' : '系统外'}}"
-                                               ng-class="{'font-red': item.gz_gaxt, 'font-yellow': !item.gz_gaxt}"></i>
                                         </a>
                                     </li>
                                 </ul>

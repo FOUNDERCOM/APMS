@@ -42,6 +42,14 @@ public interface DictService {
     SysDict get(Integer id);
 
     /**
+     * 根据类型和编码获得实体.
+     * @param nature 类型
+     * @param code 编码
+     * @return 实体
+     */
+    SysDict getSysDictByNatureAndCode(String nature, String code);
+
+    /**
      * 根据条件获得实体列表.
      * @param condition 条件，类型，编码，值，是否启用
      * @param start 分页开始

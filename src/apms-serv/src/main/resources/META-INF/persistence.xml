@@ -5,6 +5,14 @@
     <persistence-unit name="apms_mgmt" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+        <!-- Aux Entities -->
+        <class>com.founder.bj.apms.auxpolice.entity.AuxAward</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxEdu</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxFamily</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxInfo</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxPunish</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxWork</class>
+
         <!-- Dept Entities -->
         <class>com.founder.bj.apms.dept.entity.DeptBureau</class>
         <class>com.founder.bj.apms.dept.entity.DeptStation</class>

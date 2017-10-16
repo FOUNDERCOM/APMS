@@ -4,9 +4,10 @@
             <th class="text-center bold wid120px"><i class="icon-trophy"></i> 奖励 </th>
             <th class="text-center bold wid160px"><i class="icon-home"></i> 颁发单位 </th>
             <th class="text-center bold wid100px"><i class="icon-calendar"></i> 颁发时间 </th>
-            <th class="text-center bold hidden-xs wid240px"><i class="icon-info"></i> 说明 </th>
+            <th class="text-center bold hidden-sm wid240px"><i class="icon-info"></i> 说明 </th>
+            <th class="text-center bold hidden-xs wid100px"><i class="icon-question"></i> 有证书 </th>
             <th class="text-right bold wid90px">
-                <a href="javascript:" ng-click="entity.awardList.push({});">
+                <a href="javascript:" ng-click="entity.awardList.push({hasCert: false});">
                     <i class="fa fa-plus"></i> 增加
                 </a>
             </th>
@@ -17,12 +18,22 @@
             <td><input type="text" class="form-control" ng-model="item.title" bs-tooltip data-title="奖励" placeholder="奖励..."></td>
             <td><input type="text" class="form-control" ng-model="item.dept" bs-tooltip data-title="颁发单位" placeholder="颁发单位..."></td>
             <td class="text-center">
-                <input type="text" class="form-control" ng-model="item.date" bs-tooltip data-title="颁发时间" placeholder="yyyy年MM月dd日"
-                       bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
+                <input type="text" class="form-control" ng-model="item.date" bs-tooltip data-title="颁发时间" placeholder="yyyy-MM-dd"
+                       bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
             </td>
             <td><input type="text" class="form-control" ng-model="item.desc" bs-tooltip data-title="说明" placeholder="说明..."></td>
             <td class="text-center">
-                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity['awardList'].splice($index, 1);">
+                <div class="md-checkbox pull-right">
+                    <input type="checkbox" id="func_checked_{{$index}}" class="md-check" checked ng-model="item.hasCert">
+                    <label for="func_checked_{{$index}}">
+                        <span></span>
+                        <span class="check"></span>
+                        <span class="box"></span></label>
+                </div>
+            </td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除"
+                   ng-click="remove($index, 'awardList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxAward');">
                     <i class="fa fa-close"></i>
                 </a>
             </td>

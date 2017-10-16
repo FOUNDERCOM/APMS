@@ -39,24 +39,6 @@ angular.module('WebApp').controller('UserallModifyCtrl', ['$scope', "$ajaxCall",
             }
         });
     };
-    /**
-     * 初始化下拉菜单
-     */
-    // $ajaxCall.post({
-    //     data: {
-    //         controller: "DictController",
-    //         method: "query",
-    //         start: 0,
-    //         limit: 100,
-    //         condition: JSON.stringify({
-    //             isEnabled: true,
-    //             isNature: true
-    //         })
-    //     },
-    //     success: function(data) {
-    //         $scope.natureList = data.result;
-    //     }
-    // });
 
     $scope.prepare2SetPhoto = function() {
         var uploadModalScope = $("#uploadPhoto").scope();

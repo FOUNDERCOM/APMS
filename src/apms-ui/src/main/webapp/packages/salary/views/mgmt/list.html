@@ -1,13 +1,39 @@
 <div class="form">
     <form action="#" class="form-horizontal">
         <div class="row">
-            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label class="control-label col-md-4">姓名</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.jb_xm">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label class="control-label col-md-4">姓名</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group form-md-line-input">
+                    <label class="control-label col-md-6">工资是否正常</label>
+                    <div class="col-md-6">
+                        <div class="md-radio-inline">
+                            <div class="md-radio has-info">
+                                <input type="radio" id="radio55" name="radio2" class="md-radiobtn" checked>
+                                <label for="radio55" ng-click="condition.isSalaryNormal = undefined">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 全部 </label>
+                            </div>
+                            <div class="md-radio has-success">
+                                <input type="radio" id="radio53" name="radio2" class="md-radiobtn">
+                                <label for="radio53" ng-click="condition.isSalaryNormal = true">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 正常 </label>
+                            </div>
+                            <div class="md-radio has-warning">
+                                <input type="radio" id="radio54" name="radio2" class="md-radiobtn">
+                                <label for="radio54" ng-click="condition.isSalaryNormal = false">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 不正常 </label>
                             </div>
                         </div>
                     </div>
@@ -22,7 +48,7 @@
 <div class="portlet box yellow-gold">
     <div class="portlet-title">
         <div class="caption">
-            <i class="icon-drawer"></i> 辅警信息
+            <i class="icon-users"></i> <b>{{token['user']['org']['bureau']['name']}}</b> - 辅警信息
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
@@ -34,18 +60,18 @@
             <table class="table table-bordered table-hover table-advance">
                 <thead>
                     <tr>
-                        <th class="text-center wid260px">单位</th>
-                        <th class="text-center wid100px">姓名</th>
-                        <th class="text-center wid100px">性别</th>
-                        <th class="text-center wid100px">学历</th>
+                        <th class="text-center wid160px">单位</th>
+                        <th class="text-center wid90px">姓名</th>
+                        <th class="text-center wid90px">性别</th>
+                        <th class="text-center wid60px">学历</th>
                         <th class="text-center wid100px">联系电话</th>
-                        <th class="text-center wid160px">手机</th>
+                        <th class="text-center wid120px">手机</th>
                         <th class="text-center wid220px">工资</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="item in list">
+                    <tr ng-repeat="item in list" ng-class="{'font-red': !item['isSalaryNormal']}">
                         <td class="text-center wid260px">{{item['bureau']['name']}} {{item['station']['name']}}</td>
                         <td class="text-center wid100px">
                             <!--suppress HtmlUnknownAnchorTarget -->
@@ -55,15 +81,16 @@
                             </a>
                         </td>
                         <td class="text-center wid100px">{{item['sex']['value']}}</td>
-                        <td class="text-center wid100px">{{item['educationDegree']['value']}}</td>
+                        <td class="text-center wid100px">{{item['eduDegree']['value']}}</td>
                         <td class="text-center wid100px">{{item['tel']}}</td>
                         <td class="text-center wid160px">{{item['mobile']}}</td>
                         <td class="text-center wid90px">
-                            <div class="input-group">
+                            <div class="input-group " ng-class="{'has-error': !item['isSalaryNormal']}">
                                 <span class="input-group-addon">￥</span>
                                 <input type="text" class="form-control" ng-model="item['salary']" placeholder="￥2000">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn " ng-click="changeSalary(item)"
+                                            ng-class="{'btn-danger': !item['isSalaryNormal'], 'btn-success': item['isSalaryNormal']}">保存</button>
                                 </span>
                             </div>
                         </td>

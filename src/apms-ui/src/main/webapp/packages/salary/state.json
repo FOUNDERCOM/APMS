@@ -7,11 +7,11 @@
             "pageSubTitle": "维护本单位的辅警工资信息"
         },
         "templateUrl": "packages/salary/views/mgmt/main.html",
-        "controller": "AuxMgmtListCtrl",
+        "controller": "SalaryListCtrl",
         "files": [
             "packages/auxpolice/css/person_info.css",
 
-            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
+            "packages/salary/js/SalaryListCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
     },

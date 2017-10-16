@@ -4,9 +4,7 @@
             <th class="text-center bold wid120px"><i class="icon-dislike"></i> 名称 </th>
             <th class="text-center bold wid90px"><i class="icon-calendar"></i> 时间 </th>
             <th class="text-center bold wid100px"><i class="icon-home"></i> 发布单位 </th>
-            <th class="text-center bold wid200px"><i class="icon-info"></i> 缘由 </th>
-            <th class="text-center bold wid60px"><i class="icon-user"></i> 登记人 </th>
-            <th class="text-center bold wid90px"><i class="icon-badge"></i> 登记时间 </th>
+            <th class="text-center bold wid200px"><i class="icon-info"></i> 说明 </th>
             <th class="text-right bold wid90px">
                 <a href="javascript:" ng-click="entity.punishList.push({});">
                     <i class="fa fa-plus"></i> 增加
@@ -16,14 +14,22 @@
     </thead>
     <tbody>
         <tr ng-repeat="item in entity['punishList']">
-            <td class="text-center">{{item['title']}}</td>
-            <td class="text-center">{{item['date']}}</td>
-            <td class="text-center">{{item['dept']}}</td>
-            <td>{{item['desc']}}</td>
-            <td class="text-center">{{item['recorder']}}</td>
-            <td class="text-center">{{item['recordDate']}}</td>
             <td class="text-center">
-                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity['punishList'].splice($index, 1);">
+                <input type="text" class="form-control" ng-model="item.title" bs-tooltip data-title="名称" placeholder="名称...">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.date" bs-tooltip data-title="时间" placeholder="yyyy-MM-dd"
+                       bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.dept" bs-tooltip data-title="发布单位" placeholder="发布单位...">
+            </td>
+            <td>
+                <input type="text" class="form-control" ng-model="item.desc" bs-tooltip data-title="说明" placeholder="说明...">
+            </td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除"
+                   ng-click="remove($index, 'punishList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxPunish');">
                     <i class="fa fa-close"></i>
                 </a>
             </td>

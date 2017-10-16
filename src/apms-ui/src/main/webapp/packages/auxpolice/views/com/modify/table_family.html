@@ -18,16 +18,34 @@
     </thead>
     <tbody>
         <tr ng-repeat="item in entity['familyList']">
-            <td class="text-center">{{item['rel']}}</td>
-            <td class="text-center">{{item['name']}}</td>
-            <td class="text-center">{{item['mobile']}}</td>
-            <td class="text-center">{{item['nativePlace']}}</td>
-            <td class="text-center">{{item['birthday']}}</td>
-            <td class="text-center">{{item['identityCard']}}</td>
-            <td>{{item['dept']}}</td>
-            <td>{{item['job']}}</td>
             <td class="text-center">
-                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity['familyList'].splice($index, 1);">
+                <input type="text" class="form-control" ng-model="item.rel" bs-tooltip data-title="家庭关系" placeholder="家庭关系...">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.name" bs-tooltip data-title="姓名" placeholder="姓名...">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.mobile" bs-tooltip data-title="手机号" placeholder="手机号...">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.nativePlace" bs-tooltip data-title="祖籍" placeholder="祖籍...">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.birthday" bs-tooltip data-title="生日" placeholder="yyyy-MM-dd"
+                       bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
+            </td>
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.identityCard" bs-tooltip data-title="身份证号" placeholder="身份证号...">
+            </td>
+            <td>
+                <input type="text" class="form-control" ng-model="item.dept" bs-tooltip data-title="工作单位" placeholder="工作单位...">
+            </td>
+            <td>
+                <input type="text" class="form-control" ng-model="item.job" bs-tooltip data-title="职位" placeholder="职位...">
+            </td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除"
+                   ng-click="remove($index, 'familyList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxFamily');">
                     <i class="fa fa-close"></i>
                 </a>
             </td>

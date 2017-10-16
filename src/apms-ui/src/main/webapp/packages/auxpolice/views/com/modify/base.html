@@ -1,24 +1,33 @@
 
 <ul class="list-unstyled profile-nav">
     <li>
-        <img src="{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
-        <a href="javascript:" class="profile-edit"> 编辑 </a>
+        <img src="data:image/jpeg;base64,{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
+        <a href="/#uploadPhoto" class="profile-edit" data-toggle="modal" aria-hidden="true" ng-click="prepare2SetPhoto()"> 编辑 </a>
     </li>
     <li bs-tooltip data-title="电话">
         <a href="javascript:">
             <label class="control-label">电话</label>
-            <div class="input-icon has-warning">
-                <i class="fa fa-phone font-yellow"></i>
-                <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.tel">
+            <div class="input-icon">
+                <i class="fa fa-phone"></i>
+                <input type="text" class="form-control" placeholder="0857-0000000" ng-model="entity.tel">
             </div>
         </a>
     </li>
     <li bs-tooltip data-title="手机">
         <a href="javascript:">
             <label class="control-label has-warning">手机</label>
-            <div class="input-icon">
+            <div class="input-icon has-warning">
                 <i class="fa fa-phone-square font-yellow"></i>
-                <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.mobile">
+                <input type="text" class="form-control" placeholder="13400000000" ng-model="entity.mobile">
+            </div>
+        </a>
+    </li>
+    <li bs-tooltip data-title="邮箱">
+        <a href="javascript:">
+            <label class="control-label has-warning">邮箱</label>
+            <div class="input-icon">
+                <i class="fa fa-phone-square"></i>
+                <input type="text" class="form-control" placeholder="xxx@xxx.com" ng-model="entity.mail">
             </div>
         </a>
     </li>
@@ -27,13 +36,13 @@
             <label class="control-label" for="bureau">工作单位</label>
             <div class="input-icon has-warning">
                 <i class="icon-home font-yellow"></i>
-                <select id="bureau" class="form-control" ng-model="entity.bureau.id"
-                        ng-options="item.id as item.value for item in bureauList"></select>
+                <select id="bureau" class="form-control" ng-model="entity.station.bureau.id" bs-tooltip data-title="分局"
+                        ng-options="item.id as item.name for item in bureauList"></select>
             </div>
             <div class="input-icon">
                 <i class="icon-home"></i>
-                <select class="form-control" ng-model="entity.station.id"
-                        ng-options="item.id as item.value for item in stationList"></select>
+                <select class="form-control" ng-model="entity.station.id" bs-tooltip data-title="科所队"
+                        ng-options="item.id as item.name for item in stationList | filter : {bureau: {id : entity.station.bureau.id}}"></select>
             </div>
         </a>
     </li>
@@ -46,23 +55,20 @@
             </div>
         </a>
     </li>
-    <li bs-tooltip data-title="单位地址">
+    <li bs-tooltip data-title="住址">
         <a href="javascript:">
-            <label class="control-label" for="gz_gzdw_dz_sheng">单位地址</label>
+            <label class="control-label">住址</label>
             <div class="input-icon has-warning">
                 <i class="fa fa-map-marker font-yellow"></i>
-                <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.addProvince.id"
-                        ng-options="item.id as item.value for item in provinceList"></select>
+                <input type="text" class="form-control" placeholder="省份"  ng-model="entity.addProvince">
             </div>
             <div class="input-icon">
                 <i class="fa fa-map-marker"></i>
-                <select class="form-control" ng-model="entity.addCity.id"
-                        ng-options="item.id as item.value for item in cityList"></select>
+                <input type="text" class="form-control" placeholder="城市" ng-model="entity.addCity">
             </div>
             <div class="input-icon">
                 <i class="fa fa-map-marker"></i>
-                <select class="form-control" ng-model="entity.addCity.id"
-                        ng-options="item.id as item.value for item in countryList"></select>
+                <input type="text" class="form-control" placeholder="区县" ng-model="entity.addCountry">
             </div>
             <div class="input-icon">
                 <i class="fa fa-map-marker"></i>
@@ -70,12 +76,12 @@
             </div>
         </a>
     </li>
-    <li bs-tooltip data-title="单位邮编">
+    <li bs-tooltip data-title="邮编">
         <a href="javascript:">
             <label class="control-label">邮编</label>
             <div class="input-icon">
                 <i class="fa fa-code"></i>
-                <input type="text" class="form-control" placeholder="110001" ng-model="entity.postCode">
+                <input type="text" class="form-control" placeholder="110001" ng-model="entity.addPostcode">
             </div>
         </a>
     </li>

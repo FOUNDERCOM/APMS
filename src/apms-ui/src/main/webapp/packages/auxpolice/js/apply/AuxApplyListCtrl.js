@@ -18,45 +18,71 @@
  * ***************************************************************************/
 
 /**
- * Description: 辅警注册列表控制器.<br>
- * Created by Jimmybly Lee on 2017/7/2.
+ * Description: 辅警管理列表控制器.<br>
+ * Created by Jimmybly Lee on 2017/9/17.
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
 
     // 流程相关颜色和消息配置
-    $.getJSON("packages/com/js/config.json", function(data) {
+    $.getJSON("packages/auxpolice/js/com/config.json", function(data) {
         $scope.cfg = data;
     });
+    // 状态字典列表
+    $ajaxCall.getDictList($scope, "PROCESS_STATUS", 'statusList');
 
-    /**
-     * 流程相关操作
-     * @param item 实体
-     * @param task 任务
-     */
-    $scope.take = function (item, task) {
-        $ajaxCall.post({
-            data : {
-                controller: "ZJInfoController",
-                method: task,
-                id: item.id
-            },
-            success: function() {
-                $scope.load();
-            }
-        });
+    // 性别字典列表
+    $ajaxCall.getDictList($scope, "SEX", 'sexList');
+    // 民族字典列表
+    $ajaxCall.getDictList($scope, "NATION", 'nationList');
+    // 健康状况字典列表
+    $ajaxCall.getDictList($scope, "HEALTH", 'healthList');
+    // 健康状况字典列表
+    $ajaxCall.getDictList($scope, "POLITICAL_STATUS", 'politicalStatusList');
+    // 学位字典列表
+    $ajaxCall.getDictList($scope, "EDUCATION_DEGREE", 'eduDegreeList');
+
+    // 分局列表
+    $ajaxCall.post({
+        data : {
+            controller: "DeptBureauController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.bureauList = res['result'];
+        }
+    });
+
+    // 科所队列表
+    $ajaxCall.post({
+        data : {
+            controller: "DeptStationController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.stationList = res['result'];
+        }
+    });
+
+    $scope.condition = {
+        isEnabled: true,
+        station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}},
+        status: {code : 'TO_APPLY', value: "待提交"}
     };
-
-    /* 与ZJGL一致 开始*/
-    $scope.condition = {xt_qy: true, gz_gaxt:true, xt_sfkw: false};
     $listService.init($scope, {
-        pageSizeList: [4, 6, 8, 12, 18, 24],
-        pageSize: 4,
-        "controller": "ZJInfoController",
+        "controller": "AuxController",
         "method": "query",
         callback: function (success) {
             $scope.list = success.data.result;
-        }
+        },
+        pageSizeList: [6, 12, 18, 24],
+        pageSize: 6
     });
 
     /**
@@ -79,12 +105,12 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {
-                    label: isEnabled ? " 恢 复 ！ " : " 注 销 ！",
+                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
                     className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
                     callback: function () {
                         $ajaxCall.post({
                             data: {
-                                controller: "ZJInfoController",
+                                controller: "AuxController",
                                 method: isEnabled ? "resume" : "remove",
                                 id: item.id
                             },
@@ -101,25 +127,42 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
     /**
      * 准备添加实体
      */
-    $scope.prepareToAdd = function (isKW) {
-        var divId = "updateZJModalDiv";
-        if (isKW) {
-            divId = "updateZJKWModalDiv";
-        }
+    $scope.prepareToAdd = function () {
+        var divId = "modifyAuxploiceApplyModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "注册辅警信息";
         scope.method = "create";
         scope.entity = {
-            gz_gaxt: true,
-            xt_sfkw: !!isKW,
-            jb_zp: $rootScope.cfg ["defaultPhoto"],
-            gzjlList: [],
-            jlqkList: [],
-            jybjList: [],
-            jzList: [],
-            yjcgList: [],
-
-            zylbList: []
+            "name": "",
+            "tel": "",
+            "mobile": "",
+            "job": "",
+            "identityCard": "",
+            "joinDate": "",
+            "standing": 0,
+            "sex": {},
+            "nation": {},
+            "health": {},
+            "politicalStatus": {},
+            "educationDegree": {},
+            "institutions": "",
+            "major": "",
+            "birthday": "",
+            "nativePlace": "",
+            "resume": "",
+            "addProvince": "",
+            "addCity": "",
+            "addCountry": "",
+            "addDetail": "",
+            "postCode": "",
+            "bureau": {},
+            "station": {},
+            "photo": $rootScope.cfg['defaultPhoto'],
+            "awardList": [],
+            "eduList": [],
+            "familyList": [],
+            "punishList": [],
+            "workList": []
         };
 
         scope.$on("submitted", function () {
@@ -130,11 +173,8 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
     /**
      * 准备修改实体
      */
-    $scope.prepareToUpdate = function (item, isKW) {
-        var divId = "updateZJModalDiv";
-        if (isKW) {
-            divId = "updateZJKWModalDiv";
-        }
+    $scope.prepareToModify = function (item) {
+        var divId = "modifyAuxploiceApplyModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "修改辅警信息";
         scope.method = "update";
@@ -148,11 +188,8 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
     /**
      * 准备查看实体
      */
-    $scope.prepareToView = function (item, isKW) {
-        var divId = "viewZJModalDiv";
-        if (isKW) {
-            divId = "viewZJKWModalDiv";
-        }
+    $scope.prepareToView = function (item) {
+        var divId = "viewAuxploiceApplyModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "查看辅警信息";
         scope.method = "update";
@@ -162,6 +199,22 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             $scope.load();
         });
     };
-    /* 与ZJGL一致 结束*/
 
+    /**
+     * 执行流程操作
+     * @param item entity 节点
+     * @param method 方法
+     */
+    $scope.take = function(item, method) {
+        $ajaxCall.post({
+            data : {
+                controller: "AuxController",
+                method: method,
+                id: item.id
+            },
+            success: function() {
+                $scope.load();
+            }
+        });
+    }
 }]);

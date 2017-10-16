@@ -1,22 +1,26 @@
 
 <ul class="list-unstyled profile-nav">
     <li>
-        <img src="{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
-        <a href="javascript:" class="profile-edit"> 编辑 </a>
+        <img src="data:image/jpeg;base64,{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
     </li>
     <li bs-tooltip data-title="电话">
-        <a href="javascript:">
+        <a href="tel:{{entity['tel']}}">
             <i class="fa fa-phone"></i> {{entity['tel']}}
         </a>
     </li>
     <li bs-tooltip data-title="手机">
-        <a href="javascript:">
+        <a href="tel:{{entity['mobile']}}">
             <i class="fa fa-phone-square"></i> {{entity['mobile']}}
+        </a>
+    </li>
+    <li bs-tooltip data-title="邮箱">
+        <a href="mailto:{{entity['mail']}}">
+            <i class="fa fa-envelope"></i> {{entity['mail']}}
         </a>
     </li>
     <li bs-tooltip data-title="工作单位">
         <a href="javascript:">
-            <i class="fa fa-building-o"></i> {{entity['bureau']['name']}} {{entity['station']['name']}}
+            <i class="fa fa-building-o"></i> {{entity['station']['bureau']['name']}} {{entity['station']['name']}}
         </a>
     </li>
     <li bs-tooltip data-title="职务">
@@ -24,12 +28,12 @@
             <i class="fa fa-briefcase"></i> {{entity['job']}}
         </a>
     </li>
-    <li bs-tooltip data-title="单位地址">
+    <li bs-tooltip data-title="住址">
         <a href="javascript:">
-            <i class="fa fa-map-marker"></i>{{entity['addProvince']['value']}} {{entity['addCity']['value']}} {{entity['addCountry']['value']}} {{entity['addDetail']}} </a>
+            <i class="fa fa-map-marker"></i>{{entity['addProvince']}} {{entity['addCity']}} {{entity['addCountry']}} {{entity['addDetail']}} </a>
     </li>
     <li bs-tooltip data-title="单位邮编">
         <a href="javascript:">
-            <i class="fa fa-code"></i>{{entity['station']['postCode']}} </a>
+            <i class="fa fa-code"></i> {{entity['addPostcode']}} </a>
     </li>
 </ul>

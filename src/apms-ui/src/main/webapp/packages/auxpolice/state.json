@@ -6,16 +6,21 @@
             "pageTitle": "辅警登记",
             "pageSubTitle": "科所队，登记辅警人员情况"
         },
-        "templateUrl": "packages/auxpolice/views/mgmt/main.html",
-        "controller": "AuxMgmtListCtrl",
+        "templateUrl": "packages/auxpolice/views/apply/main.html",
+        "controller": "AuxApplyListCtrl",
         "files": [
             "packages/auxpolice/css/person_info.css",
 
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "resources/global/plugins/id-card-validator.js",
+
             "packages/com/js/UploadPhotoCtrl.js",
 
-            "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
-            "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
-            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
+            "packages/auxpolice/js/apply/AuxApplyListCtrl.js",
+            "packages/auxpolice/js/apply/AuxApplyModifyCtrl.js",
+            "packages/auxpolice/js/apply/AuxApplyViewCtrl.js"
         ]
     },
     "aux_approve": {
@@ -26,10 +31,11 @@
             "pageSubTitle": "审核科所队上报注册登记的辅警人员信息"
         },
         "templateUrl": "packages/auxpolice/views/approve/main.html",
-        "controller": "AuxMgmtListCtrl",
+        "controller": "AuxApproveListCtrl",
         "files": [
             "packages/auxpolice/css/person_info.css",
 
+            "packages/auxpolice/js/approve/AuxApproveListCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
         ]
@@ -52,23 +58,48 @@
             "packages/index/js/ctrls/ComingCtrl.js"
         ]
     },
-    "aux_dept": {
+    "aux_bureau": {
         "data": {
             "nav": ["辅警信息维护"],
             "isBuiltIn": true,
-            "pageTitle": "本部辅警信息",
-            "pageSubTitle": "管理本单位拥有的辅警"
+            "pageTitle": "分局辅警信息",
+            "pageSubTitle": "管理分局拥有的辅警"
         },
         "templateUrl": "packages/auxpolice/views/mgmt/main.html",
         "controller": "AuxMgmtListCtrl",
         "files": [
             "packages/auxpolice/css/person_info.css",
 
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
             "packages/com/js/UploadPhotoCtrl.js",
 
             "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
+        ]
+    },
+    "aux_all": {
+        "data": {
+            "nav": ["辅警信息维护"],
+            "isBuiltIn": true,
+            "pageTitle": "全部辅警信息",
+            "pageSubTitle": "管理所有辅警"
+        },
+        "templateUrl": "packages/auxpolice/views/mgmtall/main.html",
+        "controller": "AuxMgmtallListCtrl",
+        "files": [
+            "packages/auxpolice/css/person_info.css",
+
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/auxpolice/js/mgmtall/AuxMgmtallListCtrl.js",
+            "packages/auxpolice/js/mgmtall/AuxMgmtallModifyCtrl.js",
+            "packages/auxpolice/js/mgmtall/AuxMgmtallViewCtrl.js"
         ]
     }
 }

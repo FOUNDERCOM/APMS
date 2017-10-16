@@ -5,8 +5,7 @@
             <th class="text-center bold wid90px"><i class="icon-calendar"></i> 时间 </th>
             <th class="text-center bold wid100px"><i class="icon-home"></i> 发布单位 </th>
             <th class="text-center bold wid200px"><i class="icon-info"></i> 缘由 </th>
-            <th class="text-center bold wid60px"><i class="icon-user"></i> 登记人 </th>
-            <th class="text-center bold wid90px"><i class="icon-badge"></i> 登记时间 </th>
+            <th class="text-center bold hidden-sm wid100px"><i class="icon-note"></i> 记录人 </th>
         </tr>
     </thead>
     <tbody>
@@ -15,8 +14,15 @@
             <td class="text-center">{{item['date']}}</td>
             <td class="text-center">{{item['dept']}}</td>
             <td>{{item['desc']}}</td>
-            <td class="text-center">{{item['recorder']}}</td>
-            <td class="text-center">{{item['recordDate']}}</td>
+            <td class="text-center">
+                <a href="javascript:" bs-popover data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close'>&times;</a>"
+                   data-placement="left" data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>
+                                            <b><i class='icon-user'></i> 操作人名称:</b> {{item['lastUpdateUser']['name']}}<br/>
+                                            <b><i class='icon-calendar'></i> 操作时间:</b> {{item['lastUpdateDate']}}<br/>
+                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}">
+                    {{item['lastUpdateUser']['name']}}
+                </a>
+            </td>
         </tr>
     </tbody>
 </table>

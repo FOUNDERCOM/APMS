@@ -58,6 +58,7 @@ public class SysDict implements Serializable {
     /**
      * 编码.
      */
+    @OrderBy
     @Column(name = "DICT_CODE")
     private String code;
 

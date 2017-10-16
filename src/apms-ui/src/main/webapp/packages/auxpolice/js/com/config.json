@@ -1,0 +1,19 @@
+{
+    "FLOW": {
+        "TO_APPLY": {
+            "color": "blue-steel"
+        },
+        "TO_ACCEPT": {
+            "color": "blue-madison"
+        },
+        "TO_APPROVE": {
+            "color": "purple-studio"
+        },
+        "REJECTED": {
+            "color": "red-mint"
+        },
+        "PASSED": {
+            "color": "green-seagreen"
+        }
+    }
+}

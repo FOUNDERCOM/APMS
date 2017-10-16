@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="form-group form-md-line-input col-md-6 has-warning">
         <div class="input-icon">
@@ -15,7 +14,7 @@
             <textarea id="jb_jl" class="form-control" rows="8" ng-model="entity.resume"></textarea>
             <label for="jb_jl">简历</label>
             <span class="help-block">辅警信息简要描述...</span>
-            <i class="fa fa-align-left"></i>
+            <i class="fa fa-align-left font-yellow"></i>
         </div>
     </div>
 </div>
@@ -28,51 +27,51 @@
             <i class="fa fa-newspaper-o font-yellow"></i>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="form-group form-md-line-input col-md-2 has-warning">
+    <div class="form-group form-md-line-input col-md-6 has-warning">
         <div class="input-icon">
-            <select id="sex" class="form-control" ng-model="entity.sex.id"
-                    ng-options="item.id as item.value for item in sexList"></select>
-            <label for="sex">性别</label>
-            <span class="help-block">男/女</span>
-            <i class="fa fa-smile-o font-yellow"></i>
+            <input id="joinDate" type="text" class="form-control" ng-model="entity.joinDate"
+                   bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
+            <label for="joinDate">入职时间</label>
+            <span class="help-block">xxxx-xx-xx</span>
+            <i class="fa fa-calendar font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-2">
+    <!--<div class="form-group form-md-line-input col-md-2 has-warning">-->
+        <!--<div class="input-icon">-->
+            <!--<select id="sex" class="form-control" ng-model="entity.sex.id"-->
+                    <!--ng-options="item.id as item.value for item in sexList"></select>-->
+            <!--<label for="sex">性别</label>-->
+            <!--<span class="help-block">男/女</span>-->
+            <!--<i class="fa fa-smile-o font-yellow"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="form-group form-md-line-input col-md-2 has-warning">
         <div class="input-icon">
             <select id="nation" class="form-control" ng-model="entity.nation.id"
                     ng-options="item.id as item.value for item in nationList"></select>
             <label for="nation">民族</label>
             <span class="help-block">请选择</span>
-            <i class="fa fa-users"></i>
+            <i class="fa fa-users font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-2">
+    <div class="form-group form-md-line-input col-md-2 has-warning">
         <div class="input-icon">
             <select id="health" class="form-control" ng-model="entity.health.id"
                     ng-options="item.id as item.value for item in healthList"></select>
-            <label for="health">健康</label>
-            <i class="fa fa-heart"></i>
+            <label for="health">健康状况</label>
+            <i class="fa fa-heart font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-6">
-        <div class="input-icon">
-            <input id="birthday" type="text" class="form-control" ng-model="entity.birthday"
-                   bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
-            <label for="birthday">生日</label>
-            <span class="help-block">xxxx年xx月xx日</span>
-            <i class="fa fa-calendar"></i>
-        </div>
-    </div>
-    <div class="form-group form-md-line-input col-md-3">
-        <div class="input-icon">
-            <input id="nativePlace" type="text" class="form-control" ng-model="entity.nativePlace">
-            <label for="nativePlace">籍贯</label>
-            <i class="fa fa-map-marker"></i>
-        </div>
-    </div>
-    <div class="form-group form-md-line-input col-md-3 has-warning">
+    <!--<div class="form-group form-md-line-input col-md-6 has-warning">-->
+        <!--<div class="input-icon">-->
+            <!--<input id="birthday" type="text" class="form-control" ng-model="entity.birthday"-->
+                   <!--bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">-->
+            <!--<label for="birthday">生日</label>-->
+            <!--<span class="help-block">xxxx年xx月xx日</span>-->
+            <!--<i class="fa fa-calendar font-yellow"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="form-group form-md-line-input col-md-2 has-warning">
         <div class="input-icon">
             <select id="politicalStatus" class="form-control" ng-model="entity.politicalStatus.id"
                     ng-options="item.id as item.value for item in politicalStatusList"></select>
@@ -81,23 +80,30 @@
             <i class="fa fa-exclamation-circle font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-3 has-warning">
+    <div class="form-group form-md-line-input col-md-2 has-warning">
         <div class="input-icon">
-            <select id="educationDegree" class="form-control" ng-model="entity.educationDegree.id"
-                    ng-options="item.id as item.value for item in educationDegreeList"></select>
+            <select id="educationDegree" class="form-control" ng-model="entity.eduDegree.id"
+                    ng-options="item.id as item.value for item in eduDegreeList"></select>
             <label for="educationDegree">文化程度</label>
             <span class="help-block">请选择</span>
             <i class="fa fa-graduation-cap font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-3 has-warning">
+    <div class="form-group form-md-line-input col-md-4">
+        <div class="input-icon">
+            <input id="nativePlace" type="text" class="form-control" ng-model="entity.nativePlace">
+            <label for="nativePlace">籍贯</label>
+            <i class="fa fa-map-marker"></i>
+        </div>
+    </div>
+    <div class="form-group form-md-line-input col-md-6 has-warning">
         <div class="input-icon">
             <input id="institutions" type="text" class="form-control" ng-model="entity.institutions">
             <label for="institutions">毕业院校</label>
             <i class="fa fa-building-o font-yellow"></i>
         </div>
     </div>
-    <div class="form-group form-md-line-input col-md-3 has-warning">
+    <div class="form-group form-md-line-input col-md-6 has-warning">
         <div class="input-icon">
             <input id="major" type="text" class="form-control" ng-model="entity.major">
             <label for="major">所学专业</label>

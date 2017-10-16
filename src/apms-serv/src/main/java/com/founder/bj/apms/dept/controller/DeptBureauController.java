@@ -34,6 +34,7 @@ import com.founder.bj.apms.dept.entity.DeptBureau;
 import com.founder.bj.apms.dept.service.DeptBureauService;
 import com.founder.bj.apms.sys.entity.SysUser;
 import com.lee.jwaf.action.AbstractControllerSupport;
+import com.lee.jwaf.exception.ServiceException;
 import com.lee.util.DateUtils;
 
 /**
@@ -64,7 +65,7 @@ public class DeptBureauController extends AbstractControllerSupport implements C
     }
 
     @Override
-    public void create() {
+    public void create() throws ServiceException {
         final DeptBureau entity = workDTO.convertJsonToBeanByKey("entity", DeptBureau.class);
 
         entity.setIsEnabled(true);
@@ -77,7 +78,7 @@ public class DeptBureauController extends AbstractControllerSupport implements C
     }
 
     @Override
-    public void update() {
+    public void update() throws ServiceException {
         final DeptBureau entity = workDTO.convertJsonToBeanByKey("entity", DeptBureau.class);
         entity.setLastUpdateUser(new SysUser());
         entity.getLastUpdateUser().setId(sessionDTO.currentToken().user().getId());
@@ -97,7 +98,11 @@ public class DeptBureauController extends AbstractControllerSupport implements C
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
         entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
 
-        service.update(entity);
+        try {
+            service.update(entity);
+        } catch (ServiceException ex) {
+            log.error("this should never happen");
+        }
     }
 
     @Override
@@ -111,6 +116,10 @@ public class DeptBureauController extends AbstractControllerSupport implements C
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
         entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
 
-        service.update(entity);
+        try {
+            service.update(entity);
+        } catch (ServiceException ex) {
+            log.error("this should never happen");
+        }
     }
 }

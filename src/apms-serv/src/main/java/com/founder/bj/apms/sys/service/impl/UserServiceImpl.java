@@ -189,6 +189,7 @@ public class UserServiceImpl implements UserService {
 
         // 先处理一对一关联的末端：account
         account.setPwd(PasswordUtils.encryptByMD5(account.getPwd()));
+        account.setIsEnabled(true);
         em.persist(account);
         em.flush();
 

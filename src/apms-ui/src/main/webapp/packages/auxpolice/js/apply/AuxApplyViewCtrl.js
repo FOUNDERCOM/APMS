@@ -18,9 +18,9 @@
  * ***************************************************************************/
 
 /**
- * Description: 辅警查看控制器.<br>
- * Created by Jimmybly Lee on 2017/9/16.
+ * Description: 辅警管理查看控制器.<br>
+ * Created by Jimmybly Lee on 2017/9/17.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('AuxApplyViewCtrl', ['$scope', "$ajaxCall", function ($scope, $ajaxCall) {
+angular.module('WebApp').controller('AuxApplyViewCtrl', ['$rootScope', '$scope', "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
 }]);

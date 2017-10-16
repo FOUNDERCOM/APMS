@@ -5,9 +5,9 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label class="control-label col-md-4">分局</label>
+                            <label class="control-label col-md-4">姓名</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="分局" ng-model="condition.jb_xm">
+                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
                             </div>
                         </div>
                     </div>
@@ -22,14 +22,15 @@
 <div class="portlet box yellow-gold">
     <div class="portlet-title">
         <div class="caption">
-            <i class="icon-drawer"></i> 辅警信息
+            <i class="icon-users"></i> <b>{{token['user']['org']['bureau']['name']}}</b> - 辅警信息
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
             <a href="javascript:" class="reload" ng-click="load()"></a>
         </div>
         <div class="actions">
-            <a href="packages/salary/demo/salary.xlsx" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出</a>
+            <!--suppress HtmlUnknownTarget -->
+            <a href="mvc/dispatch?controller=AuxController&method=exportSalary" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出</a>
         </div>
     </div>
     <div class="portlet-body">
@@ -48,7 +49,7 @@
 
                 <tbody>
                     <tr ng-repeat="item in list">
-                        <td class="text-center wid260px">{{item['bureau']['name']}} </td>
+                        <td class="text-center wid260px">{{item['station']['bureau']['name']}} </td>
                         <td class="text-center wid100px">{{item['station']['name']}}</td>
                         <td class="text-center wid100px">{{item['name']}}</td>
                         <td class="text-center wid100px">{{item['sex']['value']}}</td>

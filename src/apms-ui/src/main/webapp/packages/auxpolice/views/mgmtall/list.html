@@ -1,0 +1,157 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">分局</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                    <ui-select ng-model="condition.station.bureau" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                            <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">科所队</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                    <ui-select ng-model="condition.station" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in stationList | filter: {bureau: {id : condition.station.bureau.id }}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                            <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">姓名</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">启用状态</label>
+                            <div class="col-md-6">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="zj_search_zt" class="md-check" checked
+                                               ng-model="condition.isEnabled">
+                                        <label for="zj_search_zt">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 启用 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
+                <a href="javascript:" class="btn btn-sm purple-sharp" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="portlet box purple-sharp">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-users"></i> 辅警信息
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#modifyAuxploiceMgmtallModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 添加辅警
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="mt-element-card mt-element-overlay">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="item in list">
+                    <div class="mt-card-item">
+                        <div class="mt-card-avatar mt-overlay-1">
+                            <img src="data:image/jpeg;base64,{{item.photo}}" />
+                            <div class="mt-overlay">
+                                <ul class="mt-info">
+                                    <li>
+                                        <!--suppress HtmlUnknownAnchorTarget -->
+                                        <a class="btn btn-xs btn-outline blue"
+                                           href="/#viewAuxploiceMgmtallModalDiv" data-toggle="modal"
+                                           ng-click="prepareToView(item)" bs-tooltip data-title="查看">
+                                            <i class="fa fa-picture-o"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <!--suppress HtmlUnknownAnchorTarget -->
+                                        <a class="btn btn-xs btn-outline yellow-gold"
+                                           href="/#modifyAuxploiceMgmtallModalDiv" data-toggle="modal"
+                                           ng-click="prepareToModify(item)" bs-tooltip data-title="修改">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-xs btn-outline red" href="javascript:" ng-if="item.isEnabled"
+                                           ng-click="changeStatus(item,false)" bs-tooltip data-title="注销">
+                                            <i class="fa fa-ban"></i>
+                                        </a>
+                                        <a class="btn btn-xs btn-outline green" href="javascript:" ng-if="!item.isEnabled"
+                                           ng-click="changeStatus(item,true)" bs-tooltip data-title="启用">
+                                            <i class="fa fa-recycle"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-card-content">
+                            <h3 class="mt-card-name">{{item['name']}}  <i class="icon-bubbles bold font-{{cfg['auxpolice'][item['status']['code']]['color']}}"></i>
+                                <span class="font-xs bg-{{cfg['zj'][item['xt_zt']].color}} bg-font-{{cfg['zj'][item['xt_zt']].color}}" style="padding: 0 3px;">
+                                    {{cfg['zj'][item['xt_zt']].msg}}
+                                </span>
+                            </h3>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item['bureau']['name']}} {{item['station']['name']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['tel']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['mobile']}}</p>
+                            <div class="mt-card-social">
+                                <ul>
+                                    <li>
+                                        <a href="mailto:{{item['mail']}}" bs-tooltip data-title="发送邮件给">
+                                            <i class="icon-envelope-open"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:{{item['mobile']}}" bs-tooltip data-title="打电话给ta">
+                                            <i class="fa fa-phone"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

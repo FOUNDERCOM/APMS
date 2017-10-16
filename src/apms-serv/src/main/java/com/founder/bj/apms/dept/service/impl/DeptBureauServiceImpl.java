@@ -33,9 +33,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.founder.bj.apms.dept.entity.DeptBureau;
 import com.founder.bj.apms.dept.service.DeptBureauService;
 import com.founder.bj.apms.sys.entity.SysUser;
+import com.lee.jwaf.exception.ServiceException;
 import com.lee.util.Assert;
 import com.lee.util.StringUtils;
 
+// CSOFF: RegexpSinglelineJava
+// CSOFF: ParameterName
 /**
  * Description: Impl for {@link com.founder.bj.apms.dept.service.DeptBureauService}.<br>
  * Created by Jimmybly Lee on 2017/10/3.
@@ -103,7 +106,7 @@ public class DeptBureauServiceImpl implements DeptBureauService {
     @SuppressWarnings("Duplicates")
     @Transactional
     @Override
-    public Integer create(DeptBureau entity) {
+    public Integer create(DeptBureau entity) throws ServiceException {
         entity.setId(null);
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));
@@ -129,29 +132,35 @@ public class DeptBureauServiceImpl implements DeptBureauService {
      *     </ul>
      *
      * @param entity target entity
+     *
+     * @throws ServiceException validation fall
      */
-    private void validate(DeptBureau entity) {
-        Assert.hasLength(entity.getName(), "name should not be null");
-        Assert.notNull(entity.getStrength(), "strength should not be null");
-        Assert.notNull(entity.getStdSalary(), "stdSalary should not be null");
+    private void validate(DeptBureau entity) throws ServiceException {
+        try {
+            Assert.hasLength(entity.getName(), "名称不能为空。");
+            Assert.notNull(entity.getStrength(), "编制不能为空。");
+            Assert.notNull(entity.getStdSalary(), "额定薪资不能为空。");
 
-        Assert.hasLength(entity.getContactName(), "contact name should not be null");
-        Assert.hasLength(entity.getContactTel(), "contact tel should not be null");
-        Assert.hasLength(entity.getContactMobile(), "contact mobile should not be null");
+            Assert.hasLength(entity.getContactName(), "联系人姓名不能为空。");
+            Assert.hasLength(entity.getContactTel(), "联系人座机不能为空。");
+            Assert.hasLength(entity.getContactMobile(), "联系人手机不能为空");
 
-        Assert.notNull(entity.getLastUpdateUser(), "last update user should not be null");
-        Assert.notNull(entity.getLastUpdateUser().getId(), "last update user id should not be null");
-        final SysUser updater = em.find(SysUser.class, entity.getLastUpdateUser().getId());
-        Assert.notNull(updater.getName(), "can not find last update user by given id");
-        Assert.hasLength(entity.getLastUpdateIp(), "last update ip should not be null");
-        Assert.hasLength(entity.getLastUpdateDate(), "last update date should not be null");
+            Assert.notNull(entity.getLastUpdateUser(), "last update user should not be null");
+            Assert.notNull(entity.getLastUpdateUser().getId(), "last update user id should not be null");
+            final SysUser updater = em.find(SysUser.class, entity.getLastUpdateUser().getId());
+            Assert.notNull(updater.getName(), "can not find last update user by given id");
+            Assert.hasLength(entity.getLastUpdateIp(), "last update ip should not be null");
+            Assert.hasLength(entity.getLastUpdateDate(), "last update date should not be null");
 
-        Assert.notNull(entity.getIsEnabled(), "isEnabled should not be null");
+            Assert.notNull(entity.getIsEnabled(), "isEnabled should not be null");
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
     }
 
     @Transactional
     @Override
-    public void update(DeptBureau entity) {
+    public void update(DeptBureau entity) throws ServiceException {
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));
         em.merge(entity);

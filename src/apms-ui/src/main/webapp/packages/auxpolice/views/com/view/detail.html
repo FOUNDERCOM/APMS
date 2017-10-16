@@ -1,4 +1,7 @@
-<h1 class="font-green sbold uppercase">{{entity["name"]}}</h1>
+<h1 class="font-green sbold uppercase" style="display: inline;">{{entity["name"]}}</h1>
+<span ng-if="entity.isEnabled" class="font-green"><i class="fa fa-check"></i> 启用</span>
+<span ng-if="!entity.isEnabled" class="font-red"><i class="fa fa-ban"></i> 注销</span>
+<span class="font-{{cfg['FLOW'][entity['status']['code']]['color']}}"><i class="fa fa-flag"> {{entity['status']['value']}}</i></span>
 <p> {{entity['resume']}} </p>
 <p>
     <span class="text-primary margin-right-10" bs-tooltip data-title="身份证号">
@@ -6,6 +9,12 @@
     </span>
 </p>
 <ul class="list-inline">
+    <li bs-tooltip data-title="入职时间">
+        <i class="fa fa-briefcase"></i> {{entity['joinDate']}}
+    </li>
+    <li bs-tooltip data-title="在职时间">
+        <i class="fa fa-briefcase"></i> {{entity['standing']}} 个月
+    </li>
     <li bs-tooltip data-title="性别">
         <i class="fa fa-smile-o"></i> {{entity['sex']['value']}}
     </li>
@@ -18,6 +27,9 @@
     <li bs-tooltip data-title="出生年月">
         <i class="fa fa-calendar"></i> {{entity['birthday']}}
     </li>
+    <li bs-tooltip data-title="年龄">
+        <i class="fa fa-calendar"></i> {{entity['age']}} 岁
+    </li>
     <li bs-tooltip data-title="籍贯">
         <i class="fa fa-map-marker"></i> {{entity['nativePlace']}}
     </li>
@@ -25,7 +37,7 @@
         <i class="fa fa-exclamation-circle"></i> {{entity['politicalStatus']['value']}}
     </li>
     <li bs-tooltip data-title="文化程度">
-        <i class="fa fa-graduation-cap"></i> {{entity['educationDegree']['value']}}
+        <i class="fa fa-graduation-cap"></i> {{entity['eduDegree']['value']}}
     </li>
     <li bs-tooltip data-title="毕业院校">
         <i class="fa fa-building-o"></i> {{entity['institutions']}}

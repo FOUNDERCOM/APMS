@@ -25,9 +25,67 @@
 angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
 
     // 流程相关颜色和消息配置
-    $.getJSON("packages/com/js/config.json", function(data) {
+    $.getJSON("packages/auxpolice/js/com/config.json", function(data) {
         $scope.cfg = data;
     });
+
+    // 性别字典列表
+    $ajaxCall.getDictList($scope, "SEX", 'sexList');
+    // 民族字典列表
+    $ajaxCall.getDictList($scope, "NATION", 'nationList');
+    // 健康状况字典列表
+    $ajaxCall.getDictList($scope, "HEALTH", 'healthList');
+    // 健康状况字典列表
+    $ajaxCall.getDictList($scope, "POLITICAL_STATUS", 'politicalStatusList');
+    // 学位字典列表
+    $ajaxCall.getDictList($scope, "EDUCATION_DEGREE", 'eduDegreeList');
+
+    // 分局列表
+    $ajaxCall.post({
+        data : {
+            controller: "DeptBureauController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.bureauList = res['result'];
+        }
+    });
+
+    // 科所队列表
+    $ajaxCall.post({
+        data : {
+            controller: "DeptStationController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.stationList = res['result'];
+        }
+    });
+
+    $scope.condition = {isEnabled: true, station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}};
+    $listService.init($scope, {
+        "controller": "AuxController",
+        "method": "query",
+        callback: function (success) {
+            $scope.list = success.data.result;
+        },
+        pageSizeList: [6, 12, 18, 24],
+        pageSize: 6
+    });
+
+    /**
+     * 刷新数据
+     */
+    $scope.load = function () {
+        $scope.pageRequest.getResponse();
+    };
+    $scope.load();
 
     /**
      * 修改给定实体的状态
@@ -46,7 +104,7 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
                     callback: function () {
                         $ajaxCall.post({
                             data: {
-                                controller: "ZJInfoController",
+                                controller: "AuxController",
                                 method: isEnabled ? "resume" : "remove",
                                 id: item.id
                             },
@@ -86,16 +144,16 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             "birthday": "",
             "nativePlace": "",
             "resume": "",
-            "addProvince": {},
-            "addCity": {},
-            "addCountry": {},
+            "addProvince": "",
+            "addCity": "",
+            "addCountry": "",
             "addDetail": "",
             "postCode": "",
             "bureau": {},
             "station": {},
-            "photo": "resources/layouts/layout4/img/default-user.png",
+            "photo": $rootScope.cfg['defaultPhoto'],
             "awardList": [],
-            "educationList": [],
+            "eduList": [],
             "familyList": [],
             "punishList": [],
             "workList": []
@@ -135,16 +193,4 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             $scope.load();
         });
     };
-
-    /** make demo data */
-    $scope.demo = function() {
-        $.getJSON("packages/auxpolice/js/mgmt/demo.json", function(obj) {
-            $scope.pageResponse = obj;
-            $scope.list = obj.result;
-        });
-    };
-    $scope.load = function() {
-        $scope.demo();
-    };
-    $scope.load();
 }]);

@@ -33,10 +33,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.founder.bj.apms.dept.entity.DeptStation;
 import com.founder.bj.apms.dept.service.DeptStationService;
 import com.founder.bj.apms.sys.entity.SysUser;
+import com.lee.jwaf.exception.ServiceException;
 import com.lee.util.Assert;
 import com.lee.util.ObjectUtils;
 import com.lee.util.StringUtils;
 
+// CSOFF: RegexpSinglelineJava
+// CSOFF: ParameterName
 /**
  * Description: impl for {@link DeptStationService}.<br>
  * Created by Jimmybly Lee on 2017/10/3.
@@ -119,7 +122,7 @@ public class DeptStationServiceImpl implements DeptStationService {
     @SuppressWarnings("Duplicates")
     @Transactional
     @Override
-    public Integer create(DeptStation entity) {
+    public Integer create(DeptStation entity) throws ServiceException {
         entity.setId(null);
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));
@@ -144,28 +147,34 @@ public class DeptStationServiceImpl implements DeptStationService {
      *     </ul>
      *
      * @param entity target entity
+     *
+     * @throws ServiceException validation fall
      */
-    private void validate(DeptStation entity) {
-        Assert.hasLength(entity.getName());
-        Assert.notNull(entity.getStrength());
+    private void validate(DeptStation entity) throws ServiceException {
+        try {
+            Assert.hasLength(entity.getName(), "名称不能为空。");
+            Assert.notNull(entity.getStrength(), "编制不能为空。");
 
-        Assert.hasLength(entity.getContactName());
-        Assert.hasLength(entity.getContactTel());
-        Assert.hasLength(entity.getContactMobile());
+            Assert.hasLength(entity.getContactName(), "联系人姓名不能为空。");
+            Assert.hasLength(entity.getContactTel(), "联系人座机不能为空。");
+            Assert.hasLength(entity.getContactMobile(), "联系人手机不能为空");
 
-        Assert.notNull(entity.getLastUpdateUser());
-        Assert.notNull(entity.getLastUpdateUser().getId());
-        final SysUser updater = em.find(SysUser.class, entity.getLastUpdateUser().getId());
-        Assert.notNull(updater.getName());
-        Assert.hasLength(entity.getLastUpdateIp());
-        Assert.hasLength(entity.getLastUpdateDate());
+            Assert.notNull(entity.getLastUpdateUser());
+            Assert.notNull(entity.getLastUpdateUser().getId());
+            final SysUser updater = em.find(SysUser.class, entity.getLastUpdateUser().getId());
+            Assert.notNull(updater.getName());
+            Assert.hasLength(entity.getLastUpdateIp());
+            Assert.hasLength(entity.getLastUpdateDate());
 
-        Assert.notNull(entity.getIsEnabled());
+            Assert.notNull(entity.getIsEnabled());
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
     }
 
     @Transactional
     @Override
-    public void update(DeptStation entity) {
+    public void update(DeptStation entity) throws ServiceException {
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));
         em.merge(entity);

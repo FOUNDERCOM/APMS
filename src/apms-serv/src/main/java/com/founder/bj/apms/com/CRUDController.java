@@ -19,6 +19,8 @@
 
 package com.founder.bj.apms.com;
 
+import com.lee.jwaf.exception.ServiceException;
+
 /**
  * Description: Common CRUD Controller.<br>
  * Created by Jimmybly Lee on 2017/10/4.
@@ -34,13 +36,17 @@ public interface CRUDController {
 
     /**
      * Create entity.
+     *
+     * @throws ServiceException validation fall
      */
-    void create();
+    void create() throws ServiceException;
 
     /**
      * Update entity.
+     *
+     * @throws ServiceException validation fall
      */
-    void update();
+    void update() throws ServiceException;
 
     /**
      * Remove entity.

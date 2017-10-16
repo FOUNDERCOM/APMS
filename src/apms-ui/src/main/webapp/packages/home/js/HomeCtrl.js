@@ -18,11 +18,24 @@
  * ***************************************************************************/
 
 /**
- * Description: TODO.<br>
+ * Description: HomeController.<br>
  * Created by Jimmybly Lee on 2017/9/10.
  * @author Jimmybly Lee
  */
-angular.module("WebApp").controller('HomeCtrl', ['$scope', '$rootScope', function($scope) {
+angular.module("WebApp").controller('HomeCtrl', ['$rootScope', '$scope', '$ajaxCall', function($rootScope, $scope, $ajaxCall) {
+
+    $ajaxCall.post({
+        data : {
+            controller: "AnalysisController",
+            method: 'getHomeBaseInfo'
+        },
+        success: function(res) {
+            $scope.auxNum = res.auxNum;
+            $scope.avgSalary = res.avgSalary;
+            $scope.degreeNum = res.degreeNum;
+            $scope.goodPern = res.goodPern;
+        }
+    });
 
     var initAmChart1 = function() {
         if (typeof(AmCharts) === 'undefined' || $('#chart_5').size() === 0) {

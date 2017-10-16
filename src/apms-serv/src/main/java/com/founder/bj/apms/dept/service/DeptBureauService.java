@@ -23,6 +23,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.founder.bj.apms.dept.entity.DeptBureau;
+import com.lee.jwaf.exception.ServiceException;
 
 /**
  * Description: Bureau Service interface.<br>
@@ -59,14 +60,16 @@ public interface DeptBureauService extends Serializable {
      * Create entity.
      * @param entity entity.
      * @return entity persisted id
+     *
+     * @throws ServiceException validation fall
      */
-    Integer create(DeptBureau entity);
+    Integer create(DeptBureau entity) throws ServiceException;
 
     /**
      * Update entity.
      * @param entity entity
+     *
+     * @throws ServiceException validation fall
      */
-    void update(DeptBureau entity);
-
-
+    void update(DeptBureau entity) throws ServiceException;
 }
