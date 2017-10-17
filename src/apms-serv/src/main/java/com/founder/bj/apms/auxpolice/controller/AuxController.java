@@ -268,4 +268,11 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             }
         }
     }
+
+    /**
+     * Check duplicated Identity card.
+     */
+    public void checkDuplicatedIdentityCard() {
+        workDTO.setResult(infoService.checkDuplicatedIdentityCare(workDTO.getInteger("id"), workDTO.<String>get("card")));
+    }
 }

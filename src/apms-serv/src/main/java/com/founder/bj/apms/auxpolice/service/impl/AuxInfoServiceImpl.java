@@ -280,6 +280,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         }
 
         entity.setSex(dictService.getSysDictByNatureAndCode("SEX", entity.getSex().getCode()));
+        entity.setOldIdentity(em.find(SysDict.class, entity.getOldIdentity().getId()));
         entity.setNation(em.find(SysDict.class, entity.getNation().getId()));
         entity.setHealth(em.find(SysDict.class, entity.getHealth().getId()));
         entity.setPoliticalStatus(em.find(SysDict.class, entity.getPoliticalStatus().getId()));
@@ -410,5 +411,16 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setLastUpdateIp(ip);
 
         entity.setSalary(salary);
+    }
+
+    @Override
+    public boolean checkDuplicatedIdentityCare(Integer id, String card) {
+        if (ObjectUtils.isEmpty(id)) {
+            return em.createQuery("from AuxInfo where identityCard = :card")
+                .setParameter("card", card).getResultList().size() > 0;
+        } else {
+            return em.createQuery("from AuxInfo where identityCard = :card and id != :id")
+                .setParameter("card", card).setParameter("id", id).getResultList().size() > 0;
+        }
     }
 }

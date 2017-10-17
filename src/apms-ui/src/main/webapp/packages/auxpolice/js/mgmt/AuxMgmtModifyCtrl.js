@@ -29,26 +29,61 @@ angular.module('WebApp').controller('AuxMgmtModifyCtrl', ['$rootScope', '$scope'
      */
     $scope.submit = function() {
         if ($scope.validate()) {
-            $scope.entity.sex = {
-                "code" : IDCardValidator.sex($scope.entity.identityCard) === "male" ? "1" : "2"
+            var save = function() {
+                $scope.entity.sex = {
+                    "code" : IDCardValidator.sex($scope.entity.identityCard) === "male" ? "1" : "2"
+                };
+                var idCard = $scope.entity.identityCard;
+                if (idCard.length === 15) {
+                    $scope.entity.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
+                } else {
+                    $scope.entity.birthday =  idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+                }
+                $ajaxCall.post({
+                    data : {
+                        controller: "AuxController",
+                        method: $scope.method,
+                        entity : JSON.stringify($scope.entity)
+                    },
+                    success: function() {
+                        $scope.$emit("submitted");
+                    }
+                });
+                $(".modal").modal('hide');
             };
-            var idCard = $scope.entity.identityCard;
-            if (idCard.length === 15) {
-                $scope.entity.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
-            } else {
-                $scope.entity.birthday =  idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
-            }
+
+            var confirm = function() {
+                bootbox.dialog({
+                    title: "请确认",
+                    message: "数据中有重复的身份证信息是否仍然提交？",
+                    buttons: {
+                        main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                        danger: {
+                            label: " 提  交 ！ ",
+                            className: "fa fa-check red",
+                            callback: function () {
+                                save();
+                            }
+                        }
+                    }
+                });
+            };
+
             $ajaxCall.post({
-                data : {
+                data: {
                     controller: "AuxController",
-                    method: $scope.method,
-                    entity : JSON.stringify($scope.entity)
+                    method: "checkDuplicatedIdentityCard",
+                    id: $scope.entity.id,
+                    card: $scope.entity.identityCard
                 },
-                success: function() {
-                    $scope.$emit("submitted");
+                success: function(res) {
+                    if (res.result) {
+                        confirm();
+                    } else {
+                        save();
+                    }
                 }
             });
-            $(".modal").modal('hide');
         }
     };
 

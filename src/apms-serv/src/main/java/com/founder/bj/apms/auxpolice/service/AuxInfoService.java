@@ -99,4 +99,12 @@ public interface AuxInfoService {
      */
     void changeSalary(Token token, String ip, Integer id, Integer salary);
 
+    /**
+     * Check Duplicated Identity Card.
+     * @param id {@link AuxInfo} id, 0 for null
+     * @param card card
+     * @return true for duplicated
+     */
+    boolean checkDuplicatedIdentityCare(Integer id, String card);
+
 }
