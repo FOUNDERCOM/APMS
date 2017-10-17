@@ -37,6 +37,15 @@
     <!--</div>-->
     <div class="form-group form-md-line-input col-md-2 has-warning">
         <div class="input-icon">
+            <select id="oldIdentity" class="form-control" ng-model="entity.oldIdentity.id"
+                    ng-options="item.id as item.value for item in oldIdentityList"></select>
+            <label for="oldIdentity">入职前身份</label>
+            <span class="help-block">请选择</span>
+            <i class="fa fa-user font-yellow"></i>
+        </div>
+    </div>
+    <div class="form-group form-md-line-input col-md-2 has-warning">
+        <div class="input-icon">
             <select id="nation" class="form-control" ng-model="entity.nation.id"
                     ng-options="item.id as item.value for item in nationList"></select>
             <label for="nation">民族</label>

@@ -29,7 +29,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.lee.jwaf.token.Token;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -44,6 +43,7 @@ import com.founder.bj.apms.sys.entity.SysDict;
 import com.founder.bj.apms.sys.entity.SysUser;
 import com.founder.bj.apms.sys.service.DictService;
 import com.lee.jwaf.exception.ServiceException;
+import com.lee.jwaf.token.Token;
 import com.lee.util.Assert;
 import com.lee.util.DateUtils;
 import com.lee.util.ObjectUtils;
@@ -313,6 +313,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         }
 
         entity.setSex(dictService.getSysDictByNatureAndCode("SEX", entity.getSex().getCode()));
+        entity.setOldIdentity(em.find(SysDict.class, entity.getOldIdentity().getId()));
         entity.setNation(em.find(SysDict.class, entity.getNation().getId()));
         entity.setHealth(em.find(SysDict.class, entity.getHealth().getId()));
         entity.setPoliticalStatus(em.find(SysDict.class, entity.getPoliticalStatus().getId()));
@@ -352,7 +353,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
             Assert.notNull(entity.getName(), "名称不能为空。");
             Assert.notNull(entity.getMobile(), "手机不能为空。");
             Assert.notNull(entity.getIdentityCard(), "身份证号不能为空。");
-            Assert.notNull(entity.getSex(), "性别不能为空。");
+            Assert.notNull(entity.getOldIdentity(), "入职前身份不能为空。");
             Assert.notNull(entity.getBirthday(), "生日不能为空。");
             Assert.notNull(entity.getNation(), "民族不能为空。");
             Assert.notNull(entity.getHealth(), "健康状况不能为空。");

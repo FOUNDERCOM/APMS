@@ -29,6 +29,8 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
         $scope.cfg = data;
     });
 
+    // 入职前身份字典列表
+    $ajaxCall.getDictList($scope, "OLD_IDENTITY", 'oldIdentityList');
     // 性别字典列表
     $ajaxCall.getDictList($scope, "SEX", 'sexList');
     // 民族字典列表
@@ -134,6 +136,7 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             "identityCard": "",
             "joinDate": "",
             "standing": 0,
+            "oldIdentity": {},
             "sex": {},
             "nation": {},
             "health": {},

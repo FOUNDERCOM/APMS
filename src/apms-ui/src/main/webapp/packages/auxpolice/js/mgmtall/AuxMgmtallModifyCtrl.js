@@ -103,6 +103,7 @@ angular.module('WebApp').controller('AuxMgmtallModifyCtrl', ['$rootScope', '$sco
         nullCheck("name", "姓名");
         nullCheck("identityCard", "身份证号");
         nullCheck("joinDate", "入职时间");
+        nullCheck("oldIdentity", "入职前身份", undefined, true);
         nullCheck("nation", "民族", undefined, true);
         nullCheck("health", "健康状况", undefined, true);
         nullCheck("politicalStatus", "政治面貌", undefined, true);

@@ -73,6 +73,15 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_IDENTITY_CARD")
     private String identityCard;
 
+    /** Old identity. */
+    // CSOFF: LineLength
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumnsOrFormulas({
+        @JoinColumnOrFormula(column = @JoinColumn(name = "AUX_OLD_IDENTITY", referencedColumnName = "DICT_CODE", nullable = false)),
+        @JoinColumnOrFormula(formula = @JoinFormula(referencedColumnName = "DICT_NATURE", value = "'OLD_IDENTITY'")) })
+    private SysDict oldIdentity;
+    // CSON: LineLength
+
     /** Sex. */
     // CSOFF: LineLength
     @ManyToOne(fetch = FetchType.LAZY)
@@ -346,6 +355,24 @@ public class AuxInfo implements Serializable {
      */
     public void setIdentityCard(String identityCard) {
         this.identityCard = identityCard;
+    }
+
+    /**
+     * Get the oldIdentity.
+     *
+     * @return return the oldIdentity
+     */
+    public SysDict getOldIdentity() {
+        return oldIdentity;
+    }
+
+    /**
+     * Set oldIdentity.
+     *
+     * @param oldIdentity the oldIdentity to set
+     */
+    public void setOldIdentity(SysDict oldIdentity) {
+        this.oldIdentity = oldIdentity;
     }
 
     /**
