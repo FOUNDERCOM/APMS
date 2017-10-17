@@ -1,6 +1,15 @@
 <ul class="nav nav-tabs">
     <li class="active">
         <!--suppress HtmlUnknownAnchorTarget -->
+        <a href="/#fileModifyTabDiv" data-toggle="tab"> 证明文件 <span class="badge badge-primary">{{entity['fileList']['length']}}</span> </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="fileModifyTabDiv" data-ng-include="'packages/auxpolice/views/com/modify/table_file.html'+cacheVersion"></div>
+</div>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <!--suppress HtmlUnknownAnchorTarget -->
         <a href="/#workModifyTabDiv" data-toggle="tab"> 工作履历 <span class="badge badge-primary">{{entity['workList']['length']}}</span> </a>
     </li>
 </ul>

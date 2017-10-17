@@ -249,6 +249,10 @@ public class AuxInfo implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
     private Set<AuxWork> workList;
 
+    /** List of stuff files. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
+    private Set<AuxStuffFile> fileList;
+
     /**
      * Get the id.
      *
@@ -1003,5 +1007,23 @@ public class AuxInfo implements Serializable {
      */
     public void setWorkList(Set<AuxWork> workList) {
         this.workList = workList;
+    }
+
+    /**
+     * Get the fileList.
+     *
+     * @return return the fileList
+     */
+    public Set<AuxStuffFile> getFileList() {
+        return fileList;
+    }
+
+    /**
+     * Set fileList.
+     *
+     * @param fileList the fileList to set
+     */
+    public void setFileList(Set<AuxStuffFile> fileList) {
+        this.fileList = fileList;
     }
 }

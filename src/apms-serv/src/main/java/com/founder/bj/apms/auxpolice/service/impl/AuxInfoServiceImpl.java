@@ -95,6 +95,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.familyList";
         hql += " left join fetch i.punishList";
         hql += " left join fetch i.workList";
+        hql += " left join fetch i.fileList";
         hql += " left join fetch i.status";
 
         hql += makeQuery(condition, null);
@@ -272,6 +273,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         setInfo(entity.getFamilyList(), entity);
         setInfo(entity.getPunishList(), entity);
         setInfo(entity.getWorkList(), entity);
+        setInfo(entity.getFileList(), entity);
 
         for (AuxEdu item : entity.getEduList()) {
             if (!ObjectUtils.isEmpty(item.getDegree())) {
@@ -306,6 +308,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         setInfo(entity.getFamilyList(), entity);
         setInfo(entity.getPunishList(), entity);
         setInfo(entity.getWorkList(), entity);
+        setInfo(entity.getFileList(), entity);
 
         for (AuxEdu item : entity.getEduList()) {
             if (!ObjectUtils.isEmpty(item.getDegree())) {

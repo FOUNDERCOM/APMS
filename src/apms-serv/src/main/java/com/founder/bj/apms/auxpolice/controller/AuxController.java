@@ -22,11 +22,13 @@ package com.founder.bj.apms.auxpolice.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
+import com.founder.bj.apms.auxpolice.entity.AuxStuffFile;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -100,6 +102,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             clearStuffForQuery(item.getFamilyList());
             clearStuffForQuery(item.getPunishList());
             clearStuffForQuery(item.getWorkList());
+            clearStuffForQuery(item.getFileList());
         }
     }
 

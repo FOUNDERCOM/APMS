@@ -1,0 +1,58 @@
+<div class="portlet-body">
+    <div class="mt-element-card mt-element-overlay">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="item in entity['fileList']">
+                <div class="mt-card-item">
+                    <div class="mt-card-avatar mt-overlay-1">
+                        <img src="data:image/jpeg;base64,{{item.photo}}"/>
+                        <div class="mt-overlay">
+                            <ul class="mt-info">
+                                <li>
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a class="btn btn-xs btn-outline blue"
+                                       href="/#viewAuxploiceApplyModalDiv" data-toggle="modal"
+                                       ng-click="prepareToView(item)" bs-tooltip data-title="查看">
+                                        <i class="fa fa-picture-o"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <!--suppress HtmlUnknownAnchorTarget -->
+                                    <a class="btn btn-xs btn-outline red" bs-tooltip data-title="删除"
+                                       ng-click="remove($index, 'fileList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxStuffFile');" >
+                                        <i class="fa fa-ban"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-card-content">
+                        <h3 class="mt-card-name"><input class="form-control" placeholder="请填写文件名称" ng-model="item['name']"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <div class="mt-card-item">
+                    <div class="mt-card-avatar mt-overlay-1">
+                        <img src="packages/auxpolice/img/blank300_400.png"/>
+                        <div class="mt-overlay" style="-webkit-transition: none !important; transition: none !important; opacity: 0.8;">
+                            <ul class="mt-info" style="opacity: 1;">
+                                <div class="col-md-12 text-center fileupload-buttonbar">
+                                    <span class="btn btn-outline blue fileinput-button mt10">
+                                        <i class="fa fa-upload"></i>
+                                        <span>上传证明文件扫描件</span>
+                                        <input type="file" accept="image/png, image/gif, image/jpeg"
+                                               name="stuffFile"
+                                               onchange="angular.element(this).scope().upload()">
+                                    </span>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-card-content">
+                        <h3 class="mt-card-name">{{item['name']}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,7 @@
  * Created by Jimmybly Lee on 2017/9/17.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
+angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", "$http", function ($rootScope, $scope, $listService, $ajaxCall, $http) {
 
     /**
      * 提交表单
@@ -175,4 +175,32 @@ angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope
             $scope.entity.photo = data;
         });
     };
+    $scope.upload = function() {
+        var files = $("input[type='file'][name='stuffFile']");
+        if (files.length !== 1 || files[0].files.length !== 1) {
+            alert("无法找到唯一的文件！");
+            return;
+        }
+        console.log("filesize", []);
+        if (files[0].files[0].size/(1024*1024) > 1) {
+            alert("选择图片大小不能大于1兆(M)。");
+            return;
+        }
+        var fd = new FormData();
+        fd.append("photo", files[0].files[0]);
+        $http({
+            method: "POST",
+            url: "mvc/dispatch?controller=Base64Controller&method=convertImg2Base64",
+            data: fd,
+            headers: {
+                'Content-Type' : undefined
+            },
+            transformRequest : angular.identity
+        }).success(function(success) {
+            $scope.entity["fileList"].push({
+                name: "",
+                photo: success.result
+            });
+        });
+    }
 }]);

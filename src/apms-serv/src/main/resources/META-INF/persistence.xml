@@ -11,6 +11,7 @@
         <class>com.founder.bj.apms.auxpolice.entity.AuxFamily</class>
         <class>com.founder.bj.apms.auxpolice.entity.AuxInfo</class>
         <class>com.founder.bj.apms.auxpolice.entity.AuxPunish</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxStuffFile</class>
         <class>com.founder.bj.apms.auxpolice.entity.AuxWork</class>
 
         <!-- Dept Entities -->

@@ -164,7 +164,8 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             "eduList": [],
             "familyList": [],
             "punishList": [],
-            "workList": []
+            "workList": [],
+            "fileList": []
         };
 
         scope.$on("submitted", function () {

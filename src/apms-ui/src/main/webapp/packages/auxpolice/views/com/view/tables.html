@@ -1,6 +1,10 @@
 <ul class="nav nav-tabs">
     <li class="active">
         <!--suppress HtmlUnknownAnchorTarget -->
+        <a href="/#fileViewTabDiv" data-toggle="tab"> 证明文件 <span class="badge badge-primary">{{entity['fileList']['length']}}</span> </a>
+    </li>
+    <li>
+        <!--suppress HtmlUnknownAnchorTarget -->
         <a href="/#workViewTabDiv" data-toggle="tab"> 工作履历 <span class="badge badge-primary">{{entity['workList']['length']}}</span> </a>
     </li>
     <li>
@@ -21,7 +25,8 @@
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane active" id="workViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_work.html'+cacheVersion"></div>
+    <div class="tab-pane active" id="fileViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_file.html'+cacheVersion"></div>
+    <div class="tab-pane" id="workViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_work.html'+cacheVersion"></div>
     <!--tab-pane-->
     <div class="tab-pane" id="educationViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_education.html'+cacheVersion"></div>
     <!--tab-pane-->
