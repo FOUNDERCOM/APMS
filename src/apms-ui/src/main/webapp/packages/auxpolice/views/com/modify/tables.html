@@ -56,3 +56,12 @@
 <div class="tab-content">
     <div class="tab-pane active" id="punishModifyTabDiv" data-ng-include="'packages/auxpolice/views/com/modify/table_punish.html'+cacheVersion"></div>
 </div>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <!--suppress HtmlUnknownAnchorTarget -->
+        <a href="/#appraiseModifyTabDiv" data-toggle="tab"> 考核情况 <span class="badge badge-primary">{{entity['appraiseList']['length']}}</span> </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="appraiseModifyTabDiv" data-ng-include="'packages/auxpolice/views/com/modify/table_appraise.html'+cacheVersion"></div>
+</div>

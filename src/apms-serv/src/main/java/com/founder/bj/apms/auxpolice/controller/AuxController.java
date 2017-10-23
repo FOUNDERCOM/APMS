@@ -107,6 +107,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             clearStuffForQuery(item.getPunishList());
             clearStuffForQuery(item.getWorkList());
             clearStuffForQuery(item.getFileList());
+            clearStuffForQuery(item.getAppraiseList());
         }
     }
 

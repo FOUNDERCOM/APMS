@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid120px"><i class="icon-calendar"></i> 年度 </th>
+            <th class="text-center bold wid160px"><i class="icon-trophy"></i> 评级 </th>
+            <th class="text-center bold wid260px"><i class="icon-info"></i> 特殊说明 </th>
+            <th class="text-center bold hidden-sm wid100px"><i class="icon-note"></i> 记录人 </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['appraiseList']">
+            <td class="text-center">{{item['year']}}</td>
+            <td class="text-center">{{item['level']['value']}}</td>
+            <td>{{item['desc']}}</td>
+            <td class="text-center">
+                <a href="javascript:" bs-popover data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close'>&times;</a>"
+                   data-placement="left" data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>
+                                            <b><i class='icon-user'></i> 操作人名称:</b> {{item['lastUpdateUser']['name']}}<br/>
+                                            <b><i class='icon-calendar'></i> 操作时间:</b> {{item['lastUpdateDate']}}<br/>
+                                            <b><i class='icon-screen-desktop'></i> 操作电脑:</b> {{item['lastUpdateIp']}}">
+                    {{item['lastUpdateUser']['name']}}
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

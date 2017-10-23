@@ -253,6 +253,10 @@ public class AuxInfo implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
     private Set<AuxStuffFile> fileList;
 
+    /** List of appraise. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
+    private Set<AuxAppraise> appraiseList;
+
     /**
      * Get the id.
      *
@@ -1025,5 +1029,23 @@ public class AuxInfo implements Serializable {
      */
     public void setFileList(Set<AuxStuffFile> fileList) {
         this.fileList = fileList;
+    }
+
+    /**
+     * Get the appraiseList.
+     *
+     * @return return the appraiseList
+     */
+    public Set<AuxAppraise> getAppraiseList() {
+        return appraiseList;
+    }
+
+    /**
+     * Set appraiseList.
+     *
+     * @param appraiseList the appraiseList to set
+     */
+    public void setAppraiseList(Set<AuxAppraise> appraiseList) {
+        this.appraiseList = appraiseList;
     }
 }

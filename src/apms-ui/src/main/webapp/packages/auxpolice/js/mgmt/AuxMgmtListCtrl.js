@@ -41,6 +41,8 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
     $ajaxCall.getDictList($scope, "POLITICAL_STATUS", 'politicalStatusList');
     // 学位字典列表
     $ajaxCall.getDictList($scope, "EDUCATION_DEGREE", 'eduDegreeList');
+    // 评价等级字典列表
+    $ajaxCall.getDictList($scope, "APPRAISE_LEVEL", 'appraiseLevelList');
 
     // 分局列表
     $ajaxCall.post({
@@ -159,7 +161,8 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             "familyList": [],
             "punishList": [],
             "workList": [],
-            "fileList": []
+            "fileList": [],
+            "appraiseList": []
         };
 
         scope.$on("submitted", function () {

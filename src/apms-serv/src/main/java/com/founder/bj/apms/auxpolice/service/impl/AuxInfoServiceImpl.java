@@ -34,6 +34,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.founder.bj.apms.auxpolice.entity.AuxAppraise;
 import com.founder.bj.apms.auxpolice.entity.AuxEdu;
 import com.founder.bj.apms.auxpolice.entity.AuxInfo;
 import com.founder.bj.apms.auxpolice.entity.AuxStuff;
@@ -96,6 +97,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.punishList";
         hql += " left join fetch i.workList";
         hql += " left join fetch i.fileList";
+        hql += " left join fetch i.appraiseList";
         hql += " left join fetch i.status";
 
         hql += makeQuery(condition, null);
@@ -268,30 +270,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
         validate(entity);
 
-        setInfo(entity.getAwardList(), entity);
-        setInfo(entity.getEduList(), entity);
-        setInfo(entity.getFamilyList(), entity);
-        setInfo(entity.getPunishList(), entity);
-        setInfo(entity.getWorkList(), entity);
-        setInfo(entity.getFileList(), entity);
-
-        for (AuxEdu item : entity.getEduList()) {
-            if (!ObjectUtils.isEmpty(item.getDegree())) {
-                item.setDegree(em.find(SysDict.class, item.getDegree().getId()));
-            }
-        }
-
-        entity.setSex(dictService.getSysDictByNatureAndCode("SEX", entity.getSex().getCode()));
-        entity.setOldIdentity(em.find(SysDict.class, entity.getOldIdentity().getId()));
-        entity.setNation(em.find(SysDict.class, entity.getNation().getId()));
-        entity.setHealth(em.find(SysDict.class, entity.getHealth().getId()));
-        entity.setPoliticalStatus(em.find(SysDict.class, entity.getPoliticalStatus().getId()));
-        entity.setEduDegree(em.find(SysDict.class, entity.getEduDegree().getId()));
-        entity.setStatus(em.find(SysDict.class, entity.getStatus().getId()));
-        entity.setStation(em.find(DeptStation.class, entity.getStation().getId()));
-        entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));
-        entity.setLastApproveUser(ObjectUtils.isEmpty(entity.getLastApproveUser())
-            ? null : em.find(SysUser.class, entity.getLastApproveUser().getId()));
+        fillEntity(entity);
 
         em.persist(entity);
 
@@ -303,16 +282,33 @@ public class AuxInfoServiceImpl implements AuxInfoService {
     public void update(AuxInfo entity) throws ServiceException {
         validate(entity);
 
+        fillEntity(entity);
+
+        em.merge(entity);
+    }
+
+    /**
+     * Fill the entity with persisted stuff entities.
+     * @param entity the {@link AuxInfo} entity
+     */
+    private void fillEntity(AuxInfo entity) {
         setInfo(entity.getAwardList(), entity);
         setInfo(entity.getEduList(), entity);
         setInfo(entity.getFamilyList(), entity);
         setInfo(entity.getPunishList(), entity);
         setInfo(entity.getWorkList(), entity);
         setInfo(entity.getFileList(), entity);
+        setInfo(entity.getAppraiseList(), entity);
 
         for (AuxEdu item : entity.getEduList()) {
             if (!ObjectUtils.isEmpty(item.getDegree())) {
                 item.setDegree(em.find(SysDict.class, item.getDegree().getId()));
+            }
+        }
+
+        for (AuxAppraise item : entity.getAppraiseList()) {
+            if (!ObjectUtils.isEmpty(item.getLevel())) {
+                item.setLevel(em.find(SysDict.class, item.getLevel().getId()));
             }
         }
 
@@ -328,7 +324,6 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setLastApproveUser(ObjectUtils.isEmpty(entity.getLastApproveUser())
             ? null : em.find(SysUser.class, entity.getLastApproveUser().getId()));
 
-        em.merge(entity);
     }
 
     /**

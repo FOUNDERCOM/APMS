@@ -23,9 +23,15 @@
         <!--suppress HtmlUnknownAnchorTarget -->
         <a href="/#punishViewTabDiv" data-toggle="tab"> 惩罚情况 <span class="badge badge-danger">{{entity['punishList']['length']}}</span> </a>
     </li>
+    <li>
+        <!--suppress HtmlUnknownAnchorTarget -->
+        <a href="/#appraiseViewTabDiv" data-toggle="tab"> 考核情况 <span class="badge badge-success">{{entity['appraiseList']['length']}}</span> </a>
+    </li>
 </ul>
 <div class="tab-content">
+    <!--tab-pane-->
     <div class="tab-pane active" id="fileViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_file.html'+cacheVersion"></div>
+    <!--tab-pane-->
     <div class="tab-pane" id="workViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_work.html'+cacheVersion"></div>
     <!--tab-pane-->
     <div class="tab-pane" id="educationViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_education.html'+cacheVersion"></div>
@@ -36,4 +42,5 @@
     <!--tab-pane-->
     <div class="tab-pane" id="punishViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_punish.html'+cacheVersion"></div>
     <!--tab-pane-->
+    <div class="tab-pane" id="appraiseViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_appraise.html'+cacheVersion"></div>
 </div>
