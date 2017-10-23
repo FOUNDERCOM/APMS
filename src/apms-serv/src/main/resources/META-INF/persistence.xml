@@ -18,6 +18,9 @@
         <class>com.founder.bj.apms.dept.entity.DeptBureau</class>
         <class>com.founder.bj.apms.dept.entity.DeptStation</class>
 
+        <!-- Attachment -->
+        <class>com.founder.bj.apms.att.entity.Attachment</class>
+
         <!-- System Entities -->
         <class>com.founder.bj.apms.sys.entity.SysDict</class>
         <class>com.founder.bj.apms.sys.entity.SysDictionary</class>

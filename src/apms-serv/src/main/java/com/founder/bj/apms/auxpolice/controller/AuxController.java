@@ -20,6 +20,7 @@
 package com.founder.bj.apms.auxpolice.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import com.founder.bj.apms.auxpolice.entity.AuxStuffFile;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -50,6 +52,8 @@ import com.lee.jwaf.action.AbstractControllerSupport;
 import com.lee.jwaf.exception.ServiceException;
 import com.lee.util.DateUtils;
 import com.lee.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 // CSOFF: RegexpSinglelineJava
 
@@ -278,4 +282,5 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
     public void checkDuplicatedIdentityCard() {
         workDTO.setResult(infoService.checkDuplicatedIdentityCare(workDTO.getInteger("id"), workDTO.<String>get("card")));
     }
+
 }

@@ -9,9 +9,8 @@
                             <ul class="mt-info">
                                 <li>
                                     <!--suppress HtmlUnknownAnchorTarget -->
-                                    <a class="btn btn-xs btn-outline blue"
-                                       href="/#viewAuxploiceApplyModalDiv" data-toggle="modal"
-                                       ng-click="prepareToView(item)" bs-tooltip data-title="查看">
+                                    <a class="btn btn-xs btn-outline blue" bs-tooltip data-title="查看" target="_blank"
+                                       href="mvc/dispatch?controller=AttController&method=download&id={{item.attId}}">
                                         <i class="fa fa-picture-o"></i>
                                     </a>
                                 </li>
@@ -40,9 +39,7 @@
                                     <span class="btn btn-outline blue fileinput-button mt10">
                                         <i class="fa fa-upload"></i>
                                         <span>上传证明文件扫描件</span>
-                                        <input type="file" accept="image/png, image/gif, image/jpeg"
-                                               name="stuffFile"
-                                               onchange="angular.element(this).scope().upload()">
+                                        <input type="file" name="file" onchange="angular.element(this).scope().upload()">
                                     </span>
                                 </div>
                             </ul>

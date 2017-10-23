@@ -88,6 +88,8 @@ public class DictServiceImpl implements DictService {
             hql += " and d.isNature = :isNature";
         }
 
+        hql += " order by d.code";
+
         final Query query = em.createQuery(hql);
         query.setFirstResult(start).setMaxResults(limit);
 

@@ -54,6 +54,7 @@ public class SysDictionary implements Serializable {
     private String nature;
 
     /** 编码. */
+    @OrderBy
     @Column(name = "DICT_CODE")
     private String code;
 

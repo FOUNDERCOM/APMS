@@ -9,9 +9,8 @@
                             <ul class="mt-info">
                                 <li>
                                     <!--suppress HtmlUnknownAnchorTarget -->
-                                    <a class="btn btn-xs btn-outline blue"
-                                       href="/#viewAuxploiceApplyModalDiv" data-toggle="modal"
-                                       ng-click="prepareToView(item)" bs-tooltip data-title="查看">
+                                    <a class="btn btn-xs btn-outline blue" bs-tooltip data-title="查看" target="_blank"
+                                       href="mvc/dispatch?controller=AttController&method=download&id={{item.attId}}">
                                         <i class="fa fa-picture-o"></i>
                                     </a>
                                 </li>

@@ -17,40 +17,55 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.founder.bj.apms.auxpolice.entity;
+package com.founder.bj.apms.att.entity;
+
+import java.io.Serializable;
 
 import javax.persistence.*;
 
 import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
- * Description: 证明文件.<br>
- * Created by Jimmybly Lee on 2017/10/17.
+ * Description: 附件实体.<br>
+ * Created by Jimmybly Lee on 2017/10/18.
  *
  * @author Jimmybly Lee
  */
 @Entity
-@Table(name = "APMS_AUX_STUFF_FILE")
+@Table(name = "APMS_ATTACHMENT")
 @SuppressWarnings("unused")
-public class AuxStuffFile implements AuxStuff {
+public class Attachment implements Serializable {
 
-    private static final long serialVersionUID = 7262658382350996977L;
+    private static final long serialVersionUID = -4499442196262178017L;
+
     /** Id. */
     @Id
-    @Column(name = "FILE_ID")
+    @Column(name = "ATT_ID")
     @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
     @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    /** File name. */
-    @Column(name = "FILE_NAME")
+    /** Name. */
+    @Column(name = "ATT_NAME")
     private String name;
 
-    /** Base64 photo data. */
+    /** Type. */
+    @Column(name = "ATT_TYPE")
+    private String type;
+
+    /** Suffix.*/
+    @Column(name = "ATT_SUFFIX")
+    private String suffix;
+
+    /** Size. */
+    @Column(name = "ATT_SIZE")
+    private Long size;
+
+    /** Data. */
     @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "FILE_DATA")
-    private String photo;
+    @Basic(fetch = FetchType.EAGER)
+    @Column(name = "ATT_DATA")
+    private byte[] data;
 
     /** 最近更新人ID与用户表关联. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -63,21 +78,11 @@ public class AuxStuffFile implements AuxStuff {
     @Column(name = "LATEST_UPDATE_IP")
     private String lastUpdateIp;
 
-    /** Aux. */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AUX_ID")
-    private AuxInfo aux;
-
-    /** Source file id. */
-    @Column(name = "ATT_ID")
-    private Integer attId;
-
     /**
      * Get the id.
      *
      * @return return the id
      */
-    @Override
     public Integer getId() {
         return id;
     }
@@ -87,7 +92,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @param id the id to set
      */
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -111,21 +115,75 @@ public class AuxStuffFile implements AuxStuff {
     }
 
     /**
-     * Get the photo.
+     * Get the type.
      *
-     * @return return the photo
+     * @return return the type
      */
-    public String getPhoto() {
-        return photo;
+    public String getType() {
+        return type;
     }
 
     /**
-     * Set photo.
+     * Set type.
      *
-     * @param photo the photo to set
+     * @param type the type to set
      */
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Get the suffix.
+     *
+     * @return return the suffix
+     */
+    public String getSuffix() {
+        return suffix;
+    }
+
+    /**
+     * Set suffix.
+     *
+     * @param suffix the suffix to set
+     */
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    /**
+     * Get the size.
+     *
+     * @return return the size
+     */
+    public Long getSize() {
+        return size;
+    }
+
+    /**
+     * Set size.
+     *
+     * @param size the size to set
+     */
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    /**
+     * Get the data.
+     *
+     * @return return the data
+     */
+    public byte[] getData() {
+        return data;
+    }
+
+    /**
+     * Set data.
+     *
+     * @param data the data to set
+     */
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     /**
@@ -133,7 +191,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @return return the lastUpdateUser
      */
-    @Override
     public SysUser getLastUpdateUser() {
         return lastUpdateUser;
     }
@@ -143,7 +200,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @param lastUpdateUser the lastUpdateUser to set
      */
-    @Override
     public void setLastUpdateUser(SysUser lastUpdateUser) {
         this.lastUpdateUser = lastUpdateUser;
     }
@@ -153,7 +209,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @return return the lastUpdateDate
      */
-    @Override
     public String getLastUpdateDate() {
         return lastUpdateDate;
     }
@@ -163,7 +218,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @param lastUpdateDate the lastUpdateDate to set
      */
-    @Override
     public void setLastUpdateDate(String lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
@@ -173,7 +227,6 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @return return the lastUpdateIp
      */
-    @Override
     public String getLastUpdateIp() {
         return lastUpdateIp;
     }
@@ -183,46 +236,7 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @param lastUpdateIp the lastUpdateIp to set
      */
-    @Override
     public void setLastUpdateIp(String lastUpdateIp) {
         this.lastUpdateIp = lastUpdateIp;
-    }
-
-    /**
-     * Get the aux.
-     *
-     * @return return the aux
-     */
-    @Override
-    public AuxInfo getAux() {
-        return aux;
-    }
-
-    /**
-     * Set aux.
-     *
-     * @param aux the aux to set
-     */
-    @Override
-    public void setAux(AuxInfo aux) {
-        this.aux = aux;
-    }
-
-    /**
-     * Get the attId.
-     *
-     * @return return the attId
-     */
-    public Integer getAttId() {
-        return attId;
-    }
-
-    /**
-     * Set attId.
-     *
-     * @param attId the attId to set
-     */
-    public void setAttId(Integer attId) {
-        this.attId = attId;
     }
 }

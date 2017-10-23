@@ -175,4 +175,32 @@ angular.module('WebApp').controller('AuxMgmtModifyCtrl', ['$rootScope', '$scope'
             $scope.entity.photo = data;
         });
     };
+    $scope.upload = function() {
+        var files = $("input[type='file'][name='file']");
+        if (files.length !== 1 || files[0].files.length !== 1) {
+            alert("无法找到唯一的文件！");
+            return;
+        }
+        if (files[0].files[0].size/(1024*1024) > 20) {
+            alert("选择图片大小不能大于20兆(M)。");
+            return;
+        }
+        var fd = new FormData();
+        fd.append("file", files[0].files[0]);
+        $http({
+            method: "POST",
+            url: "mvc/dispatch?controller=AttController&method=uploadAndCapture",
+            data: fd,
+            headers: {
+                'Content-Type' : undefined
+            },
+            transformRequest : angular.identity
+        }).success(function(success) {
+            $scope.entity["fileList"].push({
+                name: "",
+                photo: success.data,
+                attId: success.result
+            });
+        });
+    }
 }]);

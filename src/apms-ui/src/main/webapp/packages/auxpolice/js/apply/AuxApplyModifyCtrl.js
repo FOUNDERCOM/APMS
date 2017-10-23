@@ -176,21 +176,20 @@ angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope
         });
     };
     $scope.upload = function() {
-        var files = $("input[type='file'][name='stuffFile']");
+        var files = $("input[type='file'][name='file']");
         if (files.length !== 1 || files[0].files.length !== 1) {
             alert("无法找到唯一的文件！");
             return;
         }
-        console.log("filesize", []);
-        if (files[0].files[0].size/(1024*1024) > 1) {
-            alert("选择图片大小不能大于1兆(M)。");
+        if (files[0].files[0].size/(1024*1024) > 20) {
+            alert("选择图片大小不能大于20兆(M)。");
             return;
         }
         var fd = new FormData();
-        fd.append("photo", files[0].files[0]);
+        fd.append("file", files[0].files[0]);
         $http({
             method: "POST",
-            url: "mvc/dispatch?controller=Base64Controller&method=convertImg2Base64",
+            url: "mvc/dispatch?controller=AttController&method=uploadAndCapture",
             data: fd,
             headers: {
                 'Content-Type' : undefined
@@ -199,7 +198,8 @@ angular.module('WebApp').controller('AuxApplyModifyCtrl', ['$rootScope', '$scope
         }).success(function(success) {
             $scope.entity["fileList"].push({
                 name: "",
-                photo: success.result
+                photo: success.data,
+                attId: success.result
             });
         });
     }
