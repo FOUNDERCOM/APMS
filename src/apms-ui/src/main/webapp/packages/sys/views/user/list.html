@@ -62,7 +62,10 @@
                             <img src="data:image/png;base64,{{item.photo.data}}" />
                             <div class="mt-overlay">
                                 <ul class="mt-info">
-                                    <li>
+                                    <li ng-if="item.id <= 0">
+                                        <span>系统用户不能编辑</span>
+                                    </li>
+                                    <li ng-if="item.id > 0">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline yellow-gold"
                                            href="/#modifyUserModalDiv" data-toggle="modal"
@@ -70,7 +73,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li ng-if="item.id > 0">
                                         <a class="btn btn-xs btn-outline red" href="javascript:" ng-if="item.isEnabled"
                                            ng-click="changeStatus(item,false)" bs-tooltip data-title="禁用">
                                             <i class="fa fa-ban"></i>
@@ -163,22 +166,25 @@
                                   ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isEnabled'] ? '启用' : '禁用'}}</span>
                         </td>
                         <td>
+                            <span ng-if="item.id <= 0">系统用户不能编辑</span>
                             <!-- 启用/禁用 -->
                             <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
-                               ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
+                               ng-if="item.isEnabled && item.id > 0" ng-click="changeStatus(item, false)">
                                 <i class="fa fa-ban"></i>
                             </a>
                             <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
-                               ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
+                               ng-if="!item.isEnabled && item.id > 0" ng-click="changeStatus(item, true)">
                                 <i class="fa fa-recycle"></i>
                             </a>
                             <a href="javascript:" class="btn btn-xs yellow-gold"
+                               ng-if="item.id > 0"
                                bs-tooltip data-title="重置密码" ng-click="resetPwd(item)">
                                 <i class="icon-key"></i>
                             </a>
                             <!-- 编辑 -->
                             <!--suppress HtmlUnknownAnchorTarget -->
                             <a href="/#modifyUserModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               ng-if="item.id > 0"
                                bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
                                 <i class="fa fa-edit"></i>
                             </a>
