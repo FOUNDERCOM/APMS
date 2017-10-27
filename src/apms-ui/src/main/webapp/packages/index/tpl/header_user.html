@@ -6,9 +6,10 @@
     <img alt="" class="img-circle" src="data:image/jpeg;base64,{{token.user['photo']}}"/> </a>
 <ul class="dropdown-menu dropdown-menu-default" ng-if="token.user.type != 'ANONYMOUS'">
     <li>
-        <a href="#/profile/dashboard">
+        <a ui-sref="my_info">
             <i class="icon-user"></i> 我的信息 </a>
     </li>
+    <!--
     <li>
         <a href="#">
             <i class="icon-calendar"></i> 我的计划 </a>
@@ -25,11 +26,14 @@
             <span class="badge badge-success"> 7 </span>
         </a>
     </li>
+    -->
     <li class="divider"></li>
+    <!--
     <li>
         <a href="#">
             <i class="icon-lock"></i> 锁屏 </a>
     </li>
+    -->
     <li>
         <a href="javascript:" ng-click="logout()">
             <i class="icon-key"></i> 退出 </a>

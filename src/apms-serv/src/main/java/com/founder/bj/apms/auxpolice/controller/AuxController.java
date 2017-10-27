@@ -99,7 +99,8 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             if (!ObjectUtils.isEmpty(item.getLastApproveUser())) {
                 item.getLastApproveUser().setStation(null);
             }
-            item.getStation().getLastUpdateUser().setStation(null);
+            item.getStation().setLastUpdateUser(null);
+            item.getStation().getBureau().setLastUpdateUser(null);
 
             clearStuffForQuery(item.getAwardList());
             clearStuffForQuery(item.getEduList());

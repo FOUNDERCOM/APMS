@@ -1,0 +1,15 @@
+{
+    "help": {
+        "data": {
+            "nav": ["通用", "系统帮助"],
+            "isBuiltIn": true,
+            "pageTitle": "系统帮助",
+            "pageSubTitle": "系统帮助信息"
+        },
+        "templateUrl": "packages/common/views/help/main.html",
+        "controller": "BlankCtrl",
+        "files": [
+            "packages/index/js/ctrls/BlankCtrl.js"
+        ]
+    }
+}

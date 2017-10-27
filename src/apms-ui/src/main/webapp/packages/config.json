@@ -16,5 +16,8 @@
     },
     "sys": {
         "url": "packages/sys/state.json"
+    },
+    "common": {
+        "url": "packages/common/state.json"
     }
 }

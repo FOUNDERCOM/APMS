@@ -83,10 +83,10 @@ public class Base64Controller extends AbstractControllerSupport {
         try {
             final Base64 base64 = new Base64();
             final CutInfo cut = new CutInfo();
-            cut.startX = workDTO.getInteger("x");
-            cut.startY = workDTO.getInteger("y");
-            cut.width = workDTO.getInteger("width");
-            cut.height = workDTO.getInteger("height");
+            cut.startX = new Double(Double.parseDouble(workDTO.<String>get("x"))).intValue();
+            cut.startY = new Double(Double.parseDouble(workDTO.<String>get("y"))).intValue();
+            cut.width = new Double(Double.parseDouble(workDTO.<String>get("width"))).intValue();
+            cut.height = new Double(Double.parseDouble(workDTO.<String>get("height"))).intValue();
 
             final byte[] data = formatImage(base64.decode(workDTO.<String>get("data")), cut);
             workDTO.setResult(base64.encodeToString(data));

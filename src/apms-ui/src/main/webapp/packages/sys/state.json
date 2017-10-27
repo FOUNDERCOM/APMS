@@ -89,5 +89,23 @@
         "files": [
             "packages/sys/js/auth/AuthallCtrl.js"
         ]
+    },
+    "my_info": {
+        "data": {
+            "nav": ["系统管理"],
+            "isBuiltIn": true,
+            "pageTitle": "我的信息",
+            "pageSubTitle": "个人信息"
+        },
+        "templateUrl": "packages/sys/views/myinfo/main.html",
+        "controller": "MyInfoCtrl",
+        "files": [
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/com/js/UploadPhotoCtrl.js",
+
+            "packages/sys/js/myinfo/MyInfoCtrl.js"
+        ]
     }
 }

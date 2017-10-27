@@ -1,0 +1,47 @@
+
+<div class="portlet light ">
+    <div class="portlet-title tabbable-line">
+        <div class="caption caption-md">
+            <i class="icon-globe theme-font hide"></i>
+            <span class="caption-subject font-blue-madison bold uppercase">系统帮助</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="/#tab_1_1" data-toggle="tab">辅警维护</a>
+            </li>
+            <li>
+                <a href="/#tab_1_2" data-toggle="tab">用户、角色与权限</a>
+            </li>
+            <li>
+                <a href="/#tab_1_3" data-toggle="tab">其他</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet-body">
+        <div class="tab-content">
+            <!-- GENERAL QUESTION TAB -->
+            <div class="tab-pane active" id="tab_1_1">
+                <div id="accordion1" class="panel-group">
+                    <div class="panel paned-default" ng-include="'packages/common/views/help/faqs/aux_how_to_apply.html'+cacheVersion"></div>
+                    <div class="panel" ng-include="'packages/common/views/help/faqs/aux_how_to_approve.html'+cacheVersion"></div>
+                </div>
+            </div>
+            <!-- END GENERAL QUESTION TAB -->
+            <!-- MEMBERSHIP TAB -->
+            <div class="tab-pane" id="tab_1_2">
+                <div id="accordion2" class="panel-group">
+                    <div class="panel paned-default" ng-include="'packages/common/views/help/faqs/user_how_to_create.html'+cacheVersion"></div>
+                    <div class="panel paned-default" ng-include="'packages/common/views/help/faqs/user_how_to_change_pwd.html'+cacheVersion"></div>
+                    <div class="panel paned-default" ng-include="'packages/common/views/help/faqs/user_role_and_auth.html'+cacheVersion"></div>
+                </div>
+            </div>
+            <!-- END MEMBERSHIP TAB -->
+            <!-- TERMS OF USE TAB -->
+            <div class="tab-pane" id="tab_1_3">
+                <div id="accordion3" class="panel-group">
+                </div>
+            </div>
+            <!-- END TERMS OF USE TAB -->
+        </div>
+    </div>
+</div>

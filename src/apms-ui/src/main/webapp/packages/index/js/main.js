@@ -66,7 +66,6 @@ angular.module('WebApp').factory('httpInterceptor', ['$q', function ($q) {
             } else if (response.status === 401 || response.status === 403 || response.status === 417) {
                 if (response.data && response.data['errLevel'] && response.data['errLevel'] === "warning") {
                     errorDetail += response.data['errMsg'];
-                    console.log(response.data);
                 } else {
                     errorDetail += "请求发生了错误：";
                     errorDetail += "<span>" + response.status + "</span>";
@@ -223,8 +222,6 @@ angular.module("WebApp").run(["$rootScope", "settings", "$state", function($root
                 $rootScope.token.user.photo = data.photo.data;
                 $rootScope.token.user.type = $rootScope.token.user.id === -1 ?
                     "ANONYMOUS" : $rootScope.token.user.id === -2 ? "ADMIN" : "NORMAL";
-
-                console.log($rootScope.token);
             }
         });
     };
@@ -233,7 +230,7 @@ angular.module("WebApp").run(["$rootScope", "settings", "$state", function($root
     // 2、注册路由变化监听器
     $rootScope.$on("$stateChangeStart", function (event, toState) {
         var isValid = false;
-        var commonFuncList = ["403", "404", "500", "about", "coming", "contact", "help", "lock", "login", "home"];
+        var commonFuncList = ["403", "404", "500", "about", "coming", "contact", "help", "lock", "login", "home", "my_info"];
         $.each(commonFuncList, function (idx, func) {
             if (func === toState.name) {
                 isValid = true;

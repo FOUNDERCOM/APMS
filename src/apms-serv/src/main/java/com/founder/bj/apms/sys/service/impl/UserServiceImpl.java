@@ -86,6 +86,10 @@ public class UserServiceImpl implements UserService {
         hql += " left join fetch u.account";
         hql += " left join fetch u.photo";
         hql += " where u.isEnabled = :isEnabled";
+
+        if (!ObjectUtils.isEmpty(condition.getId())) {
+            hql += " and u.id = :id";
+        }
         if (!StringUtils.isEmpty(condition.getName())) {
             hql += " and u.name like :userName";
         }
@@ -108,6 +112,9 @@ public class UserServiceImpl implements UserService {
         query.setFirstResult(start).setMaxResults(limit < 0 ? Integer.MAX_VALUE : limit);
 
         query.setParameter("isEnabled", condition.getIsEnabled());
+        if (!ObjectUtils.isEmpty(condition.getId())) {
+            query.setParameter("id", condition.getId());
+        }
         if (!StringUtils.isEmpty(condition.getName())) {
             query.setParameter("userName", "%" + condition.getName() + "%");
         }
@@ -207,7 +214,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(SysUser entity) {
+    public void update(SysUser entity) throws WarnException {
         final SysUser entityInDB = em.find(SysUser.class, entity.getId());
         entityInDB.setName(entity.getName());
         entityInDB.setTel(entity.getTel());
@@ -217,6 +224,8 @@ public class UserServiceImpl implements UserService {
 
         if (!checkUserAccount(entity.getAccount())) {
             entityInDB.getAccount().setAccount(entity.getAccount().getAccount());
+        } else {
+            throw new WarnException("有重复的账号，不能使用这个账号！");
         }
     }
 

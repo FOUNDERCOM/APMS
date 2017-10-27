@@ -59,7 +59,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     @Override
     public Integer getAvgSalary() {
-        String sql = "SELECT AVG(AUX_SALARY) from APMS_AUX_INFO where IS_ENABLED = '1'";
+        String sql = "SELECT AVG(BUREAU_STD_SALARY) from APMS_DEPT_BUREAU where IS_ENABLED = '1'";
         return ((Number) em.createNativeQuery(sql).getSingleResult()).intValue();
     }
 

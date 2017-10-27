@@ -33,6 +33,19 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
         }
     });
 
+    $ajaxCall.post({
+        data : {
+            controller: "DeptStationController",
+            method: 'query',
+            condition : JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: -1
+        },
+        success: function(res) {
+            $scope.stationList = res['result'];
+        }
+    });
+
     /**
      * 刷新数据
      */

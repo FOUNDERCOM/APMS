@@ -92,8 +92,9 @@ public interface UserService {
      * 更新用户实体.只更新用户名、电话、邮箱、头像
      *
      * @param entity  实体
+     * @throws WarnException 账号重复
      */
-    void update(SysUser entity);
+    void update(SysUser entity) throws WarnException;
 
     /**
      * 校验用户帐号.
