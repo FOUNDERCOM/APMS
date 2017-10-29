@@ -24,39 +24,6 @@
  */
 angular.module('WebApp').controller('SalaryListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
 
-    // 流程相关颜色和消息配置
-    $.getJSON("packages/auxpolice/js/com/config.json", function(data) {
-        $scope.cfg = data;
-    });
-
-    // 分局列表
-    $ajaxCall.post({
-        data : {
-            controller: "DeptBureauController",
-            method: 'query',
-            condition : JSON.stringify({isEnabled: true}),
-            start: 0,
-            limit: -1
-        },
-        success: function(res) {
-            $scope.bureauList = res['result'];
-        }
-    });
-
-    // 科所队列表
-    $ajaxCall.post({
-        data : {
-            controller: "DeptStationController",
-            method: 'query',
-            condition : JSON.stringify({isEnabled: true}),
-            start: 0,
-            limit: -1
-        },
-        success: function(res) {
-            $scope.stationList = res['result'];
-        }
-    });
-
     $scope.condition = {isEnabled: true, station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}};
     $listService.init($scope, {
         "controller": "AuxController",

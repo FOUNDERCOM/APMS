@@ -220,6 +220,8 @@ public class UserServiceImpl implements UserService {
         entityInDB.setTel(entity.getTel());
         entityInDB.setMail(entity.getMail());
 
+        entityInDB.setStation(em.find(DeptStation.class, entity.getStation().getId()));
+
         entityInDB.getPhoto().setData(entity.getPhoto().getData());
 
         if (!checkUserAccount(entity.getAccount())) {
