@@ -22,7 +22,7 @@
  * Created by Jimmybly Lee on 2017/10/31.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", "$http", function ($rootScope, $scope, $listService, $ajaxCall, $http) {
+angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$scope', "$listService", "$ajaxCall", "$http", function ($state, $rootScope, $scope, $listService, $ajaxCall, $http) {
 
     var handleTitle = function(tab, navigation, index) {
         var total = navigation.find('li').length;
@@ -38,8 +38,10 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
 
         if (current === 1) {
             $('#form_wizard').find('.button-previous').hide();
+            $('#form_wizard').find('.button-first').hide();
         } else {
             $('#form_wizard').find('.button-previous').show();
+            $('#form_wizard').find('.button-first').show();
         }
 
         if (current >= total) {
@@ -55,6 +57,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
     $('#form_wizard').bootstrapWizard({
         'nextSelector': '.button-next',
         'previousSelector': '.button-previous',
+        'firstSelector': '.button-first',
         onTabClick: function (tab, navigation, index, clickedIndex) {
             return false;
         },
@@ -65,6 +68,9 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
             handleTitle(tab, navigation, index);
         },
         onPrevious: function (tab, navigation, index) {
+            handleTitle(tab, navigation, index);
+        },
+        onFirst: function(tab, navigation, index) {
             handleTitle(tab, navigation, index);
         },
         onTabShow: function (tab, navigation, index) {
@@ -78,6 +84,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
     });
 
     $('#form_wizard').find('.button-previous').hide();
+    $('#form_wizard').find('.button-first').hide();
     $('#form_wizard .button-submit').click(function () {
         $scope.submit();
     }).hide();
@@ -161,9 +168,6 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
                 if (data.start === undefined || data.start.length === 0) {
                     message += "开始时间不能为空。<br>";
                 }
-                if (data.end === undefined || data.end.length === 0) {
-                    message += "结束时间不能为空。<br>";
-                }
                 if (data.dept === undefined || data.dept.length === 0) {
                     message += "工作单位不能为空。<br>";
                 }
@@ -201,7 +205,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
                 if (data.dept === undefined || data.dept.length === 0) {
                     message += "奖励单位不能为空。<br>";
                 }
-                if (data.date === undefined || data.date.id === undefined) {
+                if (data.date === undefined || data.date.length === undefined) {
                     message += "奖励时间不能为空。<br>";
                 }
             });
@@ -213,12 +217,22 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
                 if (data.dept === undefined || data.dept.length === 0) {
                     message += "惩罚单位不能为空。<br>";
                 }
-                if (data.date === undefined || data.date.id === undefined) {
+                if (data.date === undefined || data.date.length === undefined) {
                     message += "惩罚时间不能为空。<br>";
                 }
-                if (data.desc === undefined || data.desc.id === undefined) {
+                if (data.desc === undefined || data.desc.length === undefined) {
                     message += "惩罚说明不能为空。<br>";
                 }
+            });
+            // 确认页
+            $.each($scope.entity.eduList, function(foo, edu) {
+                $.each($scope.eduDegreeList, function(key, dict) {
+                    if (edu.degree.id === dict.id) {
+                        edu.degree.value = dict.value;
+                        edu.degree.nature = dict.nature;
+                        edu.degree.code = dict.code;
+                    }
+                });
             });
         }
 
@@ -356,4 +370,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
             }
         });
     };
+    $scope.foo = function(v) {
+        console.log(v);
+    }
 }]);

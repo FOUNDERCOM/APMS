@@ -181,6 +181,7 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
         scope.$on("submitted", function () {
             $scope.load();
         });
+        $('#form_wizard').find('.button-first').click();
     };
 
     /**
@@ -196,6 +197,7 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
         scope.$on("submitted", function () {
             $scope.load();
         });
+        $('#form_wizard').find('.button-first').click();
     };
 
     /**

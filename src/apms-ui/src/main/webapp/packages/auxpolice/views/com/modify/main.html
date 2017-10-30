@@ -50,14 +50,25 @@
                     <div class="tab-pane" id="step_file" data-ng-include="'packages/auxpolice/views/com/modify/table_file.html'+cacheVersion"></div>
                     <div class="tab-pane" id="step_work" data-ng-include="'packages/auxpolice/views/com/modify/table_work.html'+cacheVersion"></div>
                     <div class="tab-pane" id="step_others" data-ng-include="'packages/auxpolice/views/com/modify/step_other_tables.html'+cacheVersion"></div>
-                    <div class="tab-pane" id="step_confirm" data-ng-include="'packages/auxpolice/views/com/view/main.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_confirm">
+                        <div class="row profile">
+                            <div class="col-md-2" data-ng-include="'packages/auxpolice/views/com/view/base.html'+cacheVersion"></div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-8 profile-info" data-ng-include="'packages/auxpolice/views/com/view/detail.html'+cacheVersion"></div>
+                                    <div class="col-md-4" data-ng-include="'packages/auxpolice/views/com/view/addition.html'+cacheVersion"></div>
+                                </div>
+                                <div class="tabbable-line tabbable-custom-profile" data-ng-include="'packages/auxpolice/views/com/modify/tables.html'+cacheVersion"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
                         <a type="button" class="btn btn-outline dark pull-right" data-dismiss="modal" aria-hidden="true"> 关闭</a>
-                        <a href="javascript:" class="btn green button-submit pull-right"> 确认并显示保存按钮
+                        <a href="javascript:" class="btn green button-submit pull-right"> 确认并保存
                             <i class="fa fa-check"></i>
                         </a>
                         <a href="javascript:" class="btn btn-outline green button-next pull-right"> 下一步
@@ -65,6 +76,8 @@
                         </a>
                         <a href="javascript:" class="btn default button-previous pull-right">
                             <i class="fa fa-angle-left"></i> 上一步 </a>
+                        <a href="javascript:" class="btn default button-first pull-right">
+                            <i class="fa fa-angle-left"></i> 第一步 </a>
                     </div>
                 </div>
             </div>
