@@ -3,6 +3,23 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <div class="row">
+                	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">科所队</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                    <ui-select ng-model="condition.station" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in stationList | filter: {bureau: {id : condition.station.bureau.id }}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                            <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label class="control-label col-md-4">姓名</label>

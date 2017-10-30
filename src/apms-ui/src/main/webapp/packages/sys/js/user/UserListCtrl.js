@@ -33,6 +33,7 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
         }
     });
 
+    // 科所队列表
     $ajaxCall.post({
         data : {
             controller: "DeptStationController",

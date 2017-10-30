@@ -79,8 +79,8 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
         callback: function (success) {
             $scope.list = success.data.result;
         },
-        pageSizeList: [6, 12, 18, 24],
-        pageSize: 6
+        pageSizeList: [12, 18, 24, 48],
+        pageSize: 12
     });
 
     /**

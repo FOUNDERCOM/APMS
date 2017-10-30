@@ -85,7 +85,7 @@
                                             <i class="fa fa-picture-o"></i>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li ng-if="item['status']['code'] !== 'TO_ACCEPT'&&item['status']['code'] !== 'TO_APPROVE'">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline yellow-gold"
                                            href="/#modifyAuxploiceApplyModalDiv" data-toggle="modal"
@@ -93,7 +93,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li ng-if="item['status']['code'] !== 'TO_ACCEPT'&&item['status']['code'] !== 'TO_APPROVE'">
                                         <a class="btn btn-xs btn-outline red" href="javascript:" ng-if="item.isEnabled"
                                            ng-click="changeStatus(item,false)" bs-tooltip data-title="注销">
                                             <i class="fa fa-ban"></i>
