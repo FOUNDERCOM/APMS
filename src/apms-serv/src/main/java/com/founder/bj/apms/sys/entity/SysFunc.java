@@ -23,11 +23,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.hibernate.annotations.JoinColumnsOrFormulas;
-import org.hibernate.annotations.JoinFormula;
+import org.hibernate.annotations.*;
 
 /**
  * Description: 功能菜单实体类.<br>
@@ -44,9 +44,9 @@ public class SysFunc implements Serializable {
     /** Id. */
     @Id
     @Column(name = "FUNC_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** 上级功能. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -103,7 +103,7 @@ public class SysFunc implements Serializable {
     private List<SysFunc> children;
 
     /** 是否为根节点. */
-    @Formula("(CASE WHEN (FUNC_PARENT_ID = 0) THEN 1 ELSE 0 END)")
+    @Formula("(CASE WHEN (FUNC_PARENT_ID = '0') THEN 1 ELSE 0 END)")
     private Boolean isRoot;
 
     // CSOFF: LineLength
@@ -125,7 +125,7 @@ public class SysFunc implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -134,7 +134,7 @@ public class SysFunc implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

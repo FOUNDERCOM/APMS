@@ -61,7 +61,7 @@
                 <!-- END USER LOGIN DROPDOWN -->
 
 
-                <li class="dropdown dropdown-extended" ng-if="token.user.type == 'ANONYMOUS'">
+                <li class="dropdown dropdown-extended" ng-if="token.user.id === '-1'">
                     <a href="login.html" class="dropdown-toggle">
                         <i class="icon-login"></i>
                     </a>

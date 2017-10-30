@@ -74,13 +74,13 @@ public class DictController extends AbstractControllerSupport {
      * 删除实体.
      */
     public void remove() {
-        service.changeStatus(workDTO.getInteger("id"), false);
+        service.changeStatus(workDTO.<String>get("id"), false);
     }
 
     /**
      * 恢复删除实体.
      */
     public void resume() {
-        service.changeStatus(workDTO.getInteger("id"), true);
+        service.changeStatus(workDTO.<String>get("id"), true);
     }
 }

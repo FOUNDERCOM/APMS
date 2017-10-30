@@ -64,7 +64,7 @@ public class AuxFlowServiceImpl implements AuxFlowService {
     private DictService dictService;
 
     @Override
-    public void apply(Token token, String ip, Integer id) {
+    public void apply(Token token, String ip, String id) {
         final AuxInfo entity = infoService.get(id);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_ACCEPT"));
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
@@ -74,7 +74,7 @@ public class AuxFlowServiceImpl implements AuxFlowService {
     }
 
     @Override
-    public void accept(Token token, String ip, Integer id) {
+    public void accept(Token token, String ip, String id) {
         final AuxInfo entity = infoService.get(id);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPROVE"));
         entity.setLastApproveUser(em.find(SysUser.class, token.user().getId()));
@@ -83,7 +83,7 @@ public class AuxFlowServiceImpl implements AuxFlowService {
     }
 
     @Override
-    public void pass(Token token, String ip, Integer id) {
+    public void pass(Token token, String ip, String id) {
         final AuxInfo entity = infoService.get(id);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "PASSED"));
         entity.setLastApproveUser(em.find(SysUser.class, token.user().getId()));
@@ -92,7 +92,7 @@ public class AuxFlowServiceImpl implements AuxFlowService {
     }
 
     @Override
-    public void reject(Token token, String ip, Integer id) {
+    public void reject(Token token, String ip, String id) {
         final AuxInfo entity = infoService.get(id);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "REJECTED"));
         entity.setLastApproveUser(em.find(SysUser.class, token.user().getId()));

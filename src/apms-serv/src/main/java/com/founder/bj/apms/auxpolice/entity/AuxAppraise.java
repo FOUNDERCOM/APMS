@@ -21,6 +21,7 @@ package com.founder.bj.apms.auxpolice.entity;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.JoinColumnsOrFormulas;
 import org.hibernate.annotations.JoinFormula;
@@ -43,9 +44,9 @@ public class AuxAppraise implements AuxStuff {
     /** Id. */
     @Id
     @Column(name = "APPR_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** Year period. */
     @Column(name = "APPR_YEAR")
@@ -63,7 +64,6 @@ public class AuxAppraise implements AuxStuff {
     /** Description. */
     @Column(name = "APPR_DESC")
     private String desc;
-
 
     /** 最近更新人ID与用户表关联. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -87,7 +87,7 @@ public class AuxAppraise implements AuxStuff {
      * @return return the id
      */
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -97,7 +97,7 @@ public class AuxAppraise implements AuxStuff {
      * @param id the id to set
      */
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

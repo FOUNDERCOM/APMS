@@ -38,7 +38,7 @@ public interface DeptBureauService extends Serializable {
      * @param id entity id
      * @return entity
      */
-    DeptBureau get(Integer id);
+    DeptBureau get(String id);
 
     /**
      * Query entity list.
@@ -63,7 +63,7 @@ public interface DeptBureauService extends Serializable {
      *
      * @throws ServiceException validation fall
      */
-    Integer create(DeptBureau entity) throws ServiceException;
+    String create(DeptBureau entity) throws ServiceException;
 
     /**
      * Update entity.

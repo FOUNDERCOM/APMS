@@ -34,6 +34,12 @@
             <groupId>com.lee.ez</groupId>
             <artifactId>jwaf-dispatcher</artifactId>
             <version>${framework.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.lee.ez</groupId>
+                    <artifactId>jwaf-token-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- servlet -->

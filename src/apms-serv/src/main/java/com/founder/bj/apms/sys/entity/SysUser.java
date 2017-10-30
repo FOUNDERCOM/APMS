@@ -23,6 +23,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.founder.bj.apms.dept.entity.DeptStation;
 
 /**
@@ -41,9 +43,9 @@ public class SysUser implements Serializable {
     /** ID.*/
     @Id
     @Column(name = "USER_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** 用户所属科所队. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -85,7 +87,7 @@ public class SysUser implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -94,7 +96,7 @@ public class SysUser implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

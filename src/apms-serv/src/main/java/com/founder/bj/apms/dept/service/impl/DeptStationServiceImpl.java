@@ -60,7 +60,7 @@ public class DeptStationServiceImpl implements DeptStationService {
     // CSON: MemberName
 
     @Override
-    public DeptStation get(Integer id) {
+    public DeptStation get(String id) {
         Assert.notNull(id);
 
         return em.find(DeptStation.class, id);
@@ -122,7 +122,7 @@ public class DeptStationServiceImpl implements DeptStationService {
     @SuppressWarnings("Duplicates")
     @Transactional
     @Override
-    public Integer create(DeptStation entity) throws ServiceException {
+    public String create(DeptStation entity) throws ServiceException {
         entity.setId(null);
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));

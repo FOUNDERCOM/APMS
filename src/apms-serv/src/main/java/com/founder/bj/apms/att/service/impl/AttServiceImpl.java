@@ -50,7 +50,7 @@ public class AttServiceImpl implements AttService {
 
     @Override
     @Transactional
-    public Integer create(Attachment att) {
+    public String create(Attachment att) {
         if (!ObjectUtils.isEmpty(att.getLastUpdateUser()) && !ObjectUtils.isEmpty(att.getLastUpdateUser().getId())) {
             att.setLastUpdateUser(em.find(SysUser.class, att.getLastUpdateUser().getId()));
         }
@@ -60,7 +60,7 @@ public class AttServiceImpl implements AttService {
 
     @Override
     @Transactional(readOnly = true)
-    public Attachment get(Integer id) {
+    public Attachment get(String id) {
         return em.find(Attachment.class, id);
     }
 }

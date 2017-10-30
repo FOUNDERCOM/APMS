@@ -51,7 +51,7 @@ public interface UserService {
      * @param id 用户ID
      * @return 用户实体，拥有照片
      */
-    SysUserPhoto getUserPhoto(Integer id);
+    SysUserPhoto getUserPhoto(String id);
 
     /**
      * 根据id获得用户帐号.
@@ -59,7 +59,7 @@ public interface UserService {
      * @param id 用户id
      * @return 用户帐号
      */
-    SysUserAccount getUserAccount(Integer id);
+    SysUserAccount getUserAccount(String id);
 
     /**
      * 根据条件返回实体列表.

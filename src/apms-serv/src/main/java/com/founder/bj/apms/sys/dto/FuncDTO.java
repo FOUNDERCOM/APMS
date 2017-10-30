@@ -38,14 +38,14 @@ public class FuncDTO implements FuncTree, Serializable {
     private static final long serialVersionUID = 3353231166287810537L;
 
     // CSOFF: JavadocVariable
-    private Integer id;
+    private String id;
     private String code;
     private String name;
     private Dict type;
     private String url;
     private Integer seq;
     private String icon;
-    private Integer parentId;
+    private String parentId;
     private Boolean isVisible;
 
     private List<FuncTree> children;
@@ -53,12 +53,12 @@ public class FuncDTO implements FuncTree, Serializable {
     private Boolean isLeaf;
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -103,12 +103,12 @@ public class FuncDTO implements FuncTree, Serializable {
     }
 
     @Override
-    public Integer getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
     @Override
-    public void setParentId(Integer parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 

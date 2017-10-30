@@ -21,11 +21,13 @@ package com.founder.bj.apms.auxpolice.entity;
 
 import javax.persistence.*;
 
-import com.founder.bj.apms.sys.entity.SysDict;
-import com.founder.bj.apms.sys.entity.SysUser;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.JoinColumnsOrFormulas;
 import org.hibernate.annotations.JoinFormula;
+
+import com.founder.bj.apms.sys.entity.SysDict;
+import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
  * Description: Aux Education Entity.<br>
@@ -43,9 +45,9 @@ public class AuxEdu implements AuxStuff {
     /** Id. */
     @Id
     @Column(name = "EDU_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** School. */
     @Column(name = "EDU_SCHOOL")
@@ -94,7 +96,7 @@ public class AuxEdu implements AuxStuff {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -103,7 +105,7 @@ public class AuxEdu implements AuxStuff {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

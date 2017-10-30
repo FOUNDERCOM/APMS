@@ -19,11 +19,11 @@
 
 package com.founder.bj.apms.sys.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Description: 系统用户照片.<br>
@@ -46,7 +46,7 @@ public class SysUserPhoto implements Serializable {
     @GenericGenerator(name = "foreignKey", strategy = "foreign",
         parameters = {@org.hibernate.annotations.Parameter(name = "property", value = "user")})
     @GeneratedValue(generator = "foreignKey")
-    private Integer id;
+    private String id;
 
     /**
      * 用户头像.
@@ -61,7 +61,7 @@ public class SysUserPhoto implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -70,7 +70,7 @@ public class SysUserPhoto implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

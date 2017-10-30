@@ -67,13 +67,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public SysUserPhoto getUserPhoto(Integer id) {
+    public SysUserPhoto getUserPhoto(String id) {
         return em.find(SysUserPhoto.class, id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public SysUserAccount getUserAccount(Integer id) {
+    public SysUserAccount getUserAccount(String id) {
         return em.find(SysUserAccount.class, id);
     }
 

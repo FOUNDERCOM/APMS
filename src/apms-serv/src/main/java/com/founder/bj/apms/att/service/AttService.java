@@ -34,12 +34,12 @@ public interface AttService {
      * @param att entity
      * @return id
      */
-    Integer create(Attachment att);
+    String create(Attachment att);
 
     /**
      * Get att by id.
      * @param id id
      * @return entity
      */
-    Attachment get(Integer id);
+    Attachment get(String id);
 }

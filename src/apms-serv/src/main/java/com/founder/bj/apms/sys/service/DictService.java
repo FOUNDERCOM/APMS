@@ -39,7 +39,7 @@ public interface DictService {
      * @param id 实体ID
      * @return 实体
      */
-    SysDict get(Integer id);
+    SysDict get(String id);
 
     /**
      * 根据类型和编码获得实体.
@@ -92,5 +92,5 @@ public interface DictService {
      * @param id 实体ID
      * @param isEnabled 是否启用
      */
-    void changeStatus(Integer id, Boolean isEnabled);
+    void changeStatus(String id, Boolean isEnabled);
 }

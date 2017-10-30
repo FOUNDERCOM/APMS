@@ -21,6 +21,8 @@ package com.founder.bj.apms.auxpolice.entity;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
@@ -39,13 +41,17 @@ public class AuxFamily implements AuxStuff {
     /** Id. */
     @Id
     @Column(name = "FAMILY_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** Relationship to the current person. */
     @Column(name = "FAMILY_REL")
     private String rel;
+
+    /** Name. */
+    @Column(name = "FAMILY_NAME")
+    private String name;
 
     /** Birthday. */
     @Column(name = "FAMILY_BIRTHDAY")
@@ -92,7 +98,7 @@ public class AuxFamily implements AuxStuff {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -101,7 +107,7 @@ public class AuxFamily implements AuxStuff {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -21,6 +21,7 @@ package com.founder.bj.apms.sys.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -67,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(readOnly = true)
-    public Integer checkAccountAndPwd(String account, String pwd) {
+    public String checkAccountAndPwd(String account, String pwd) {
         String hql = "from SysUserAccount as u";
         hql += " where u.account = :account";
         hql += " and u.pwd = :pwd";
@@ -81,13 +82,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void assignFuncToUser(Integer userId, Integer funcId, Boolean assigned) {
+    public void assignFuncToUser(String userId, String funcId, Boolean assigned) {
         // CSOFF: LineLength
         if (assigned) {
             Query query = em.createNativeQuery("SELECT COUNT(1) FROM APMS_SYS_USER_FUNC WHERE USER_ID = :userId AND FUNC_ID = :funcId");
             final Number count = (Number) query.setParameter("userId", userId).setParameter("funcId", funcId).getSingleResult();
             if (count.intValue() == 0) {
-                query = em.createNativeQuery("INSERT INTO APMS_SYS_USER_FUNC(REL_ID, USER_ID, FUNC_ID) VALUES(SEQ_APMS.NEXTVAL, :userId, :funcId)");
+                query = em.createNativeQuery("INSERT INTO APMS_SYS_USER_FUNC(REL_ID, USER_ID, FUNC_ID) VALUES(:id, :userId, :funcId)");
+                query.setParameter("id", UUID.randomUUID().toString());
                 query.setParameter("userId", userId).setParameter("funcId", funcId).executeUpdate();
             }
         } else {
@@ -99,7 +101,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(readOnly = true)
-    public Token getTokenByUserId(Integer userId) {
+    public Token getTokenByUserId(String userId) {
         final ApmsToken token = new ApmsToken();
         final SysUser user = em.find(SysUser.class, userId);
         final SysUserAccount account = em.find(SysUserAccount.class, userId);
@@ -117,16 +119,12 @@ public class AuthServiceImpl implements AuthService {
         token.user().setAccount(account.getAccount());
 
         //noinspection unchecked
-        final List<Number> ids = em.createNativeQuery("SELECT FUNC_ID FROM APMS_SYS_USER_FUNC WHERE USER_ID = :userId")
+        final List<String> ids = em.createNativeQuery("SELECT FUNC_ID FROM APMS_SYS_USER_FUNC WHERE USER_ID = :userId")
             .setParameter("userId", user.getId()).getResultList();
-        final List<Integer> intIds = new LinkedList<>();
-        for (Number n : ids) {
-            intIds.add(n.intValue());
-        }
-        final SysFunc root = em.find(SysFunc.class, -10000000);
+        final SysFunc root = em.find(SysFunc.class, "-10000000");
         // function tree
         //noinspection ConstantConditions
-        BeanUtils.copyProperties(fetchChildren(root, intIds), token.funcTree());
+        BeanUtils.copyProperties(fetchChildren(root, ids), token.funcTree());
         // function list
         token.funcs().addAll(getFuncList(token.funcTree()));
         return token;
@@ -150,7 +148,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Number> queryFuncIdByUser(Integer userId) {
+    public List<String> queryFuncIdByUser(String userId) {
         //noinspection unchecked
         return em.createNativeQuery("SELECT FUNC_ID FROM APMS_SYS_USER_FUNC WHERE USER_ID = :userId")
             .setParameter("userId", userId).getResultList();
@@ -168,7 +166,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(readOnly = true)
     public List<SysFunc> queryAllFunc() {
         //noinspection unchecked
-        final List<SysFunc> result = em.createQuery("from SysFunc where id <> -9999999 order by id desc").getResultList();
+        final List<SysFunc> result = em.createQuery("from SysFunc where id <> ''-9999999'' order by id desc").getResultList();
         for (SysFunc item : result) {
             item.setLevel(traceLevel(item));
         }
@@ -194,7 +192,7 @@ public class AuthServiceImpl implements AuthService {
      * @param ids 权限列表
      * @return 权限过滤后的跟菜单数据传输对象
      */
-    private FuncDTO fetchChildren(SysFunc node, List<Integer> ids) {
+    private FuncDTO fetchChildren(SysFunc node, List<String> ids) {
         if (node.getIsLeaf() && !ids.contains(node.getId())) {
             // 如果是最终功能，而且，不在权限列表中，那么返回空，等待“不”加到列表中
             return null;

@@ -103,7 +103,7 @@
                                             <i class="fa fa-recycle"></i>
                                         </a>
                                     </li>
-                                    <li ng-if="item['status']['code'] === 'TO_APPLY'">
+                                    <li ng-if="item['status']['code'] === 'TO_APPLY' || item['status']['code'] === 'REJECTED'">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline blue-steel"
                                            ng-click="take(item, 'apply')" bs-tooltip data-title="上报">

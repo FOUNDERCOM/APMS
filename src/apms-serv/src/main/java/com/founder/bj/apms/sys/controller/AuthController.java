@@ -51,10 +51,10 @@ public class AuthController extends AbstractControllerSupport {
      */
     public void queryAuth() {
         final List<SysFunc> result = service.queryAllFunc();
-        final List<Number> ids = service.queryFuncIdByUser(workDTO.getInteger("userId"));
+        final List<String> ids = service.queryFuncIdByUser(workDTO.<String>get("userId"));
         for (SysFunc func : result) {
-            for (Number id : ids) {
-                if (func.getId().equals(id.intValue())) {
+            for (String id : ids) {
+                if (func.getId().equals(id)) {
                     func.setIsAssigned(true);
                     break;
                 }
@@ -68,15 +68,15 @@ public class AuthController extends AbstractControllerSupport {
      * @param node 当前节点
      * @param ids 用户拥有的权限id列表
      */
-    private void setStatus(SysFunc node, List<Number> ids) {
+    private void setStatus(SysFunc node, List<String> ids) {
         node.setParent(null);
         if (!node.getIsLeaf()) {
             for (SysFunc child : node.getChildren()) {
                 setStatus(child, ids);
             }
         } else {
-            for (Number id : ids) {
-                if (node.getId().equals(id.intValue())) {
+            for (String id : ids) {
+                if (node.getId().equals(id)) {
                     node.setIsAssigned(true);
                 }
             }
@@ -87,7 +87,7 @@ public class AuthController extends AbstractControllerSupport {
      * 为用户指定权限.
      */
     public void assignAuth() {
-        service.assignFuncToUser(workDTO.getInteger("userId"), workDTO.getInteger("funcId"),
+        service.assignFuncToUser(workDTO.<String>get("userId"), workDTO.<String>get("funcId"),
             "true".equals(workDTO.get("assign")));
     }
 

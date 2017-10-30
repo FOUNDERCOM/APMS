@@ -37,7 +37,7 @@ public class UserDTO implements User, Serializable {
     private static final long serialVersionUID = 8097971841099343594L;
 
     /** Id. */
-    private Integer id;
+    private String id;
     /** Station. */
     private Org org;
     /** Name. */
@@ -49,7 +49,7 @@ public class UserDTO implements User, Serializable {
      * @return return the id
      */
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class UserDTO implements User, Serializable {
      * @param id the id to set
      */
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

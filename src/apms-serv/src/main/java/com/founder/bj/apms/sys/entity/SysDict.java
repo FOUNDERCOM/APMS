@@ -47,7 +47,7 @@ public class SysDict implements Serializable {
      */
     @Id
     @Column(name = "DICT_ID", insertable = false, updatable = false)
-    private Integer id;
+    private String id;
 
     /**
      * 类型.
@@ -85,7 +85,7 @@ public class SysDict implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -94,7 +94,7 @@ public class SysDict implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

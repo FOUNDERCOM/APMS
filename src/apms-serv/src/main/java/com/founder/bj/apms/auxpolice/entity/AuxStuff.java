@@ -35,13 +35,13 @@ public interface AuxStuff extends Serializable {
      * Get Id.
      * @return the entity id.
      */
-    Integer getId();
+    String getId();
 
     /**
      * Set id
      * @param id the entity id.
      */
-    void setId(Integer id);
+    void setId(String id);
 
     /**
      * Get {@link AuxInfo} of the stuff entity.

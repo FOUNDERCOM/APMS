@@ -74,7 +74,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
     private DictService dictService;
 
     @Override
-    public AuxInfo get(Integer id) {
+    public AuxInfo get(String id) {
         return em.find(AuxInfo.class, id);
     }
 
@@ -263,7 +263,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public Integer create(AuxInfo entity) throws ServiceException {
+    public String create(AuxInfo entity) throws ServiceException {
         entity.setIsEnabled(true);
         entity.setSalary(0);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
@@ -383,13 +383,13 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public void removeStuff(Integer id, Class<? extends AuxStuff> type) {
+    public void removeStuff(String id, Class<? extends AuxStuff> type) {
         em.remove(em.find(type, id));
     }
 
     @Transactional
     @Override
-    public void setStatus(Token token, String ip, Integer id, Boolean isEnabled) {
+    public void setStatus(Token token, String ip, String id, Boolean isEnabled) {
         final AuxInfo entity = get(id);
 
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
@@ -401,7 +401,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public void changeSalary(Token token, String ip, Integer id, Integer salary) {
+    public void changeSalary(Token token, String ip, String id, Integer salary) {
         final AuxInfo entity = get(id);
 
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
@@ -412,7 +412,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
     }
 
     @Override
-    public boolean checkDuplicatedIdentityCare(Integer id, String card) {
+    public boolean checkDuplicatedIdentityCare(String id, String card) {
         if (ObjectUtils.isEmpty(id)) {
             return em.createQuery("from AuxInfo where identityCard = :card")
                 .setParameter("card", card).getResultList().size() > 0;

@@ -89,7 +89,7 @@ public class DeptBureauController extends AbstractControllerSupport implements C
 
     @Override
     public void remove() {
-        final DeptBureau entity = service.get(workDTO.getInteger("id"));
+        final DeptBureau entity = service.get(workDTO.<String>get("id"));
 
         entity.setIsEnabled(false);
 
@@ -107,7 +107,7 @@ public class DeptBureauController extends AbstractControllerSupport implements C
 
     @Override
     public void resume() {
-        final DeptBureau entity = service.get(workDTO.getInteger("id"));
+        final DeptBureau entity = service.get(workDTO.<String>get("id"));
 
         entity.setIsEnabled(true);
 

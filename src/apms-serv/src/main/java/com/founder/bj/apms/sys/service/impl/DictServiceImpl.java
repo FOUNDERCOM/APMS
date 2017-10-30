@@ -58,7 +58,7 @@ public class DictServiceImpl implements DictService {
 
     @Override
     @Transactional(readOnly = true)
-    public SysDict get(Integer id) {
+    public SysDict get(String id) {
         return em.find(SysDict.class, id);
     }
 
@@ -192,7 +192,7 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
-    public void changeStatus(Integer id, Boolean isEnabled) {
+    public void changeStatus(String id, Boolean isEnabled) {
         em.find(SysDictionary.class, id).setIsEnabled(isEnabled);
     }
 

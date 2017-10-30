@@ -23,6 +23,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
@@ -41,9 +43,9 @@ public class DeptBureau implements Serializable {
     /** ID.*/
     @Id
     @Column(name = "BUREAU_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** 名称. */
     @Column(name = "BUREAU_NAME")
@@ -90,7 +92,7 @@ public class DeptBureau implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -99,7 +101,7 @@ public class DeptBureau implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

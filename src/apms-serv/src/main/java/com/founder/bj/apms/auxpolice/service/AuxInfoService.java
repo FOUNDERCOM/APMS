@@ -39,7 +39,7 @@ public interface AuxInfoService {
      * @param id id
      * @return {@link AuxInfo} entity
      */
-    AuxInfo get(Integer id);
+    AuxInfo get(String id);
 
     /**
      * Query by condition.
@@ -64,7 +64,7 @@ public interface AuxInfoService {
      *
      * @throws ServiceException validation fall
      */
-    Integer create(AuxInfo entity) throws ServiceException;
+    String create(AuxInfo entity) throws ServiceException;
 
     /**
      * Merge the Entity.
@@ -79,7 +79,7 @@ public interface AuxInfoService {
      * @param id the stuff info id
      * @param type the type of the stuff class
      */
-    void removeStuff(Integer id, Class<? extends AuxStuff> type);
+    void removeStuff(String id, Class<? extends AuxStuff> type);
 
     /**
      * Set Status.
@@ -88,7 +88,7 @@ public interface AuxInfoService {
      * @param id aux id
      * @param isEnabled isEnabled
      */
-    void setStatus(Token token, String ip, Integer id, Boolean isEnabled);
+    void setStatus(Token token, String ip, String id, Boolean isEnabled);
 
     /**
      * Change Salary.
@@ -97,7 +97,7 @@ public interface AuxInfoService {
      * @param id aux id
      * @param salary Salary
      */
-    void changeSalary(Token token, String ip, Integer id, Integer salary);
+    void changeSalary(Token token, String ip, String id, Integer salary);
 
     /**
      * Check Duplicated Identity Card.
@@ -105,6 +105,6 @@ public interface AuxInfoService {
      * @param card card
      * @return true for duplicated
      */
-    boolean checkDuplicatedIdentityCare(Integer id, String card);
+    boolean checkDuplicatedIdentityCare(String id, String card);
 
 }

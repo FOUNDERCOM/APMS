@@ -164,7 +164,7 @@ public class AttController extends AbstractControllerSupport {
      * @throws IOException name error
      */
     public void download() throws ServiceException, IOException {
-        final Attachment att = service.get(workDTO.getInteger("id"));
+        final Attachment att = service.get(workDTO.<String>get("id"));
 
         super.servletResponse.setContentType(att.getType());
         super.servletResponse.setHeader("Content-Disposition",

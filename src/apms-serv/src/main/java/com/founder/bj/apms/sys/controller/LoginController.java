@@ -53,10 +53,10 @@ public class LoginController extends AbstractControllerSupport {
      * 登录.
      */
     public void login() {
-        final Integer userId = authService.checkAccountAndPwd(workDTO.<String>get("account"), workDTO.<String>get("pwd"));
+        final String userId = authService.checkAccountAndPwd(workDTO.<String>get("account"), workDTO.<String>get("pwd"));
         if (ObjectUtils.isEmpty(userId)) {
             workDTO.setResult(false);
-            sessionDTO.setActiveUser(authService.getTokenByUserId(-1));
+            sessionDTO.setActiveUser(authService.getTokenByUserId("-1"));
         } else {
             workDTO.setResult(true);
             sessionDTO.setActiveUser(authService.getTokenByUserId(userId));
@@ -77,7 +77,7 @@ public class LoginController extends AbstractControllerSupport {
     public void getCurrentToken() {
         workDTO.clear();
         if (!sessionDTO.hasToken()) {
-            sessionDTO.setActiveUser(authService.getTokenByUserId(-1));
+            sessionDTO.setActiveUser(authService.getTokenByUserId("-1"));
         }
         workDTO.put("user", sessionDTO.currentToken().user());
         workDTO.put("photo", userService.getUserPhoto(sessionDTO.currentToken().user().getId()));

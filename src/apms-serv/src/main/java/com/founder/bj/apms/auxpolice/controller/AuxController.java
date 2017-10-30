@@ -20,17 +20,13 @@
 package com.founder.bj.apms.auxpolice.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
-import com.founder.bj.apms.auxpolice.entity.AuxStuffFile;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -52,11 +48,8 @@ import com.lee.jwaf.action.AbstractControllerSupport;
 import com.lee.jwaf.exception.ServiceException;
 import com.lee.util.DateUtils;
 import com.lee.util.ObjectUtils;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 // CSOFF: RegexpSinglelineJava
-
 /**
  * Description: Aux Controller.<br>
  * Created by Jimmybly Lee on 2017/10/9.
@@ -150,13 +143,13 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
     @Override
     public void remove() {
         infoService.setStatus(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"), false);
+            workDTO.<String>get("id"), false);
     }
 
     @Override
     public void resume() {
         infoService.setStatus(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"), true);
+            workDTO.<String>get("id"), true);
     }
 
     /**
@@ -167,7 +160,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
     public void removeStuff() throws ServiceException {
         try {
             //noinspection unchecked
-            infoService.removeStuff(workDTO.getInteger("id"),
+            infoService.removeStuff(workDTO.<String>get("id"),
                 (Class<? extends AuxStuff>) Class.forName(workDTO.<String>get("type")));
         } catch (ClassNotFoundException ex) {
             throw new ServiceException("无法找到匹配的类型");
@@ -179,7 +172,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void apply() {
         flowService.apply(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"));
+            workDTO.<String>get("id"));
     }
 
     /**
@@ -187,7 +180,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void accept() {
         flowService.accept(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"));
+            workDTO.<String>get("id"));
     }
 
     /**
@@ -195,7 +188,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void pass() {
         flowService.pass(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"));
+            workDTO.<String>get("id"));
     }
 
     /**
@@ -203,7 +196,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void reject() {
         flowService.reject(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"));
+            workDTO.<String>get("id"));
     }
 
     /**
@@ -211,7 +204,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void changeSalary() {
         infoService.changeSalary(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.getInteger("id"), workDTO.getInteger("salary"));
+            workDTO.<String>get("id"), workDTO.getInteger("salary"));
     }
 
     /**
@@ -282,7 +275,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      * Check duplicated Identity card.
      */
     public void checkDuplicatedIdentityCard() {
-        workDTO.setResult(infoService.checkDuplicatedIdentityCare(workDTO.getInteger("id"), workDTO.<String>get("card")));
+        workDTO.setResult(infoService.checkDuplicatedIdentityCare(workDTO.<String>get("id"), workDTO.<String>get("card")));
     }
 
 }

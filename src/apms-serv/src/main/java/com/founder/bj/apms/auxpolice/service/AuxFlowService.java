@@ -35,7 +35,7 @@ public interface AuxFlowService {
      * @param ip ip
      * @param id {@link com.founder.bj.apms.auxpolice.entity.AuxInfo} id.
      */
-    void apply(Token token, String ip, Integer id);
+    void apply(Token token, String ip, String id);
 
     /**
      * Accept.
@@ -43,7 +43,7 @@ public interface AuxFlowService {
      * @param ip ip
      * @param id {@link com.founder.bj.apms.auxpolice.entity.AuxInfo} id.
      */
-    void accept(Token token, String ip, Integer id);
+    void accept(Token token, String ip, String id);
 
     /**
      * Pass.
@@ -51,7 +51,7 @@ public interface AuxFlowService {
      * @param ip ip
      * @param id {@link com.founder.bj.apms.auxpolice.entity.AuxInfo} id.
      */
-    void pass(Token token, String ip, Integer id);
+    void pass(Token token, String ip, String id);
 
     /**
      * Reject.
@@ -59,5 +59,5 @@ public interface AuxFlowService {
      * @param ip ip
      * @param id {@link com.founder.bj.apms.auxpolice.entity.AuxInfo} id.
      */
-    void reject(Token token, String ip, Integer id);
+    void reject(Token token, String ip, String id);
 }

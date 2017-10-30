@@ -59,7 +59,7 @@ public class DeptBureauServiceImpl implements DeptBureauService {
     // CSON: MemberName
 
     @Override
-    public DeptBureau get(Integer id) {
+    public DeptBureau get(String id) {
         Assert.notNull(id);
 
         return em.find(DeptBureau.class, id);
@@ -106,7 +106,7 @@ public class DeptBureauServiceImpl implements DeptBureauService {
     @SuppressWarnings("Duplicates")
     @Transactional
     @Override
-    public Integer create(DeptBureau entity) throws ServiceException {
+    public String create(DeptBureau entity) throws ServiceException {
         entity.setId(null);
         validate(entity);
         entity.setLastUpdateUser(em.find(SysUser.class, entity.getLastUpdateUser().getId()));

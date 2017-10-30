@@ -4,7 +4,7 @@
     <span class="username username-hide-on-mobile"> {{token.user.type != 'ANONYMOUS' ? token.user.org.bureau.name + " - " + token.user.org.name + " - " : ""}}{{token.user.name}} </span>
     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
     <img alt="" class="img-circle" src="data:image/jpeg;base64,{{token.user['photo']}}"/> </a>
-<ul class="dropdown-menu dropdown-menu-default" ng-if="token.user.type != 'ANONYMOUS'">
+<ul class="dropdown-menu dropdown-menu-default" ng-if="token.user.id != '-1'">
     <li>
         <a ui-sref="my_info">
             <i class="icon-user"></i> 我的信息 </a>

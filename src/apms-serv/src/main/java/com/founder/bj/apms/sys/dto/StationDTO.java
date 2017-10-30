@@ -35,7 +35,7 @@ public class StationDTO implements Org, Serializable {
     private static final long serialVersionUID = 2494748680229395013L;
 
     /** ID. */
-    private Integer id;
+    private String id;
     /** 名称. */
     private String name;
     /** 编制. */
@@ -58,7 +58,7 @@ public class StationDTO implements Org, Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -67,7 +67,7 @@ public class StationDTO implements Org, Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

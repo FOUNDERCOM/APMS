@@ -24,6 +24,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Description: 字典实体类 for 编辑.<br>
@@ -40,9 +41,9 @@ public class SysDictionary implements Serializable {
     /** Id. */
     @Id
     @Column(name = "DICT_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** 上级字典，往往直接是类型描述，除非是父子结构的. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -85,7 +86,7 @@ public class SysDictionary implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -94,7 +95,7 @@ public class SysDictionary implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

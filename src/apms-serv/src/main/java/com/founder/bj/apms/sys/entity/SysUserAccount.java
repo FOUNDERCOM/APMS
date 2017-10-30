@@ -23,6 +23,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Description: 系统用户账号密码.<br>
  * Created by Jimmybly Lee on 2017/9/28.
@@ -38,9 +40,9 @@ public class SysUserAccount implements Serializable {
     /** Id. */
     @Id
     @Column(name = "USER_ID")
-    @SequenceGenerator(name = "apmsSEQ", sequenceName = "SEQ_APMS")
-    @GeneratedValue(generator = "apmsSEQ", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @GeneratedValue(generator = "apms_uuid")
+    @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
+    private String id;
 
     /** 用户帐号. */
     @Column(name = "USER_ACCOUNT")
@@ -59,7 +61,7 @@ public class SysUserAccount implements Serializable {
      *
      * @return return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -68,7 +70,7 @@ public class SysUserAccount implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
