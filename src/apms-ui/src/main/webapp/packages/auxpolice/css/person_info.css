@@ -289,4 +289,35 @@ Profile Page
   font-size: 12px;
   margin-top: 2px !important; }
 
-.profile .tab-content { padding: 0 !important;}
+.profile-modify .tab-content { padding: 0 !important;}
+
+.profile-modify .mt-element-step .step-background-thin .mt-step-number {
+    font-size: 90px !important;
+}
+.profile-modify .mt-element-step .step-background-thin .mt-step-title {
+    font-size:20px !important;
+}
+.profile-modify .mt-element-step .step-background-thin .mt-step-content {
+    font-size: 10px !important;
+}
+.profile-modify .nav-pills>li+li {
+    margin-left: 0 !important;
+}
+.profile-modify .form-body, .portlet-form .form-body {
+    padding: 0 !important;
+}
+.profile-modify .form-wizard .progress {
+    margin-bottom: 10px !important;
+}
+.profile-modify .profile-edit {
+    top: 0;
+    right: 0;
+    margin: 0;
+    color: #fff;
+    opacity: 0.6;
+    padding: 3px 9px;
+    font-size: 11px;
+    background: #000;
+    position: absolute;
+    filter: alpha(opacity=60);
+    /*for ie*/ }

@@ -1,0 +1,130 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">姓名 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    <input type="text" class="form-control" placeholder="辅警姓名"  ng-model="entity.name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">身份证号 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-newspaper-o"></i>
+                    <input type="text" class="form-control" placeholder="18位身份证号"  ng-model="entity.identityCard">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">入职时间 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-calendar"></i>
+                    <input id="joinDate" type="text" class="form-control" ng-model="entity.joinDate"
+                           bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">入职前身份 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    <select id="oldIdentity" class="form-control" ng-model="entity.oldIdentity.id"
+                            ng-options="item.id as item.value for item in oldIdentityList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">民族 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-users"></i>
+                    <select id="nation" class="form-control" ng-model="entity.nation.id"
+                            ng-options="item.id as item.value for item in nationList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">健康状况 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-users"></i>
+                    <select id="health" class="form-control" ng-model="entity.health.id"
+                            ng-options="item.id as item.value for item in healthList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">政治面貌 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <select id="politicalStatus" class="form-control" ng-model="entity.politicalStatus.id"
+                            ng-options="item.id as item.value for item in politicalStatusList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">文化程度 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-graduation-cap"></i>
+                    <select id="educationDegree" class="form-control" ng-model="entity.eduDegree.id"
+                            ng-options="item.id as item.value for item in eduDegreeList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">籍贯</label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-map-marker"></i>
+                    <input id="nativePlace" type="text" class="form-control" ng-model="entity.nativePlace">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">毕业院校 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-building"></i>
+                    <input id="institutions" type="text" class="form-control" ng-model="entity.institutions">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">所学专业</label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-flask"></i>
+                    <input id="major" type="text" class="form-control" ng-model="entity.major">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

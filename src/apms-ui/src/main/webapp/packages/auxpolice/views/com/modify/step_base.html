@@ -1,0 +1,135 @@
+<form id="step_form_base">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="data:image/jpeg;base64,{{entity['photo']}}" class="img-responsive pic-bordered" alt="" />
+            <a href="/#uploadPhoto" class="profile-edit" data-toggle="modal" aria-hidden="true" ng-click="prepare2SetPhoto()"> 编辑 </a>
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="bureau">分局</label>
+                    <div class="col-md-8" ng-if="$state.current.name === 'aux_all'">
+                        <div class="input-icon">
+                            <i class="icon-home"></i>
+                            <select id="bureau" class="form-control" ng-model="entity.station.bureau.id" bs-tooltip data-title="分局"
+                                    ng-options="item.id as item.name for item in bureauList"></select>
+                        </div>
+                    </div>
+                    <label class="control-label col-md-8" ng-if="$state.current.name !== 'aux_all'" style="text-align: left !important;">{{entity.station.bureau.name}}</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="bureau">科所队 <span class="required">*</span></label>
+                    <div class="col-md-8" ng-if="$state.current.name !== 'aux_apply'">
+                        <div class="input-icon">
+                            <i class="icon-home"></i>
+                            <select class="form-control" ng-model="entity.station.id" bs-tooltip data-title="科所队"
+                                    ng-options="item.id as item.name for item in stationList | filter : {bureau: {id : entity.station.bureau.id}}"></select>
+                        </div>
+                    </div>
+                    <label class="control-label col-md-8" ng-if="$state.current.name === 'aux_apply'" style="text-align: left !important;">{{entity.station.name}}</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="bureau">电话</label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-phone"></i>
+                            <input type="text" class="form-control" placeholder="0857-0000000" ng-model="entity.tel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">手机 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-phone-square"></i>
+                            <input type="text" class="form-control" placeholder="13400000000" ng-model="entity.mobile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">邮箱</label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-phone-square"></i>
+                            <input type="text" class="form-control" placeholder="xxx@xxx.com" ng-model="entity.mail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">职务 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-briefcase"></i>
+                            <input type="text" class="form-control" placeholder="..." ng-model="entity.job">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-map-marker"></i>
+                            <input type="text" class="form-control" placeholder="省份"  ng-model="entity.addProvince">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-map-marker"></i>
+                            <input type="text" class="form-control" placeholder="城市"  ng-model="entity.addCity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-map-marker"></i>
+                            <input type="text" class="form-control" placeholder="区县"  ng-model="entity.addCountry">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">邮编 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-code"></i>
+                            <input type="text" class="form-control" placeholder="110001"  ng-model="entity.addPostcode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-md-2">现住址 <span class="required">*</span></label>
+                    <div class="col-md-10">
+                        <div class="input-icon">
+                            <i class="fa fa-map-marker"></i>
+                            <input type="text" class="form-control" placeholder="详细地址"  ng-model="entity.addDetail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

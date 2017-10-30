@@ -131,6 +131,7 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
         scope.title = "注册辅警信息";
         scope.method = "create";
         scope.entity = {
+            "isEnabled": true,
             "name": "",
             "tel": "",
             "mobile": "",
@@ -153,8 +154,14 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             "addCountry": "",
             "addDetail": "",
             "postCode": "",
-            "bureau": {},
-            "station": {},
+            "station": {
+                "id": $rootScope.token['user']['org']["id"],
+                "name": $rootScope.token['user']['org']["name"],
+                "bureau": {
+                    "id": $rootScope.token['user']['org']['bureau']['id'],
+                    "name": $rootScope.token['user']['org']['bureau']['name']
+                }
+            },
             "photo": $rootScope.cfg['defaultPhoto'],
             "awardList": [],
             "eduList": [],

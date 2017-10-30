@@ -72,7 +72,7 @@ public class AuxStuffFile implements AuxStuff {
 
     /** Source file id. */
     @Column(name = "ATT_ID")
-    private Integer attId;
+    private String attId;
 
     /**
      * Get the id.
@@ -215,7 +215,7 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @return return the attId
      */
-    public Integer getAttId() {
+    public String getAttId() {
         return attId;
     }
 
@@ -224,7 +224,7 @@ public class AuxStuffFile implements AuxStuff {
      *
      * @param attId the attId to set
      */
-    public void setAttId(Integer attId) {
+    public void setAttId(String attId) {
         this.attId = attId;
     }
 }

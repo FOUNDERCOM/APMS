@@ -1,11 +1,74 @@
-<div id="modifyErrorMsgDiv"></div>
-<div class="row profile">
-    <div class="col-md-2" data-ng-include="'packages/auxpolice/views/com/modify/base.html'+cacheVersion"></div>
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-8 profile-info" data-ng-include="'packages/auxpolice/views/com/modify/detail.html'+cacheVersion"></div>
-            <div class="col-md-4" data-ng-include="'packages/auxpolice/views/com/modify/addition.html'+cacheVersion"></div>
+<div class="profile-modify form" id="form_wizard" ng-controller="AuxModifyCtrl">
+    <div class="form-horizontal">
+        <div class="form-wizard">
+            <div class="form-body mt-element-step">
+                <ul class="step-background-thin">
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_base" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">1</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">基础信息</div>
+                        <div class="mt-step-content font-grey-cascade">填写基础信息</div>
+                    </li>
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_detail" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">2</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">详细信息</div>
+                        <div class="mt-step-content font-grey-cascade">填写详细信息</div>
+                    </li>
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_file" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">3</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">证明文件</div>
+                        <div class="mt-step-content font-grey-cascade">上传证明文件</div>
+                    </li>
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_work" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">4</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">工作履历</div>
+                        <div class="mt-step-content font-grey-cascade">补充工作履历</div>
+                    </li>
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_others" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">5</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">其他情况</div>
+                        <div class="mt-step-content font-grey-cascade">补充其他情况</div>
+                    </li>
+                    <li class="col-md-2 bg-grey-steel mt-step-col">
+                        <a href="/#step_confirm" data-toggle="tab" class="step hide"></a>
+                        <div class="mt-step-number">6</div>
+                        <div class="mt-step-title uppercase font-grey-cascade">确认</div>
+                        <div class="mt-step-content font-grey-cascade">确认填写信息</div>
+                    </li>
+                </ul>
+                <div id="bar" class="progress progress-striped" role="progressbar">
+                    <div class="progress-bar progress-bar-success"> </div>
+                </div>
+                <div id="modifyErrorMsgDiv"></div>
+                <div class="tab-content" style="min-height: 400px">
+                    <div class="tab-pane active" id="step_base" data-ng-include="'packages/auxpolice/views/com/modify/step_base.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_detail" data-ng-include="'packages/auxpolice/views/com/modify/step_detail.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_file" data-ng-include="'packages/auxpolice/views/com/modify/table_file.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_work" data-ng-include="'packages/auxpolice/views/com/modify/table_work.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_others" data-ng-include="'packages/auxpolice/views/com/modify/step_other_tables.html'+cacheVersion"></div>
+                    <div class="tab-pane" id="step_confirm" data-ng-include="'packages/auxpolice/views/com/view/main.html'+cacheVersion"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <a type="button" class="btn btn-outline dark pull-right" data-dismiss="modal" aria-hidden="true"> 关闭</a>
+                        <a href="javascript:" class="btn green button-submit pull-right"> 确认并显示保存按钮
+                            <i class="fa fa-check"></i>
+                        </a>
+                        <a href="javascript:" class="btn btn-outline green button-next pull-right"> 下一步
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                        <a href="javascript:" class="btn default button-previous pull-right">
+                            <i class="fa fa-angle-left"></i> 上一步 </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tabbable-line tabbable-custom-profile" data-ng-include="'packages/auxpolice/views/com/modify/tables.html'+cacheVersion"></div>
     </div>
 </div>
+

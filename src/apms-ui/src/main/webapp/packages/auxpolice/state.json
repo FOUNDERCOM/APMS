@@ -20,7 +20,8 @@
 
             "packages/auxpolice/js/apply/AuxApplyListCtrl.js",
             "packages/auxpolice/js/apply/AuxApplyModifyCtrl.js",
-            "packages/auxpolice/js/apply/AuxApplyViewCtrl.js"
+            "packages/auxpolice/js/apply/AuxApplyViewCtrl.js",
+            "packages/auxpolice/js/com/AuxModifyCtrl.js"
         ]
     },
     "aux_approve": {
@@ -73,11 +74,14 @@
             "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
             "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
 
+            "resources/global/plugins/id-card-validator.js",
+
             "packages/com/js/UploadPhotoCtrl.js",
 
             "packages/auxpolice/js/mgmt/AuxMgmtListCtrl.js",
             "packages/auxpolice/js/mgmt/AuxMgmtModifyCtrl.js",
-            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js"
+            "packages/auxpolice/js/mgmt/AuxMgmtViewCtrl.js",
+            "packages/auxpolice/js/com/AuxModifyCtrl.js"
         ]
     },
     "aux_all": {
@@ -95,11 +99,14 @@
             "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
             "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
 
+            "resources/global/plugins/id-card-validator.js",
+
             "packages/com/js/UploadPhotoCtrl.js",
 
             "packages/auxpolice/js/mgmtall/AuxMgmtallListCtrl.js",
             "packages/auxpolice/js/mgmtall/AuxMgmtallModifyCtrl.js",
-            "packages/auxpolice/js/mgmtall/AuxMgmtallViewCtrl.js"
+            "packages/auxpolice/js/mgmtall/AuxMgmtallViewCtrl.js",
+            "packages/auxpolice/js/com/AuxModifyCtrl.js"
         ]
     }
 }
