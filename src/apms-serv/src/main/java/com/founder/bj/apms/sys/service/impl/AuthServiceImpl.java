@@ -166,7 +166,7 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(readOnly = true)
     public List<SysFunc> queryAllFunc() {
         //noinspection unchecked
-        final List<SysFunc> result = em.createQuery("from SysFunc where id <> ''-9999999'' order by id desc").getResultList();
+        final List<SysFunc> result = em.createQuery("from SysFunc where id <> '-9999999' order by id").getResultList();
         for (SysFunc item : result) {
             item.setLevel(traceLevel(item));
         }
