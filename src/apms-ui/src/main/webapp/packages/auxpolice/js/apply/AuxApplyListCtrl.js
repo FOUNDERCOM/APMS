@@ -118,6 +118,7 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
                                 id: item.id
                             },
                             success: function () {
+                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
                                 $scope.load();
                             }
                         });
@@ -218,15 +219,29 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
      * @param method 方法
      */
     $scope.take = function(item, method) {
-        $ajaxCall.post({
-            data : {
-                controller: "AuxController",
-                method: method,
-                id: item.id
-            },
-            success: function() {
-                $scope.load();
+    	bootbox.dialog({
+            title: "请确认",
+            message: "是否确认上报该辅警？",
+            buttons: {
+                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                danger: {
+                    label: " 提  交 ！ ",
+                    className: "fa fa-check red",
+                    callback: function () {
+                    	$ajaxCall.post({
+                            data : {
+                                controller: "AuxController",
+                                method: method,
+                                id: item.id
+                            },
+                            success: function() {
+                            	alert("上报辅警数据成功！");
+                                $scope.load();
+                            }
+                        });
+                    }
+                }
             }
         });
-    }
+    };
 }]);

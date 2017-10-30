@@ -113,6 +113,7 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
                                 id: item.id
                             },
                             success: function () {
+                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
                                 $scope.load();
                             }
                         });

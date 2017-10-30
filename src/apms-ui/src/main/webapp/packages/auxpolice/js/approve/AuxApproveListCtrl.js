@@ -84,6 +84,7 @@ angular.module('WebApp').controller('AuxApproveListCtrl', ['$rootScope', '$scope
                 id: item.id
             },
             success: function() {
+            	alert("数据操作成功！");
                 $scope.load();
             }
         });

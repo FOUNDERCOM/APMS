@@ -24,7 +24,7 @@
 angular.module("WebApp").service("$listService", ["$http", function($http) {
     var $scopeLocal = {};
     // default pagination configuration list
-    var pageSizeList = [5, 10, 30, 50];
+    var pageSizeList = [10, 30, 50];
     // default pagination options
     var defaultOptions = {
         pageSize: pageSizeList[0],

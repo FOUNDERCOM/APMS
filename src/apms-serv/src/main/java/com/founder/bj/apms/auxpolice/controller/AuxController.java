@@ -128,6 +128,21 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
         entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
         infoService.create(entity);
     }
+    
+    public void createPass() throws ServiceException {
+        final AuxInfo entity = workDTO.convertJsonToBeanByKey("entity", AuxInfo.class);
+
+        entity.setIsEnabled(true);
+
+        entity.setLastUpdateUser(new SysUser());
+        entity.getLastUpdateUser().setId(sessionDTO.currentToken().user().getId());
+        entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
+        entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
+        String id = infoService.create(entity);
+        
+        flowService.pass(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
+        		id);
+    }
 
     @Override
     public void update() throws ServiceException {

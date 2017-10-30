@@ -395,7 +395,9 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd"));
         entity.setLastUpdateIp(ip);
-
+        if(isEnabled){
+          entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
+        }
         entity.setIsEnabled(isEnabled);
     }
 

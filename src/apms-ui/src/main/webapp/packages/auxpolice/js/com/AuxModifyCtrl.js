@@ -313,7 +313,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$rootScope', '$scope', "$
             $ajaxCall.post({
                 data : {
                     controller: "AuxController",
-                    method: $scope.method,
+                    method: ($scope.method === "create" && $state.current.name !== 'aux_apply')?"createPass":$scope.method,
                     entity : JSON.stringify($scope.entity)
                 },
                 success: function() {
