@@ -5,6 +5,7 @@
 
 # Package Files #
 *.jar
+!**/src/setup/common/tomcat/lib/*.jar
 *.war
 *.ear
 
@@ -33,5 +34,7 @@ rebel.xml
 **/files/download
 **/workspace/run
 **/setup/temp
-**/dev
+**/src/dev
 **/workspace
+
+doc/03.demo/dev
