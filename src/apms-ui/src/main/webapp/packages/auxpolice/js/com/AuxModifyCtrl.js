@@ -154,7 +154,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
         } else if (idx === 3) {
             // file
             if ($scope.entity.fileList.length === 0) {
-                message += "请至少上传一个证明文件。";
+//                message += "请至少上传一个证明文件。";
             } else {
                 $.each($scope.entity.fileList, function(key, data) {
                     if (data.name === undefined || data.name.length === 0) {
@@ -331,10 +331,11 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                     entity : JSON.stringify($scope.entity)
                 },
                 success: function() {
+                	alert("注册辅警信息成功！");
                     $scope.$emit("submitted");
+                    $(".modal").modal('hide');
                 }
             });
-            $(".modal").modal('hide');
         };
 
         var confirm = function() {

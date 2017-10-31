@@ -76,7 +76,8 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
 
     $scope.condition = {
         isEnabled: true,
-        station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}
+        station: {id: $rootScope.token['user']['org']['id']}
+//        station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}
     };
     $listService.init($scope, {
         "controller": "AuxController",
