@@ -80,7 +80,19 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Override
     public List<AuxInfo> query(AuxInfo condition, Integer start, Integer limit) {
-        String hql = " from AuxInfo i";
+        String hql = " select i.id from AuxInfo i";
+
+        hql += makeQuery(condition, null);
+
+        final Query query = em.createQuery(hql);
+        query.setFirstResult(start).setMaxResults(limit > 0 ? limit : Integer.MAX_VALUE);
+
+        makeQuery(condition, query);
+
+        //noinspection unchecked
+        final List<String> idList = query.getResultList();
+
+        hql = "from AuxInfo i";
         hql += " left join fetch i.station";
         hql += " left join fetch i.station.bureau";
         hql += " left join fetch i.sex";
@@ -99,16 +111,10 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.fileList";
         hql += " left join fetch i.appraiseList";
         hql += " left join fetch i.status";
-
-        hql += makeQuery(condition, null);
-
-        final Query query = em.createQuery(hql);
-        query.setFirstResult(start).setMaxResults(limit > 0 ? limit : Integer.MAX_VALUE);
-
-        makeQuery(condition, query);
+        hql += " where i.id in (:idList)";
 
         //noinspection unchecked
-        return query.getResultList();
+        return em.createQuery(hql).setParameter("idList", idList).getResultList();
     }
 
     /**
