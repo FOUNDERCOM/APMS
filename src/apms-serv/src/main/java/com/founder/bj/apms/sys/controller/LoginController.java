@@ -84,4 +84,11 @@ public class LoginController extends AbstractControllerSupport {
         workDTO.put("funcs", sessionDTO.currentToken().funcs());
         workDTO.put("funcTree", sessionDTO.currentToken().funcTree());
     }
+
+    /**
+     * 保持连接.
+     */
+    public void keepAlive() {
+        // do nothing
+    }
 }
