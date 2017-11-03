@@ -19,8 +19,11 @@
 
 package com.founder.bj.apms.auxpolice.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -112,9 +115,23 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.appraiseList";
         hql += " left join fetch i.status";
         hql += " where i.id in (:idList)";
-
+        
         //noinspection unchecked
-        return em.createQuery(hql).setParameter("idList", idList).getResultList();
+        List<AuxInfo> list = idList.size() == 0?Collections.EMPTY_LIST:em.createQuery(hql).setParameter("idList", idList).getResultList();
+        //清理重复辅警
+        int size = list.size();
+        if(size != 0){
+        	HashMap<String, AuxInfo> map = new HashMap<String, AuxInfo>();
+        	for (int i = 0; i < size; i++) {
+        		map.put(list.get(i).getId(), list.get(i));
+    		}
+        	
+        	list = new ArrayList<AuxInfo>();
+        	for(String key : map.keySet()){
+        		list.add(map.get(key));
+        	}
+        }
+        return list;
     }
 
     /**
