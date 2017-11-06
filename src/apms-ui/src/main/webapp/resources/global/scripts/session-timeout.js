@@ -33,8 +33,8 @@ var SessionTimeout = function () {
             keepAliveUrl: 'mvc/dispatch?controller=LoginController&method=keepAlive',
             redirUrl: 'login.html',
             logoutUrl: 'login.html',
-            warnAfter: 15000, // warn after 5 seconds
-            redirAfter: 300000, // redirect after 10 seconds,
+            warnAfter: 300000, // warn after 5 seconds
+            redirAfter: 15000, // redirect after 10 seconds,
             ignoreUserActivity: true,
             countdownMessage: '即将在 {timer} 秒后自动退出.',
             countdownBar: true
