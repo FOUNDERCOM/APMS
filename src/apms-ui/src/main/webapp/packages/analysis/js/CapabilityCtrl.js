@@ -172,85 +172,109 @@ angular.module('WebApp').controller('CapabilityCtrl', ['$rootScope', '$scope', "
             "value": Math.round(sum*100/data[i].length)/100
         });
     }
-
-    var chart2 = AmCharts.makeChart("chart_0", {
-        type: "serial",
-        fontSize: 12,
-        fontFamily: "Open Sans",
-        dataDateFormat: "YYYY-MM-DD",
-        dataProvider: $scope.point,
-
-        addClassNames: true,
-        startDuration: 1,
-        color: "#6c7b88",
-        marginLeft: 10,
-        marginRight: 10,
-
-        categoryField: "date",
-        categoryAxis: {
-            parseDates: false,
-            minPeriod: "DD",
-            autoGridCount: false,
-            gridCount: 50,
-            gridAlpha: 0.1,
-            gridColor: "#FFFFFF",
-            axisColor: "#555555",
-            dateFormats: [{
-                period: 'DD',
-                format: 'DD'
-            }, {
-                period: 'WW',
-                format: 'MMM DD'
-            }, {
-                period: 'MM',
-                format: 'MMM'
-            }, {
-                period: 'YYYY',
-                format: 'YYYY'
-            }]
+    var chart_0 = AmCharts.makeChart("chart_0", {
+        "type": "serial",
+        "theme": "light",
+        "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "useGraphSettings": true,
+            "markerSize": 10
         },
-
-        valueAxes: [{
-            id: "a1",
-            title: "额定工资",
-            gridAlpha: 0,
-            axisAlpha: 0
+        "dataProvider": [{
+            "year": 2003,
+            "europe": 100,
+            "namerica": 2.5,
+            "asia": 2.1
         }, {
-            id: "a2",
-            position: "right",
-            gridAlpha: 0,
-            axisAlpha: 0,
-            labelsEnabled: false
+            "year": 2004,
+            "europe": 2.6,
+            "namerica": 2.7,
+            "asia": 2.2,
+            "lamerica": 0.3,
+            "meast": 0.3,
+            "africa": 0.1
+        }, {
+            "year": 2005,
+            "europe": 2.8,
+            "namerica": 2.9,
+            "asia": 2.4,
+            "lamerica": 0.3,
+            "meast": 0.3,
+            "africa": 0.1
         }],
-        graphs: [{
-            id: "g1",
-            valueField: "value",
-            title: "平均分",
-            type: "column",
-            fillAlphas: 0.4,
-            valueAxis: "a1",
-            balloonText: "[[value]] 分",
-            legendValueText: "[[value]] 分",
-            legendPeriodValueText: "平均分: [[value.sum]] 分",
-            lineColor: "#E87E04",
-            alphaField: "alpha"
+        "valueAxes": [{
+            "stackType": "regular",
+            "axisAlpha": 0.3,
+            "gridAlpha": 0
         }],
-
-        chartCursor: {
-            zoomable: false,
-            categoryBalloonDateFormat: "DD",
-            cursorAlpha: 0,
-            categoryBalloonColor: "#e26a6a",
-            categoryBalloonAlpha: 0.8,
-            valueBalloonsEnabled: false
+        "graphs": [{
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "Europe",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "europe"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "North America",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "namerica"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "Asia-Pacific",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "asia"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "Latin America",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "lamerica"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "Middle-East",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "meast"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "Africa",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "africa"
+        }],
+        "categoryField": "year",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0,
+            "position": "left"
         },
-        legend: {
-            bulletType: "round",
-            equalWidths: false,
-            valueWidth: 120,
-            useGraphSettings: true,
-            color: "#6c7b88"
+        "export": {
+            "enabled": true
         }
+
     });
 
     for (i = 0; i < data.length; i++) {

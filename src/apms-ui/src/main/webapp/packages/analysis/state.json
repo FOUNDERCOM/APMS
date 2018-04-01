@@ -9,6 +9,8 @@
         "templateUrl": "packages/analysis/views/capability.html",
         "controller": "CapabilityCtrl",
         "files": [
+            "packages/analysis/js/CapabilityEduCtrl.js",
+            "packages/analysis/js/CapabilityAgeCtrl.js",
             "packages/analysis/js/CapabilityCtrl.js"
         ]
     },

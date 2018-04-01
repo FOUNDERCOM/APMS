@@ -28,6 +28,11 @@
             <i class="fa fa-briefcase"></i> {{entity['job']}}
         </a>
     </li>
+    <li bs-tooltip data-title="职级">
+        <a href="javascript:">
+            <i class="fa fa-briefcase"></i> 职级：{{entity['jobLevel']}} 级
+        </a>
+    </li>
     <li bs-tooltip data-title="住址">
         <a href="javascript:">
             <i class="fa fa-map-marker"></i>{{entity['addProvince']}} {{entity['addCity']}} {{entity['addCountry']}} {{entity['addDetail']}} </a>

@@ -151,6 +151,10 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_JOB")
     private String job;
 
+    /** Job Level. */
+    @Column(name = "AUX_JOB_LEVEL")
+    private Integer jobLevel;
+
     /** Join date. */
     @Column(name = "AUX_JOIN_DATE")
     private String joinDate;
@@ -579,6 +583,24 @@ public class AuxInfo implements Serializable {
      */
     public void setJob(String job) {
         this.job = job;
+    }
+
+    /**
+     * Get the jobLevel.
+     *
+     * @return return the jobLevel
+     */
+    public Integer getJobLevel() {
+        return jobLevel;
+    }
+
+    /**
+     * Set jobLevel.
+     *
+     * @param jobLevel the jobLevel to set
+     */
+    public void setJobLevel(Integer jobLevel) {
+        this.jobLevel = jobLevel;
     }
 
     /**

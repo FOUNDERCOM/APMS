@@ -19,6 +19,9 @@
 
 package com.founder.bj.apms.analysis.service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Description: TODO.<br>
  * Created by Jimmybly Lee on 2017/10/10.
@@ -30,4 +33,9 @@ public interface AnalysisService {
     Integer getDegreeNum();
     Integer getAvgSalary();
     Integer getGoodPern();
+    List<Map<String, Map<String, Integer>>> getBureauEduStatistics();
+    List<Map<String, Map<String, Integer>>> getStationEduStatistics(String bureauId);
+
+    List<Map<String, Map<String, Integer>>> getBureauAgeStatistics();
+    List<Map<String, Map<String, Integer>>> getStationAgeStatistics(String bureauId);
 }

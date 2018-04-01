@@ -115,7 +115,8 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.appraiseList";
         hql += " left join fetch i.status";
         hql += " where i.id in (:idList)";
-        
+//        hql += " order by i.station.id";
+
         //noinspection unchecked
         List<AuxInfo> list = idList.size() == 0?Collections.EMPTY_LIST:em.createQuery(hql).setParameter("idList", idList).getResultList();
         //清理重复辅警
@@ -125,7 +126,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         	for (int i = 0; i < size; i++) {
         		map.put(list.get(i).getId(), list.get(i));
     		}
-        	
+
         	list = new ArrayList<AuxInfo>();
         	for(String key : map.keySet()){
         		list.add(map.get(key));

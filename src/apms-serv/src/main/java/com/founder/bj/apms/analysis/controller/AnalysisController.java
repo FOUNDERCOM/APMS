@@ -47,4 +47,32 @@ public class AnalysisController extends AbstractControllerSupport {
         workDTO.put("degreeNum", service.getDegreeNum());
         workDTO.put("goodPern", service.getGoodPern());
     }
+
+    /**
+     * 分局级别统计教育.
+     */
+    public void getBureauEduStatistics() {
+        workDTO.setResult(service.getBureauEduStatistics());
+    }
+
+    /**
+     * 分局级别统计教育.
+     */
+    public void getStationEduStatistics() {
+        workDTO.setResult(service.getStationEduStatistics(workDTO.<String>get("bureauId")));
+    }
+
+    /**
+     * 分局级别统计年龄段.
+     */
+    public void getBureauAgeStatistics() {
+        workDTO.setResult(service.getBureauAgeStatistics());
+    }
+
+    /**
+     * 分局级别统计年龄段.
+     */
+    public void getStationAgeStatistics() {
+        workDTO.setResult(service.getStationAgeStatistics(workDTO.<String>get("bureauId")));
+    }
 }
