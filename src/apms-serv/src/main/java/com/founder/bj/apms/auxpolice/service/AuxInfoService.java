@@ -44,6 +44,13 @@ public interface AuxInfoService {
     /**
      * Query by condition.
      * @param condition condition dto
+     * @return list of entities
+     */
+    List<AuxInfo> queryAll(AuxInfo condition);
+
+    /**
+     * Query by condition.
+     * @param condition condition dto
      * @param start page start.
      * @param limit page limit, if it's greater than 0
      * @return list of entities

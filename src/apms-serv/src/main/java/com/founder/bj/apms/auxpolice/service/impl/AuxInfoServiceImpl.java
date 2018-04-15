@@ -82,6 +82,36 @@ public class AuxInfoServiceImpl implements AuxInfoService {
     }
 
     @Override
+    public List<AuxInfo> queryAll(AuxInfo condition) {
+        String hql = "";
+        hql = "from AuxInfo i";
+        hql += " left join fetch i.station";
+        hql += " left join fetch i.station.bureau";
+        hql += " left join fetch i.oldIdentity";
+        hql += " left join fetch i.sex";
+        hql += " left join fetch i.nation";
+        hql += " left join fetch i.health";
+        hql += " left join fetch i.politicalStatus";
+        hql += " left join fetch i.eduDegree";
+        hql += " where i.isEnabled = true";
+
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            hql += " and i.station.bureau.id = :bureauId";
+        }
+
+        hql += " order by i.station.bureau.id, i.station.id, i.age";
+
+        //noinspection unchecked
+        Query query = em.createQuery(hql);
+        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
+            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+            query.setParameter("bureauId", condition.getStation().getBureau().getId());
+        }
+        return query.getResultList();
+    }
+
+    @Override
     public List<AuxInfo> query(AuxInfo condition, Integer start, Integer limit) {
         String hql = " select i.id from AuxInfo i";
 
