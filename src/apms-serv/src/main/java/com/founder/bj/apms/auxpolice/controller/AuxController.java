@@ -128,7 +128,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
         entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
         infoService.create(entity);
     }
-    
+
     public void createPass() throws ServiceException {
         final AuxInfo entity = workDTO.convertJsonToBeanByKey("entity", AuxInfo.class);
 
@@ -139,7 +139,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
         entity.setLastUpdateIp(ClientIPUtils.getClientIp(servletRequest));
         String id = infoService.create(entity);
-        
+
         flowService.pass(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
         		id);
     }
@@ -219,7 +219,9 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     public void changeSalary() {
         infoService.changeSalary(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.<String>get("id"), workDTO.getInteger("salary"));
+            workDTO.<String>get("id"), workDTO.getInteger("salaryBase"), workDTO.getInteger("salaryBonus"),
+            workDTO.getInteger("salaryTax"), workDTO.getInteger("salarySSS"), workDTO.getInteger("salarySFund"),
+            workDTO.getInteger("salaryCSS"), workDTO.getInteger("salaryCFund"));
     }
 
     /**
@@ -240,7 +242,7 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             wb = new HSSFWorkbook();
             final HSSFSheet sheet;
 
-            sheet = wb.createSheet("发电量信息");
+            sheet = wb.createSheet("工资信息");
             sheet.setRowSumsBelow(false);
 
             int count = 0;
@@ -250,7 +252,15 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             row.createCell(2).setCellValue("名称");
             row.createCell(3).setCellValue("性别");
             row.createCell(4).setCellValue("身份证号");
-            row.createCell(5).setCellValue("工资");
+            row.createCell(5).setCellValue("基本工资");
+            row.createCell(6).setCellValue("绩效奖金");
+            row.createCell(7).setCellValue("所得税");
+            row.createCell(8).setCellValue("个付社保");
+            row.createCell(9).setCellValue("个付公积金");
+            row.createCell(10).setCellValue("司付社保");
+            row.createCell(11).setCellValue("司付公积金");
+            row.createCell(12).setCellValue("实发工资");
+            row.createCell(13).setCellValue("司付工资");
 
             for (AuxInfo item : result) {
                 row = sheet.createRow(count++);
@@ -259,7 +269,15 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
                 row.createCell(2).setCellValue(item.getName());
                 row.createCell(3).setCellValue(item.getSex().getValue());
                 row.createCell(4).setCellValue(item.getIdentityCard());
-                row.createCell(5).setCellValue(item.getSalary());
+                row.createCell(5).setCellValue(ObjectUtils.isEmpty(item.getSalaryBase()) ? 0 : item.getSalaryBase());
+                row.createCell(6).setCellValue(ObjectUtils.isEmpty(item.getSalaryBonus()) ? 0 : item.getSalaryBonus());
+                row.createCell(7).setCellValue(ObjectUtils.isEmpty(item.getSalaryTax()) ? 0 : item.getSalaryTax());
+                row.createCell(8).setCellValue(ObjectUtils.isEmpty(item.getSalarySSS()) ? 0 : item.getSalarySSS());
+                row.createCell(9).setCellValue(ObjectUtils.isEmpty(item.getSalarySFund()) ? 0 : item.getSalarySFund());
+                row.createCell(10).setCellValue(ObjectUtils.isEmpty(item.getSalaryCSS()) ? 0 : item.getSalaryCSS());
+                row.createCell(11).setCellValue(ObjectUtils.isEmpty(item.getSalaryCFund()) ? 0 : item.getSalaryCFund());
+                row.createCell(12).setCellValue(ObjectUtils.isEmpty(item.getSalarySGet()) ? 0 : item.getSalarySGet());
+                row.createCell(13).setCellValue(ObjectUtils.isEmpty(item.getSalaryCPay()) ? 0 : item.getSalaryCPay());
             }
 
             super.servletResponse.setContentType("application/x-excel");

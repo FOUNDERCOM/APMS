@@ -257,14 +257,6 @@ public class AuxInfoServiceImpl implements AuxInfoService {
                 query.setParameter("joinDate", DateUtils.format(c.getTime(), "yyyy-MM-dd"));
             }
         }
-        // 薪资
-        if (!ObjectUtils.isEmpty(condition.getSalary())) {
-            hql += " and i.salary > :salary";
-
-            if (!ObjectUtils.isEmpty(query)) {
-                query.setParameter("salary", condition.getSalary());
-            }
-        }
         // 薪资是否正常
         if (!ObjectUtils.isEmpty(condition.getIsSalaryNormal())) {
             hql += " and i.isSalaryNormal = :isSalaryNormal";
@@ -319,7 +311,13 @@ public class AuxInfoServiceImpl implements AuxInfoService {
     @Override
     public String create(AuxInfo entity) throws ServiceException {
         entity.setIsEnabled(true);
-        entity.setSalary(0);
+        entity.setSalaryBase(0);
+        entity.setSalaryBonus(0);
+        entity.setSalaryTax(0);
+        entity.setSalarySSS(0);
+        entity.setSalarySFund(0);
+        entity.setSalaryCSS(0);
+        entity.setSalaryCFund(0);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
 
         validate(entity);
@@ -420,7 +418,6 @@ public class AuxInfoServiceImpl implements AuxInfoService {
             Assert.notNull(entity.getAddCountry(), "住地县/街道不能为空。");
             Assert.notNull(entity.getAddDetail(), "住地详址不能为空。");
             Assert.notNull(entity.getAddPostcode(), "住地邮编不能为空。");
-            Assert.notNull(entity.getSalary(), "薪资不能为空。");
 
             Assert.notNull(entity.getPhoto());
             Assert.notNull(entity.getStatus());
@@ -455,14 +452,23 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public void changeSalary(Token token, String ip, String id, Integer salary) {
+    public void changeSalary(Token token, String ip, String id, Integer base, Integer bonus, Integer tax, Integer sss, Integer sFund, Integer css, Integer cFund) {
         final AuxInfo entity = get(id);
 
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd"));
         entity.setLastUpdateIp(ip);
 
-        entity.setSalary(salary);
+        entity.setSalaryBase(base);
+        entity.setSalaryBonus(bonus);
+        entity.setSalaryTax(tax);
+        entity.setSalarySSS(sss);
+        entity.setSalarySFund(sFund);
+        entity.setSalaryCSS(css);
+        entity.setSalaryCFund(cFund);
+
+        entity.setSalarySGet(base + bonus - tax - sss - sFund);
+        entity.setSalaryCPay(base + bonus + css + cFund);
     }
 
     @Override

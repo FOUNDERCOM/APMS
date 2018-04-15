@@ -75,4 +75,18 @@ public class AnalysisController extends AbstractControllerSupport {
     public void getStationAgeStatistics() {
         workDTO.setResult(service.getStationAgeStatistics(workDTO.<String>get("bureauId")));
     }
+
+    /**
+     * 分局级别统计数据完善情况.
+     */
+    public void getBureauPerStatistics() {
+        workDTO.setResult(service.getBureauPerStatistics());
+    }
+
+    /**
+     * 分局级别统计数据完善情况.
+     */
+    public void getStationPerStatistics() {
+        workDTO.setResult(service.getStationPerStatistics(workDTO.<String>get("bureauId")));
+    }
 }

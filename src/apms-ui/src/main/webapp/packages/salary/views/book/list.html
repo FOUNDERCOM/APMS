@@ -30,7 +30,7 @@
         </div>
         <div class="actions">
             <!--suppress HtmlUnknownTarget -->
-            <a href="mvc/dispatch?controller=AuxController&method=exportSalary" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出</a>
+            <a href="mvc/dispatch?controller=AuxController&method=exportSalary" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出工资报表</a>
         </div>
     </div>
     <div class="portlet-body">
@@ -43,7 +43,15 @@
                         <th class="text-center wid100px">姓名</th>
                         <th class="text-center wid100px">性别</th>
                         <th class="text-center wid260px">身份证号</th>
-                        <th class="text-center wid220px">工资</th>
+                        <th class="text-center wid90px">基本工资</th>
+                        <th class="text-center wid90px">绩效奖金</th>
+                        <th class="text-center wid90px">所得税</th>
+                        <th class="text-center wid90px">个付社保</th>
+                        <th class="text-center wid90px">个付公积金</th>
+                        <th class="text-center wid90px">司付社保</th>
+                        <th class="text-center wid90px">司付公积金</th>
+                        <th class="text-center wid90px">实付工资</th>
+                        <th class="text-center wid90px">司付总额</th>
                     </tr>
                 </thead>
 
@@ -54,7 +62,15 @@
                         <td class="text-center wid100px">{{item['name']}}</td>
                         <td class="text-center wid100px">{{item['sex']['value']}}</td>
                         <td class="text-center wid100px">{{item['identityCard']}}</td>
-                        <td class="text-center wid160px">{{item['salary']}}</td>
+                        <td class="text-center">{{item['salaryBase'] ? item['salaryBase'] : 0}}</td>
+                        <td class="text-center">{{item['salaryBonus'] ? item['salaryBonus'] : 0}}</td>
+                        <td class="text-center">{{item['salaryTax'] ? item['salaryTax'] : 0}}</td>
+                        <td class="text-center">{{item['salarySSS'] ? item['salarySSS'] : 0}}</td>
+                        <td class="text-center">{{item['salarySFund'] ? item['salarySFund'] : 0}}</td>
+                        <td class="text-center">{{item['salaryCSS'] ? item['salaryCSS'] : 0}}</td>
+                        <td class="text-center">{{item['salaryCFund'] ? item['salaryCFund'] : 0}}</td>
+                        <td class="text-center">{{item['salarySGet'] ? item['salarySGet'] : 0}}</td>
+                        <td class="text-center">{{item['salaryCPay'] ? item['salaryCPay'] : 0}}</td>
                     </tr>
                 </tbody>
             </table>

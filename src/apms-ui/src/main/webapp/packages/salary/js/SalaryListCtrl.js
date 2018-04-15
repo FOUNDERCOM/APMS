@@ -62,11 +62,24 @@ angular.module('WebApp').controller('SalaryListCtrl', ['$rootScope', '$scope', "
                 controller: "AuxController",
                 method: 'changeSalary',
                 id: aux.id,
-                salary: aux.salary
+                salaryBase: aux.salaryBase,
+                salaryBonus: aux.salaryBonus,
+                salaryTax: aux.salaryTax,
+                salarySSS: aux.salarySSS,
+                salarySFund: aux.salarySFund,
+                salaryCSS: aux.salaryCSS,
+                salaryCFund: aux.salaryCFund,
+                salarySGet: aux.salarySGet,
+                salaryCPay: aux.salaryCPay
             },
             success: function() {
                 $scope.load();
             }
         });
-    }
+    };
+
+    $scope.computeSalary = function(aux) {
+        aux.salarySGet = parseInt(aux.salaryBase) + parseInt(aux.salaryBonus) - parseInt(aux.salaryTax) - parseInt(aux.salarySSS) - parseInt(aux.salarySFund);
+        aux.salaryCPay = parseInt(aux.salaryBase) + parseInt(aux.salaryBonus) + parseInt(aux.salaryCSS) + parseInt(aux.salaryCFund);
+    };
 }]);

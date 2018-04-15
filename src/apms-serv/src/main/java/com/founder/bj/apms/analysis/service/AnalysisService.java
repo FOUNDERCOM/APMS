@@ -38,4 +38,8 @@ public interface AnalysisService {
 
     List<Map<String, Map<String, Integer>>> getBureauAgeStatistics();
     List<Map<String, Map<String, Integer>>> getStationAgeStatistics(String bureauId);
+
+    /* 数据完善程度统计。算法：只统计非必选项，然后求差。 */
+    List<Map<String, Double>> getBureauPerStatistics();
+    List<Map<String, Double>> getStationPerStatistics(String bureauId);
 }

@@ -194,9 +194,41 @@ public class AuxInfo implements Serializable {
     private SysDict status;
     // CSON: LineLength
 
-    /** Salary. */
-    @Column(name = "AUX_SALARY")
-    private Integer salary;
+    /** Salary 基本工资. */
+    @Column(name = "AUX_SALARY_BASE")
+    private Integer salaryBase;
+
+    /** Salary 奖金. */
+    @Column(name = "AUX_SALARY_BONUS")
+    private Integer salaryBonus;
+
+    /** Salary 所得税. */
+    @Column(name = "AUX_SALARY_TAX")
+    private Integer salaryTax;
+
+    /** Salary 个付社保. */
+    @Column(name = "AUX_SALARY_S_SS")
+    private Integer salarySSS;
+
+    /** Salary 个付公积金. */
+    @Column(name = "AUX_SALARY_S_FUND")
+    private Integer salarySFund;
+
+    /** Salary 司付社保. */
+    @Column(name = "AUX_SALARY_C_SS")
+    private Integer salaryCSS;
+
+    /** Salary 司付公积金. */
+    @Column(name = "AUX_SALARY_C_FUND")
+    private Integer salaryCFund;
+
+    /** Salary 实发工资. */
+    @Column(name = "AUX_SALARY_S_GET")
+    private Integer salarySGet;
+
+    /** Salary 司付工资. */
+    @Column(name = "AUX_SALARY_C_PAY")
+    private Integer salaryCPay;
 
     /** 是否是正常工资 .*/
     @Formula("(SELECT CASE WHEN (AUX_SALARY = B.BUREAU_STD_SALARY) THEN 1 ELSE 0 END FROM APMS_DEPT_BUREAU B, APMS_DEPT_STATION S WHERE B.BUREAU_ID = S.BUREAU_ID AND S.STATION_ID = STATION_ID)")
@@ -766,21 +798,165 @@ public class AuxInfo implements Serializable {
     }
 
     /**
-     * Get the salary.
+     * Get the salaryBase.
      *
-     * @return return the salary
+     * @return return the salaryBase
      */
-    public Integer getSalary() {
-        return salary;
+    public Integer getSalaryBase() {
+        return salaryBase;
     }
 
     /**
-     * Set salary.
+     * Set salaryBase.
      *
-     * @param salary the salary to set
+     * @param salaryBase the salaryBase to set
      */
-    public void setSalary(Integer salary) {
-        this.salary = salary;
+    public void setSalaryBase(Integer salaryBase) {
+        this.salaryBase = salaryBase;
+    }
+
+    /**
+     * Get the salaryBonus.
+     *
+     * @return return the salaryBonus
+     */
+    public Integer getSalaryBonus() {
+        return salaryBonus;
+    }
+
+    /**
+     * Set salaryBonus.
+     *
+     * @param salaryBonus the salaryBonus to set
+     */
+    public void setSalaryBonus(Integer salaryBonus) {
+        this.salaryBonus = salaryBonus;
+    }
+
+    /**
+     * Get the salaryTax.
+     *
+     * @return return the salaryTax
+     */
+    public Integer getSalaryTax() {
+        return salaryTax;
+    }
+
+    /**
+     * Set salaryTax.
+     *
+     * @param salaryTax the salaryTax to set
+     */
+    public void setSalaryTax(Integer salaryTax) {
+        this.salaryTax = salaryTax;
+    }
+
+    /**
+     * Get the salarySSS.
+     *
+     * @return return the salarySSS
+     */
+    public Integer getSalarySSS() {
+        return salarySSS;
+    }
+
+    /**
+     * Set salarySSS.
+     *
+     * @param salarySSS the salarySSS to set
+     */
+    public void setSalarySSS(Integer salarySSS) {
+        this.salarySSS = salarySSS;
+    }
+
+    /**
+     * Get the salarySFund.
+     *
+     * @return return the salarySFund
+     */
+    public Integer getSalarySFund() {
+        return salarySFund;
+    }
+
+    /**
+     * Set salarySFund.
+     *
+     * @param salarySFund the salarySFund to set
+     */
+    public void setSalarySFund(Integer salarySFund) {
+        this.salarySFund = salarySFund;
+    }
+
+    /**
+     * Get the salaryCSS.
+     *
+     * @return return the salaryCSS
+     */
+    public Integer getSalaryCSS() {
+        return salaryCSS;
+    }
+
+    /**
+     * Set salaryCSS.
+     *
+     * @param salaryCSS the salaryCSS to set
+     */
+    public void setSalaryCSS(Integer salaryCSS) {
+        this.salaryCSS = salaryCSS;
+    }
+
+    /**
+     * Get the salaryCFund.
+     *
+     * @return return the salaryCFund
+     */
+    public Integer getSalaryCFund() {
+        return salaryCFund;
+    }
+
+    /**
+     * Set salaryCFund.
+     *
+     * @param salaryCFund the salaryCFund to set
+     */
+    public void setSalaryCFund(Integer salaryCFund) {
+        this.salaryCFund = salaryCFund;
+    }
+
+    /**
+     * Get the salarySGet.
+     *
+     * @return return the salarySGet
+     */
+    public Integer getSalarySGet() {
+        return salarySGet;
+    }
+
+    /**
+     * Set salarySGet.
+     *
+     * @param salarySGet the salarySGet to set
+     */
+    public void setSalarySGet(Integer salarySGet) {
+        this.salarySGet = salarySGet;
+    }
+
+    /**
+     * Get the salaryCPay.
+     *
+     * @return return the salaryCPay
+     */
+    public Integer getSalaryCPay() {
+        return salaryCPay;
+    }
+
+    /**
+     * Set salaryCPay.
+     *
+     * @param salaryCPay the salaryCPay to set
+     */
+    public void setSalaryCPay(Integer salaryCPay) {
+        this.salaryCPay = salaryCPay;
     }
 
     /**

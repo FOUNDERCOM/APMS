@@ -156,7 +156,9 @@ angular.module("WebApp").config(['$stateProvider', '$urlRouterProvider', functio
                 return $ocLazyLoad.load({
                     name: "WebApp",
                     files: [
-                        "packages/home/js/HomeCtrl.js" + cacheVersion
+                        "packages/home/js/HomeCtrl.js" + cacheVersion,
+                        "packages/analysis/js/CapabilityEduCtrl.js" + cacheVersion,
+                        "packages/analysis/js/CapabilityAgeCtrl.js" + cacheVersion
                     ]
                 });
             }]
