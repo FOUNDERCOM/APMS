@@ -28,7 +28,6 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
     $.getJSON("packages/auxpolice/js/com/config.json", function(data) {
         $scope.cfg = data;
     });
-
     // 入职前身份字典列表
     $ajaxCall.getDictList($scope, "OLD_IDENTITY", 'oldIdentityList');
     // 性别字典列表
@@ -72,7 +71,19 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
         }
     });
 
-    $scope.condition = {isEnabled: true, station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}};
+    if($rootScope.token['user']['org']['bureau']['id'] == $rootScope.token['user']['org']['id']){
+		$scope.condition = {isEnabled: "1"};
+		$scope.fjdw = true;
+		$scope.pcsdw = true;
+	}else if($rootScope.token['user']['org']['isManage']){
+		$scope.condition = {isEnabled: "1", station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}};
+		$scope.fjdw = false;
+		$scope.pcsdw = true;
+	}else{
+		$scope.condition = {isEnabled: "1", station: {id: $rootScope.token['user']['org']['id']}};
+		$scope.fjdw = false;
+		$scope.pcsdw = false;
+	}
     $listService.init($scope, {
         "controller": "AuxController",
         "method": "query",
@@ -87,9 +98,88 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
      * 刷新数据
      */
     $scope.load = function () {
+    	var station = $scope.condition.station;
+    	if(station == null){
+    		if($rootScope.token['user']['org']['bureau']['id'] == $rootScope.token['user']['org']['id']){
+    		}else if($rootScope.token['user']['org']['isManage']){
+    			$scope.condition.station = {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}};
+    		}else{
+    			$scope.condition.station = {id: $rootScope.token['user']['org']['id']};
+    		}
+    	}
         $scope.pageRequest.getResponse();
     };
     $scope.load();
+    
+    /**
+     * 导出花名册
+     */
+    $scope.downloadExl = function () {
+    	var station = $scope.condition.station;
+    	var href = "mvc/dispatch?controller=AuxExpController&method=exportBureauAuxInfo&isEnabled="+$scope.condition.isEnabled;
+    	if($scope.condition.name != null){
+    		href += "&name="+$scope.condition.name;
+    	}
+    	if(station != null && station.id != null){
+    		href += "&stationId="+station.id;
+    	}
+    	document.location.href = href;
+    };
+    
+    /**
+     * 导出考核模板
+     */
+    $scope.downAppraise = function () {
+    	var station = $scope.condition.station;
+    	var href = "mvc/dispatch?controller=AuxExpController&method=exportAppraise&isEnabled="+$scope.condition.isEnabled;
+    	if($scope.condition.name != null){
+    		href += "&name="+$scope.condition.name;
+    	}
+    	if(station != null && station.id != null){
+    		href += "&stationId="+station.id;
+    	}
+    	if($scope.condition.year != null && $scope.condition.year != null){
+    		href += "&year="+$scope.condition.year;
+    	}else{
+    		href += "&year="+new Date().getFullYear();
+    	}
+    	document.location.href = href;
+    };
+    
+    /**
+     * 导出考核统计
+     */
+    $scope.downAppraiseStat = function () {
+    	var href = "mvc/dispatch?controller=AuxExpController&method=exportAppraiseStat";
+    	var bool = $rootScope["token"]['user']['org']['bureau']['id'] === '-100' ? 1 : 0;
+		href += "&bool="+bool+"&bureauId="+$rootScope["token"]['user']['org']['bureau']['id'];
+    	if($scope.condition.year != null && $scope.condition.year != null){
+    		href += "&year="+$scope.condition.year;
+    	}else{
+    		href += "&year="+new Date().getFullYear();
+    	}
+    	document.location.href = href;
+    };
+    
+    /**
+     * 导出工资报表
+     */
+    $scope.downloadGzExl = function () {
+    	var station = $scope.condition.station, href = "mvc/dispatch?controller=AuxController&method=exportSalary";
+    	if($scope.condition.salarySGet !== undefined && $scope.condition.salarySGet !== null && $scope.condition.salarySGet !== ""){
+    		href += "&salarySGet="+$scope.condition.salarySGet;
+    	}
+    	if(station == null || station.id == null){
+    		try{
+    			var bureau = $scope.condition.station.bureau;
+    			href += "&bureauId="+bureau.id;
+    		}catch(e){
+    		}
+    	}else{
+    		href += "&stationId="+station.id;
+    	}
+    	document.location.href = href;
+    };
 
     /**
      * 修改给定实体的状态
@@ -97,30 +187,40 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
      * @param isEnabled 新状态
      */
     $scope.changeStatus = function (item, isEnabled) {
-        bootbox.dialog({
-            title: "请确认",
-            message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
-            buttons: {
-                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
-                danger: {
-                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
-                    className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
-                    callback: function () {
-                        $ajaxCall.post({
-                            data: {
-                                controller: "AuxController",
-                                method: isEnabled ? "resume" : "remove",
-                                id: item.id
-                            },
-                            success: function () {
-                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
-                                $scope.load();
-                            }
-                        });
-                    }
-                }
-            }
-        });
+    	if(isEnabled){
+	        bootbox.dialog({
+	            title: "请确认",
+	            message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
+	            buttons: {
+	                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+	                danger: {
+	                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
+	                    className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
+	                    callback: function () {
+	                        $ajaxCall.post({
+	                            data: {
+	                                controller: "AuxController",
+	                                method: isEnabled ? "resume" : "remove",
+	                                id: item.id
+	                            },
+	                            success: function () {
+	                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
+	                                $scope.load();
+	                            }
+	                        });
+	                    }
+	                }
+	            }
+	        });
+	    }else{
+			var scope = $("#removeAuxDiv").scope();
+	        scope.title = "注销辅警信息";
+	        scope.entity = item;
+	
+	        scope.$on("submitted", function () {
+	            $scope.load();
+	        });
+		}
     };
 
     /**
@@ -150,8 +250,9 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
             "major": "",
             "birthday": "",
             "nativePlace": "",
-            "addProvince": "",
-            "addCity": "",
+            "addProvince": "贵州省",
+            "addCity": "毕节市",
+            "addRyzt": "在职",
             "addCountry": "",
             "addDetail": "",
             "postCode": "",
@@ -183,6 +284,9 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
      * 准备修改实体
      */
     $scope.prepareToModify = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "modifyAuxploiceMgmtModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "修改辅警信息";
@@ -199,6 +303,9 @@ angular.module('WebApp').controller('AuxMgmtListCtrl', ['$rootScope', '$scope', 
      * 准备查看实体
      */
     $scope.prepareToView = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "viewAuxploiceMgmtModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "查看辅警信息";

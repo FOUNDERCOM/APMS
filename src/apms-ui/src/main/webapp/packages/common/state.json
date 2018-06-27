@@ -9,7 +9,10 @@
         "templateUrl": "packages/common/views/help/main.html",
         "controller": "BlankCtrl",
         "files": [
-            "packages/index/js/ctrls/BlankCtrl.js"
+        	"resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+            "packages/index/js/ctrls/BlankCtrl.js",
+            "packages/common/js/help/help.js"
         ]
     }
 }

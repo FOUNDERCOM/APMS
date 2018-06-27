@@ -18,6 +18,10 @@
             <i class="fa fa-envelope"></i> {{entity['mail']}}
         </a>
     </li>
+    <li bs-tooltip data-title="单位邮编">
+        <a href="javascript:">
+            <i class="fa fa-code"></i> {{entity['addPostcode']}} </a>
+    </li>
     <li bs-tooltip data-title="工作单位">
         <a href="javascript:">
             <i class="fa fa-building-o"></i> {{entity['station']['bureau']['name']}} {{entity['station']['name']}}
@@ -28,17 +32,18 @@
             <i class="fa fa-briefcase"></i> {{entity['job']}}
         </a>
     </li>
+    <li bs-tooltip data-title="人员状态">
+        <a href="javascript:">
+            <i class="fa fa-exclamation-circle"></i> {{entity['addRyzt']}} 
+        </a>
+    </li>
     <li bs-tooltip data-title="职级">
         <a href="javascript:">
-            <i class="fa fa-briefcase"></i> 职级：{{entity['jobLevel']}} 级
+            <i class="fa fa-briefcase"></i> {{entity['jobLevel']}} 级
         </a>
     </li>
     <li bs-tooltip data-title="住址">
         <a href="javascript:">
             <i class="fa fa-map-marker"></i>{{entity['addProvince']}} {{entity['addCity']}} {{entity['addCountry']}} {{entity['addDetail']}} </a>
-    </li>
-    <li bs-tooltip data-title="单位邮编">
-        <a href="javascript:">
-            <i class="fa fa-code"></i> {{entity['addPostcode']}} </a>
     </li>
 </ul>

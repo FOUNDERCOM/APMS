@@ -42,4 +42,10 @@ public interface AnalysisService {
     /* 数据完善程度统计。算法：只统计非必选项，然后求差。 */
     List<Map<String, Double>> getBureauPerStatistics();
     List<Map<String, Double>> getStationPerStatistics(String bureauId);
+    //工资经费来源
+    List<Map<String, Map<String, Integer>>> getBureauSalSorStatistics();
+    List<Map<String, Map<String, Integer>>> getStationSalSorStatistics(String bureauId);
+    //工资平均值
+    List<Map<String, Double>> getBureauSalAvgStatistics();
+    List<Map<String, Double>> getStationSalAvgStatistics(String bureauId);
 }

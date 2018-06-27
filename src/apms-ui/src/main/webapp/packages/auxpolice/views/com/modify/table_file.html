@@ -25,7 +25,25 @@
                         </div>
                     </div>
                     <div class="mt-card-content">
-                        <h3 class="mt-card-name"><input class="form-control" placeholder="请填写文件名称" ng-model="item['name']"></h3>
+                        <h3 class="mt-card-name"><!-- <input class="form-control" placeholder="请填写文件名称" ng-model="item['name']"> -->
+                        	<select class="form-control" ng-model="item['name']">
+                                <option value="聘用合同">聘用合同</option>
+                                <option value="聘用文件">聘用文件</option>
+                                <option value="领导签字同意聘用的原始资料">领导签字同意聘用的原始资料</option>
+                                <option value="工资组成明细">工资组成明细</option>
+                                <option value="保险">保险</option>
+                                <option value="同级人民政府批复同意招聘文件">同级人民政府批复同意招聘文件</option>
+                                <option value="招聘简章">招聘简章</option>
+                                <option value="报名表">报名表</option>
+                                <option value="笔试准考证">笔试准考证</option>
+                                <option value="面试准考证">面试准考证</option>
+                                <option value="政审材料">政审材料</option>
+                                <option value="政审合格证明">政审合格证明</option>
+                                <option value="学历证明材料">学历证明材料</option>
+                                <option value="培训合格证">培训合格证</option>
+                                <option value="其它">其它</option>
+                            </select>
+                        </h3>
                     </div>
                 </div>
             </div>

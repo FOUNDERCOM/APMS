@@ -75,7 +75,7 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
     });
 
     $scope.condition = {
-        isEnabled: true,
+        isEnabled: "1",
         station: {id: $rootScope.token['user']['org']['id']}
 //        station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}
     };
@@ -103,32 +103,42 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
      * @param isEnabled 新状态
      */
     $scope.changeStatus = function (item, isEnabled) {
-        bootbox.dialog({
-            title: "请确认",
-            message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
-            buttons: {
-                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
-                danger: {
-                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
-                    className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
-                    callback: function () {
-                        $ajaxCall.post({
-                            data: {
-                                controller: "AuxController",
-                                method: isEnabled ? "resume" : "remove",
-                                id: item.id
-                            },
-                            success: function () {
-                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
-                                $scope.load();
-                            }
-                        });
+    	if(isEnabled){
+    		bootbox.dialog({
+                title: "请确认",
+                message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
+                buttons: {
+                    main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                    danger: {
+                        label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
+                        className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
+                        callback: function () {
+                            $ajaxCall.post({
+                                data: {
+                                    controller: "AuxController",
+                                    method: isEnabled ? "resume" : "remove",
+                                    id: item.id
+                                },
+                                success: function () {
+                                	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
+                                    $scope.load();
+                                }
+                            });
+                        }
                     }
                 }
-            }
-        });
-    };
+            });
+    	}else{
+    		var scope = $("#removeAuxDiv").scope();
+            scope.title = "注销辅警信息";
+            scope.entity = item;
 
+            scope.$on("submitted", function () {
+                $scope.load();
+            });
+    	}
+    };
+    
     /**
      * 准备添加实体
      */
@@ -156,9 +166,10 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             "major": "",
             "birthday": "",
             "nativePlace": "",
-            "addProvince": "",
-            "addCity": "",
+            "addProvince": "贵州省",
+            "addCity": "毕节市",
             "addCountry": "",
+            "addRyzt": "在职",
             "addDetail": "",
             "postCode": "",
             "station": {
@@ -189,6 +200,9 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
      * 准备修改实体
      */
     $scope.prepareToModify = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "modifyAuxploiceApplyModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "修改辅警信息";
@@ -200,11 +214,36 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
         });
         $('#form_wizard').find('.button-first').click();
     };
+    
+    /**
+     * 准备导入实体
+     */
+    $scope.prepareToLoad = function (item) {
+        var divId = "modifyAuxploiceApplyModalDiv";
+        var scope = $("#" + divId).scope();
+        scope.title = "注册辅警信息";
+        scope.method = "create";
+        scope.entity = item;
+        scope.entity.id = null;
+        for(var i = 0; i < scope.entity.fileList.length; i++){
+        	scope.entity.fileList[i].id = null;
+        }
+        for(var i = 0; i < scope.entity.appraiseList.length; i++){
+        	scope.entity.appraiseList[i].id = null;
+        }
+        scope.$on("submitted", function () {
+            $scope.load();
+        });
+        $('#form_wizard').find('.button-first').click();
+    };
 
     /**
      * 准备查看实体
      */
     $scope.prepareToView = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "viewAuxploiceApplyModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "查看辅警信息";

@@ -206,7 +206,7 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_SALARY_TAX")
     private Integer salaryTax;
 
-    /** Salary 个付社保. */
+    /** Salary 养老保险. */
     @Column(name = "AUX_SALARY_S_SS")
     private Integer salarySSS;
 
@@ -214,9 +214,25 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_SALARY_S_FUND")
     private Integer salarySFund;
 
-    /** Salary 司付社保. */
+    /** Salary 医疗保险. */
     @Column(name = "AUX_SALARY_C_SS")
     private Integer salaryCSS;
+    
+    /** Salary 失业保险. */
+    @Column(name = "AUX_SALARY_S_SW")
+    private Integer salarySSW;
+    
+    /** Salary 生育保险. */
+    @Column(name = "AUX_SALARY_S_SY")
+    private Integer salarySSY;
+    
+    /** Salary 工伤保险. */
+    @Column(name = "AUX_SALARY_S_GS")
+    private Integer salarySGS;
+    
+    /** Salary 意外伤亡险. */
+    @Column(name = "AUX_SALARY_S_YW")
+    private Integer salarySYW;
 
     /** Salary 司付公积金. */
     @Column(name = "AUX_SALARY_C_FUND")
@@ -229,7 +245,33 @@ public class AuxInfo implements Serializable {
     /** Salary 司付工资. */
     @Column(name = "AUX_SALARY_C_PAY")
     private Integer salaryCPay;
-
+    
+    //*********新增字段*********//
+    /** Salary 岗位工资. */
+    @Column(name = "AUX_SALARY_GWGZ")
+    private Integer salaryGwgz;
+    
+    /** Salary 工龄工资. */
+    @Column(name = "AUX_SALARY_GLGZ")
+    private Integer salaryGlgz;
+    
+    /** Salary 职级工资. */
+    @Column(name = "AUX_SALARY_ZJGZ")
+    private Integer salaryZjgz;
+    
+    /** Salary 津贴. */
+    @Column(name = "AUX_SALARY_JTGZ")
+    private Integer salaryJtgz;
+    
+    /** Salary 经费来源. */
+    @Column(name = "AUX_SALARY_JFLY")
+    private String salaryJfly;
+    
+    /** Salary 人员状态. */
+    @Column(name = "AUX_RYZT")
+    private String addRyzt;
+    //*********新增字段*********//
+    
     /** 是否是正常工资 .*/
     @Formula("(SELECT CASE WHEN (AUX_SALARY = B.BUREAU_STD_SALARY) THEN 1 ELSE 0 END FROM APMS_DEPT_BUREAU B, APMS_DEPT_STATION S WHERE B.BUREAU_ID = S.BUREAU_ID AND S.STATION_ID = STATION_ID)")
     private Boolean isSalaryNormal;
@@ -263,7 +305,7 @@ public class AuxInfo implements Serializable {
 
     /** 是否启用. */
     @Column(name = "IS_ENABLED")
-    private Boolean isEnabled;
+    private String isEnabled;
 
     /** List of award. */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
@@ -868,8 +910,40 @@ public class AuxInfo implements Serializable {
     public void setSalarySSS(Integer salarySSS) {
         this.salarySSS = salarySSS;
     }
+    
+    public Integer getSalarySSW() {
+		return salarySSW;
+	}
 
-    /**
+	public void setSalarySSW(Integer salarySSW) {
+		this.salarySSW = salarySSW;
+	}
+
+	public Integer getSalarySSY() {
+		return salarySSY;
+	}
+
+	public void setSalarySSY(Integer salarySSY) {
+		this.salarySSY = salarySSY;
+	}
+
+	public Integer getSalarySGS() {
+		return salarySGS;
+	}
+
+	public void setSalarySGS(Integer salarySGS) {
+		this.salarySGS = salarySGS;
+	}
+
+	public Integer getSalarySYW() {
+		return salarySYW;
+	}
+
+	public void setSalarySYW(Integer salarySYW) {
+		this.salarySYW = salarySYW;
+	}
+
+	/**
      * Get the salarySFund.
      *
      * @return return the salarySFund
@@ -1108,7 +1182,7 @@ public class AuxInfo implements Serializable {
      *
      * @return return the isEnabled
      */
-    public Boolean getIsEnabled() {
+    public String getIsEnabled() {
         return isEnabled;
     }
 
@@ -1117,7 +1191,7 @@ public class AuxInfo implements Serializable {
      *
      * @param isEnabled the isEnabled to set
      */
-    public void setIsEnabled(Boolean isEnabled) {
+    public void setIsEnabled(String isEnabled) {
         this.isEnabled = isEnabled;
     }
 
@@ -1246,4 +1320,52 @@ public class AuxInfo implements Serializable {
     public void setAppraiseList(Set<AuxAppraise> appraiseList) {
         this.appraiseList = appraiseList;
     }
+
+	public String getAddRyzt() {
+		return addRyzt;
+	}
+
+	public void setAddRyzt(String addRyzt) {
+		this.addRyzt = addRyzt;
+	}
+
+	public Integer getSalaryGwgz() {
+		return salaryGwgz;
+	}
+
+	public void setSalaryGwgz(Integer salaryGwgz) {
+		this.salaryGwgz = salaryGwgz;
+	}
+
+	public Integer getSalaryGlgz() {
+		return salaryGlgz;
+	}
+
+	public void setSalaryGlgz(Integer salaryGlgz) {
+		this.salaryGlgz = salaryGlgz;
+	}
+
+	public Integer getSalaryZjgz() {
+		return salaryZjgz;
+	}
+
+	public void setSalaryZjgz(Integer salaryZjgz) {
+		this.salaryZjgz = salaryZjgz;
+	}
+
+	public Integer getSalaryJtgz() {
+		return salaryJtgz;
+	}
+
+	public void setSalaryJtgz(Integer salaryJtgz) {
+		this.salaryJtgz = salaryJtgz;
+	}
+
+	public String getSalaryJfly() {
+		return salaryJfly;
+	}
+
+	public void setSalaryJfly(String salaryJfly) {
+		this.salaryJfly = salaryJfly;
+	}
 }

@@ -12,6 +12,8 @@
             "packages/analysis/js/CapabilityEduCtrl.js",
             "packages/analysis/js/CapabilityAgeCtrl.js",
             "packages/analysis/js/CapabilityPerCtrl.js",
+            "packages/analysis/js/CapabilitySalAvgCtrl.js",
+            "packages/analysis/js/CapabilitySalSorCtrl.js",
             "packages/analysis/js/CapabilityCtrl.js"
         ]
     },

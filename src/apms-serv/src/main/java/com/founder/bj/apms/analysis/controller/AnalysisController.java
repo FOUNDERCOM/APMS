@@ -89,4 +89,32 @@ public class AnalysisController extends AbstractControllerSupport {
     public void getStationPerStatistics() {
         workDTO.setResult(service.getStationPerStatistics(workDTO.<String>get("bureauId")));
     }
+    
+    /**
+     * 分局级别统计工资经费来源.
+     */
+    public void getBureauSalSorStatistics() {
+        workDTO.setResult(service.getBureauSalSorStatistics());
+    }
+
+    /**
+     * 分局级别统计工资经费来源.
+     */
+    public void getStationSalSorStatistics() {
+        workDTO.setResult(service.getStationSalSorStatistics(workDTO.<String>get("bureauId")));
+    }
+    
+    /**
+     * 分局级别统计工资平均值.
+     */
+    public void getBureauSalAvgStatistics() {
+        workDTO.setResult(service.getBureauSalAvgStatistics());
+    }
+
+    /**
+     * 分局级别统计工资平均值.
+     */
+    public void getStationSalAvgStatistics() {
+        workDTO.setResult(service.getStationSalAvgStatistics(workDTO.<String>get("bureauId")));
+    }
 }

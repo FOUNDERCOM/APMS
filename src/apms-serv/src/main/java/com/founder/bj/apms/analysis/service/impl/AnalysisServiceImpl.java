@@ -66,7 +66,7 @@ public class AnalysisServiceImpl implements AnalysisService {
 
     @Override
     public Integer getAvgSalary() {
-        final String sql = "SELECT AVG(CASE WHEN AUX_SALARY_C_PAY IS NULL THEN 0 ELSE AUX_SALARY_C_PAY END) FROM APMS_AUX_INFO WHERE IS_ENABLED = '1'";
+        final String sql = "SELECT AVG(CASE WHEN AUX_SALARY_S_GET IS NULL THEN 0 ELSE AUX_SALARY_S_GET END) FROM APMS_AUX_INFO WHERE IS_ENABLED = '1'";
         return ((Number) em.createNativeQuery(sql).getSingleResult()).intValue();
     }
 
@@ -337,5 +337,48 @@ public class AnalysisServiceImpl implements AnalysisService {
             result.add(dept);
         }
         return result;
+    }
+    
+    /**
+     * 工资经费来源
+     */
+    @Override
+    public List<Map<String, Map<String, Integer>>> getBureauSalSorStatistics() {
+        String sql = "SELECT (SELECT BU.BUREAU_NAME FROM APMS_DEPT_BUREAU BU WHERE BU.BUREAU_ID = ST.BUREAU_ID ) || '_' || " +
+        		"ST.BUREAU_ID || '_BUREAU',INF.AUX_SALARY_JFLY,COUNT (INF.AUX_ID) FROM APMS_AUX_INFO INF, APMS_DEPT_STATION ST" +
+        		" WHERE ST.STATION_ID = INF.STATION_ID and AUX_SALARY_JFLY is not null GROUP BY INF.AUX_SALARY_JFLY,ST.BUREAU_ID" +
+        		" ORDER BY ST.BUREAU_ID,INF.AUX_SALARY_JFLY";
+        return getEduResult(em.createNativeQuery(sql).getResultList());
+    }
+
+    /**
+     * 工资经费来源
+     */
+    @Override
+    public List<Map<String, Map<String, Integer>>> getStationSalSorStatistics(String bureauId) {
+        String sql = "SELECT (SELECT STATION.STATION_NAME FROM APMS_DEPT_STATION STATION WHERE STATION.STATION_ID = ST.STATION_ID) " +
+        		"|| '_' || ST.STATION_ID || '_STATION',AUX_SALARY_JFLY,COUNT (INF.AUX_ID) FROM APMS_AUX_INFO INF,APMS_DEPT_STATION ST" +
+        		" WHERE ST.STATION_ID = INF.STATION_ID and AUX_SALARY_JFLY is not null AND ST.BUREAU_ID = :bureauId GROUP BY " +
+        		"INF.AUX_SALARY_JFLY,ST.STATION_ID ORDER BY ST.STATION_ID,INF.AUX_SALARY_JFLY";
+
+        return getEduResult(em.createNativeQuery(sql).setParameter("bureauId", bureauId).getResultList());
+    }
+    
+    /**
+     * 区县工资平均值
+     */
+    public List<Map<String, Double>> getBureauSalAvgStatistics() {
+        String sql = "SELECT (SELECT BU.BUREAU_NAME FROM APMS_DEPT_BUREAU BU WHERE BU.BUREAU_ID = ST.BUREAU_ID ) || " +
+        		"'_' || ST.BUREAU_ID || '_BUREAU',nvl(round(sum(AUX_SALARY_S_GET)/SUM(1)), 0) FROM APMS_AUX_INFO " +
+        		"INF, APMS_DEPT_STATION ST WHERE ST.STATION_ID = INF.STATION_ID GROUP BY ST.BUREAU_ID ORDER BY ST.BUREAU_ID";
+
+        return em.createNativeQuery(sql).getResultList();
+    }
+    public List<Map<String, Double>> getStationSalAvgStatistics(String bureauId) {
+        String sql = "SELECT (SELECT STATION.STATION_NAME FROM APMS_DEPT_STATION STATION WHERE STATION.STATION_ID = ST.STATION_ID) " +
+        		"|| '_' || ST.STATION_ID || '_STATION',nvl(round(sum(AUX_SALARY_S_GET)/SUM(1)), 0) FROM APMS_AUX_INFO INF, APMS_DEPT_STATION " +
+        		"ST WHERE ST.STATION_ID = INF.STATION_ID AND ST.BUREAU_ID = :bureauId GROUP BY ST.STATION_ID ORDER BY ST.STATION_ID";
+
+        return em.createNativeQuery(sql).setParameter("bureauId", bureauId).getResultList();
     }
 }

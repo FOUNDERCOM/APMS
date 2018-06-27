@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -93,35 +94,65 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.health";
         hql += " left join fetch i.politicalStatus";
         hql += " left join fetch i.eduDegree";
-        hql += " where i.isEnabled = true";
-
-        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
-            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+        hql += " left join fetch i.appraiseList";
+        hql += " where i.isEnabled = :isEnabled";
+        
+        if(!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())){
+        	hql += " and i.station.id = :stationId";
+        }else if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau()) && 
+        		!ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
             hql += " and i.station.bureau.id = :bureauId";
+        }
+        if(!StringUtils.isEmpty(condition.getName())){
+        	hql += " and i.name like :name";
+        }
+        // 最低工资
+        if (!StringUtils.isEmpty(condition.getSalarySGet())) {
+            hql += " and i.salarySGet < :salarySGet";
         }
 
         hql += " order by i.station.bureau.id, i.station.id, i.age";
 
-        //noinspection unchecked
         Query query = em.createQuery(hql);
-        if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau())
-            && !ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
-            query.setParameter("bureauId", condition.getStation().getBureau().getId());
+        query.setParameter("isEnabled", condition.getIsEnabled());
+        if(!StringUtils.isEmpty(condition.getName())){
+        	query.setParameter("name", "%" + condition.getName() + "%");
         }
-        return query.getResultList();
+        if (!StringUtils.isEmpty(condition.getSalarySGet())) {
+            query.setParameter("salarySGet", condition.getSalarySGet());
+        }
+        if(!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getId())){
+        	query.setParameter("stationId", condition.getStation().getId());
+        }else if (!ObjectUtils.isEmpty(condition.getStation()) && !ObjectUtils.isEmpty(condition.getStation().getBureau()) && 
+        		!ObjectUtils.isEmpty(condition.getStation().getBureau().getId())) {
+        	query.setParameter("bureauId", condition.getStation().getBureau().getId());
+        }
+        
+        List<AuxInfo> list = query.getResultList();
+        int size = list.size();
+        if(size != 0){
+        	HashMap<String, AuxInfo> map = new HashMap<String, AuxInfo>();
+        	for (int i = 0; i < size; i++) {
+        		map.put(list.get(i).getId(), list.get(i));
+    		}
+
+        	list = new ArrayList<AuxInfo>();
+        	for(String key : map.keySet()){
+        		list.add(map.get(key));
+        	}
+        }
+        return list;
     }
 
     @Override
     public List<AuxInfo> query(AuxInfo condition, Integer start, Integer limit) {
         String hql = " select i.id from AuxInfo i";
-
+        
         hql += makeQuery(condition, null);
-
         final Query query = em.createQuery(hql);
         query.setFirstResult(start).setMaxResults(limit > 0 ? limit : Integer.MAX_VALUE);
 
         makeQuery(condition, query);
-
         //noinspection unchecked
         final List<String> idList = query.getResultList();
 
@@ -163,6 +194,20 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         	}
         }
         return list;
+    }
+    
+    @Override
+    public Integer count(AuxInfo condition) {
+        String hql = "select count(i) from AuxInfo i";
+
+        hql += makeQuery(condition, null);
+
+        final Query query = em.createQuery(hql);
+
+        makeQuery(condition, query);
+
+        //noinspection unchecked
+        return ((Number) query.getSingleResult()).intValue();
     }
 
     /**
@@ -257,6 +302,14 @@ public class AuxInfoServiceImpl implements AuxInfoService {
                 query.setParameter("joinDate", DateUtils.format(c.getTime(), "yyyy-MM-dd"));
             }
         }
+        // 最低工资
+        if (!StringUtils.isEmpty(condition.getSalarySGet())) {
+            hql += " and i.salarySGet < :salarySGet";
+
+            if (!ObjectUtils.isEmpty(query)) {
+                query.setParameter("salarySGet", condition.getSalarySGet());
+            }
+        }
         // 薪资是否正常
         if (!ObjectUtils.isEmpty(condition.getIsSalaryNormal())) {
             hql += " and i.isSalaryNormal = :isSalaryNormal";
@@ -292,25 +345,10 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         }
         return hql;
     }
-
-    @Override
-    public Integer count(AuxInfo condition) {
-        String hql = "select count(i) from AuxInfo i";
-
-        hql += makeQuery(condition, null);
-
-        final Query query = em.createQuery(hql);
-
-        makeQuery(condition, query);
-
-        //noinspection unchecked
-        return ((Number) query.getSingleResult()).intValue();
-    }
-
+     
     @Transactional
     @Override
     public String create(AuxInfo entity) throws ServiceException {
-        entity.setIsEnabled(true);
         entity.setSalaryBase(0);
         entity.setSalaryBonus(0);
         entity.setSalaryTax(0);
@@ -318,6 +356,16 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setSalarySFund(0);
         entity.setSalaryCSS(0);
         entity.setSalaryCFund(0);
+        entity.setSalaryCPay(0);
+        entity.setSalaryGlgz(0);
+        entity.setSalaryGwgz(0);
+        entity.setSalaryJtgz(0);
+        entity.setSalarySGet(0);
+        entity.setSalarySGS(0);
+        entity.setSalarySSW(0);
+        entity.setSalarySSY(0);
+        entity.setSalarySYW(0);
+        entity.setSalaryZjgz(0);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
 
         validate(entity);
@@ -412,7 +460,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
             Assert.notNull(entity.getEduDegree(), "学位不能为空。");
             Assert.notNull(entity.getInstitutions(), "毕业院校不能为空。");
             Assert.notNull(entity.getJob(), "职位不能为空。");
-            Assert.notNull(entity.getJoinDate(), "入职时间不能为空。");
+            Assert.notNull(entity.getJoinDate(), "任现职时间不能为空。");
             Assert.notNull(entity.getAddProvince(), "住地省份不能为空。");
             Assert.notNull(entity.getAddCity(), "住地城市不能为空。");
             Assert.notNull(entity.getAddCountry(), "住地县/街道不能为空。");
@@ -438,13 +486,14 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public void setStatus(Token token, String ip, String id, Boolean isEnabled) {
+    public void setStatus(Token token, String ip, String id, String isEnabled, String ryzt) {
         final AuxInfo entity = get(id);
 
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd"));
         entity.setLastUpdateIp(ip);
-        if(isEnabled){
+        entity.setAddRyzt(ryzt);
+        if("1".equals(isEnabled)){
           entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
         }
         entity.setIsEnabled(isEnabled);
@@ -452,7 +501,8 @@ public class AuxInfoServiceImpl implements AuxInfoService {
 
     @Transactional
     @Override
-    public void changeSalary(Token token, String ip, String id, Integer base, Integer bonus, Integer tax, Integer sss, Integer sFund, Integer css, Integer cFund) {
+    public void changeSalary(Token token, String ip, String id, Integer base, Integer bonus, Integer tax, Integer sss, Integer sFund, 
+    		Integer css, Integer cFund, Integer ssw, Integer ssy, Integer sgs, Integer syw, Integer sget, Integer cpay, Integer gwgz, Integer glgz, Integer zjgz, Integer jtgz, String jfly) {
         final AuxInfo entity = get(id);
 
         entity.setLastUpdateUser(em.find(SysUser.class, token.user().getId()));
@@ -466,9 +516,18 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setSalarySFund(sFund);
         entity.setSalaryCSS(css);
         entity.setSalaryCFund(cFund);
+        entity.setSalarySSW(ssw);
+        entity.setSalarySSY(ssy);
+        entity.setSalarySGS(sgs);
+        entity.setSalarySYW(syw);
+        entity.setSalaryGwgz(gwgz);
+        entity.setSalaryGlgz(glgz);
+        entity.setSalaryZjgz(zjgz);
+        entity.setSalaryJtgz(jtgz);
+        entity.setSalaryJfly(jfly);
 
-        entity.setSalarySGet(base + bonus - tax - sss - sFund);
-        entity.setSalaryCPay(base + bonus + css + cFund);
+        entity.setSalarySGet(sget);
+        entity.setSalaryCPay(cpay);
     }
 
     @Override
@@ -480,5 +539,117 @@ public class AuxInfoServiceImpl implements AuxInfoService {
             return em.createQuery("from AuxInfo where identityCard = :card and id != :id")
                 .setParameter("card", card).setParameter("id", id).getResultList().size() > 0;
         }
+    }
+    
+    @Override
+    public List<String> getAppraiseStat(String bool, String bureauId, String year){
+    	/*if("1".equals(bool)){//市局权限
+        }else{//分局权限
+        }*/
+        String sql = "SELECT bureau_name||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1"+
+		"AND t2.appr_level = '01' and t2.appr_type='1' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1"+
+		"AND t2.appr_level = '02' and t2.appr_type='1' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1"+
+		"AND t2.appr_level = '03' and t2.appr_type='1' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '01' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '02' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '03' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '01' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '02' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '03' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '01' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '02' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '03' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '01' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '02' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '03' and t2.appr_type='2' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='1'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='2'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='3'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='4'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='5'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='5'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='5'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='6'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='6'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='6'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='7'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='7'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='7'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='8'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='8'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='8'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='9'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='9'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='9'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='10'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='10'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='10'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='11'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='11'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='11'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='12'"+
+		"AND t2.appr_level = '01' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='12'"+
+		"AND t2.appr_level = '02' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id))||','||"+
+"(SELECT COUNT (DISTINCT(t1.aux_id)) FROM APMS_AUX_INFO t1, APMS_AUX_APPRAISE t2 WHERE t1.aux_id = t2.aux_id and t1.is_enabled = 1 and t2.appr_num='12'"+
+		"AND t2.appr_level = '03' and t2.appr_type='3' AND t2.appr_year = '"+year+"' AND t1.STATION_ID in (select station_id from APMS_DEPT_STATION where bureau_id=t.bureau_id)) res"+
+" FROM APMS_DEPT_BUREAU t WHERE is_enabled = 1 ORDER BY bureau_id";
+        return em.createNativeQuery(sql).getResultList();
     }
 }

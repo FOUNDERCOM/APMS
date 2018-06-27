@@ -91,7 +91,19 @@ public class DeptStation implements Org, Serializable {
     @Column(name = "IS_ENABLED")
     private Boolean isEnabled;
 
-    /**
+    /** 是否是管理单位，1是，其他，禁用. */
+    @Column(name = "IS_MANAGE")
+    private Boolean isManage;
+    
+    public Boolean getIsManage() {
+		return isManage;
+	}
+
+	public void setIsManage(Boolean isManage) {
+		this.isManage = isManage;
+	}
+
+	/**
      * Get the id.
      *
      * @return return the id

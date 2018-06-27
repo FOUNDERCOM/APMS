@@ -19,6 +19,7 @@
 
 package com.founder.bj.apms.sys.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,6 +52,18 @@ public class AuthController extends AbstractControllerSupport {
      */
     public void queryAuth() {
         final List<SysFunc> result = service.queryAllFunc();
+        final List<String> uds = service.queryFuncIdByUser(workDTO.<String>get("uid"));
+        Iterator<SysFunc> it = result.iterator();
+        while(it.hasNext()){
+        	SysFunc func = it.next();
+            for (int i = 0, len = uds.size(); i < len; i++) {
+                if (func.getId().equals(uds.get(i))) {
+                    break;
+                }else if(i == (len - 1) && !func.getId().equals(uds.get(i))){
+                	it.remove();
+                }
+            }
+        }
         final List<String> ids = service.queryFuncIdByUser(workDTO.<String>get("userId"));
         for (SysFunc func : result) {
             for (String id : ids) {

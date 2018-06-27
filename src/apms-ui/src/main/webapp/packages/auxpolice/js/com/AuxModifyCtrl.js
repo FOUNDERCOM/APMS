@@ -23,8 +23,7 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$scope', "$listService", "$ajaxCall", "$http", function ($state, $rootScope, $scope, $listService, $ajaxCall, $http) {
-
-    var handleTitle = function(tab, navigation, index) {
+    var handleTitle = function(tab, navigation, index, obj) {
         var total = navigation.find('li').length;
         var current = index + 1;
         // set wizard title
@@ -47,9 +46,13 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
         if (current >= total) {
             $('#form_wizard').find('.button-next').hide();
             $('#form_wizard').find('.button-submit').show();
+            if($state.current.name === 'aux_apply' && obj.isEnabled === true){
+            	$('#form_wizard').find('.button-submitmb').show();
+            }
         } else {
             $('#form_wizard').find('.button-next').show();
             $('#form_wizard').find('.button-submit').hide();
+            $('#form_wizard').find('.button-submitmb').hide();
         }
         App.scrollTo($('.page-title'));
     };
@@ -65,13 +68,13 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             if ($scope.isFail(index)) {
                 return false;
             }
-            handleTitle(tab, navigation, index);
+            handleTitle(tab, navigation, index, $scope.entity);
         },
         onPrevious: function (tab, navigation, index) {
-            handleTitle(tab, navigation, index);
+            handleTitle(tab, navigation, index, $scope.entity);
         },
         onFirst: function(tab, navigation, index) {
-            handleTitle(tab, navigation, index);
+            handleTitle(tab, navigation, index, $scope.entity);
         },
         onTabShow: function (tab, navigation, index) {
             var total = navigation.find('li').length;
@@ -86,6 +89,33 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
     $('#form_wizard').find('.button-previous').hide();
     $('#form_wizard').find('.button-first').hide();
     $('#form_wizard .button-submit').click(function () {
+    	if($scope.method === "create"){
+    		$scope.entity.isEnabled = "1";
+    	}
+        $scope.submit();
+    }).hide();
+    $('#form_wizard .button-submitmb').click(function () {
+    	if($scope.entity.awardList.length > 0){
+    		alert("奖励情况不能共用模板。");
+    		return;
+    	}
+    	if($scope.entity.eduList.length > 0){
+    		alert("教育背景不能共用模板。");
+    		return;
+    	}
+    	if($scope.entity.punishList.length > 0){
+    		alert("惩罚情况不能共用模板。");
+    		return;
+    	}
+    	if($scope.entity.familyList.length > 0){
+    		alert("辅警家庭关系不能共用模板。");
+    		return;
+    	}
+    	if($scope.entity.workList.length > 0){
+    		alert("工作履历不能共用模板。");
+    		return;
+    	}
+    	$scope.entity.isEnabled = "2";
         $scope.submit();
     }).hide();
 
@@ -94,7 +124,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
         var check = function(key, msg, isWithId) {
             var dom = $("*[ng-model='entity." + key + (isWithId ? ".id']" : "']")).parents(".form-group");
             dom.removeClass("has-error");
-            if ($scope.entity[key] === undefined
+            if ($scope.entity[key] === undefined || $scope.entity[key] === null
                 || (!isWithId && $scope.entity[key].length === 0)
                 || (isWithId && ($scope.entity[key]["id"] === undefined || $scope.entity[key]["id"].length === 0))) {
                 message += msg + "不能为空!<br>";
@@ -110,11 +140,16 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             // 电话
             // 手机
             check("mobile", "手机");
+            if ($scope.entity["mobile"] != undefined && $scope.entity["mobile"] != "" && $scope.entity["mobile"].length != 11) {
+                message += "手机号长度错误。<br>";
+                $("*[ng-model='entity.mobile']").parents('.form-group').addClass("has-error");
+            }
             // 邮箱
             // 职务
-            check("job", "手机");
+            check("job", "职务");
             // 现住址 省
             check("addProvince", "现住址 省");
+            check("addRyzt", "人员状态");
             // 现住址 市
             check("addCity", "现住址 市");
             // 现住址 区县
@@ -136,7 +171,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 identityCardInputGroup.addClass("has-error");
             }
             // 入职时间
-            check("joinDate", "入职时间");
+            check("joinDate", "任现职时间");
             // 入职前身份
             check("oldIdentity", "入职前身份", true);
             // 民族
@@ -154,13 +189,20 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
         } else if (idx === 3) {
             // file
             if ($scope.entity.fileList.length === 0) {
-//                message += "请至少上传一个证明文件。";
+                message += "<br>请上传同级人民政府批复同意招聘文件。";
             } else {
+            	var bool = false;
                 $.each($scope.entity.fileList, function(key, data) {
                     if (data.name === undefined || data.name.length === 0) {
-                        message += "<br>请为文件命名。";
+                        message += "<br>请选择文件标签。";
+                    }
+                    if(data.name == "同级人民政府批复同意招聘文件"){
+                    	bool = true;
                     }
                 });
+                if(!bool){
+                	message += "<br>请上传同级人民政府批复同意招聘文件。";
+                }
             }
         } else if (idx === 4) {
             // work
@@ -170,6 +212,21 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 }
                 if (data.dept === undefined || data.dept.length === 0) {
                     message += "工作单位不能为空。<br>";
+                }
+                if (data.job === undefined || data.job.length === 0) {
+                    message += "职务不能为空。<br>";
+                }
+            });
+            // 年度考核
+            $.each($scope.entity.appraiseList, function(key, data) {
+                if (data.year === undefined || data.year.length === 0) {
+                    message += "考核年度不能为空。<br>";
+                }
+                if (data.type !== 1 && (data.num === undefined || data.num === 0)){
+                	message += "考核季度或月份不能为空。<br>";
+                }
+                if (data.level === undefined || data.level.id === undefined) {
+                    message += "评级不能为空。<br>";
                 }
             });
         } else if (idx === 5) {
@@ -186,15 +243,6 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 }
                 if (data.identityCard === undefined || data.identityCard.length === 0) {
                     message += "身份证号不能为空。<br>";
-                }
-            });
-            // 年度考核
-            $.each($scope.entity.appraiseList, function(key, data) {
-                if (data.year === undefined || data.year.length === 0) {
-                    message += "年度不能为空。<br>";
-                }
-                if (data.level === undefined || data.level.id === undefined) {
-                    message += "评级不能为空。<br>";
                 }
             });
             // 奖励情况
@@ -270,7 +318,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                     id : id,
                     type: type
                 }
-            })
+            });
         }
     };
 
@@ -288,7 +336,7 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             return;
         }
         if (files[0].files[0].size/(1024*1024) > 20) {
-            alert("选择图片大小不能大于20兆(M)。");
+            alert("选择文件大小不能大于20兆(M)。");
             return;
         }
         var fd = new FormData();
@@ -354,24 +402,27 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 }
             });
         };
-
-        $ajaxCall.post({
-            data: {
-                controller: "AuxController",
-                method: "checkDuplicatedIdentityCard",
-                id: $scope.entity.id,
-                card: $scope.entity.identityCard
-            },
-            success: function(res) {
-                if (res.result) {
-                    confirm();
-                } else {
-                    save();
+        if($scope.method === "create"){
+        	$ajaxCall.post({
+                data: {
+                    controller: "AuxController",
+                    method: "checkDuplicatedIdentityCard",
+                    id: $scope.entity.id,
+                    card: $scope.entity.identityCard
+                },
+                success: function(res) {
+                    if (res.result) {
+                        confirm();
+                    } else {
+                        save();
+                    }
                 }
-            }
-        });
+            });
+        }else{
+        	save();
+        }
     };
     $scope.foo = function(v) {
         console.log(v);
-    }
+    };
 }]);

@@ -1,5 +1,5 @@
 
-<div class="portlet light ">
+<div class="portlet light " ng-controller="SysFileHelpCtrl">
     <div class="portlet-title tabbable-line">
         <div class="caption caption-md">
             <i class="icon-globe theme-font hide"></i>
@@ -39,6 +39,7 @@
             <!-- TERMS OF USE TAB -->
             <div class="tab-pane" id="tab_1_3">
                 <div id="accordion3" class="panel-group">
+                	<div ng-include="'packages/common/views/help/faqs/file_up_down.html'+cacheVersion"></div>
                 </div>
             </div>
             <!-- END TERMS OF USE TAB -->

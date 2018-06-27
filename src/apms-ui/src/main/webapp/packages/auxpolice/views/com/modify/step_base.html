@@ -7,11 +7,11 @@
         <div class="col-md-8">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="bureau">分局</label>
+                    <label class="control-label col-md-4" for="bureau">工作单位名称</label>
                     <div class="col-md-8" ng-if="$state.current.name === 'aux_all'">
                         <div class="input-icon">
                             <i class="icon-home"></i>
-                            <select id="bureau" class="form-control" ng-model="entity.station.bureau.id" bs-tooltip data-title="分局"
+                            <select id="bureau" class="form-control" ng-model="entity.station.bureau.id" bs-tooltip data-title="工作单位名称"
                                     ng-options="item.id as item.name for item in bureauList"></select>
                         </div>
                     </div>
@@ -20,11 +20,11 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="bureau">科所队 <span class="required">*</span></label>
+                    <label class="control-label col-md-4" for="bureau">部门名称 <span class="required">*</span></label>
                     <div class="col-md-8" ng-if="$state.current.name !== 'aux_apply'">
                         <div class="input-icon">
                             <i class="icon-home"></i>
-                            <select class="form-control" ng-model="entity.station.id" bs-tooltip data-title="科所队"
+                            <select class="form-control" ng-model="entity.station.id" bs-tooltip data-title="部门名称"
                                     ng-options="item.id as item.name for item in stationList | filter : {bureau: {id : entity.station.bureau.id}}"></select>
                         </div>
                     </div>
@@ -77,6 +77,17 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
+                    <label class="control-label col-md-4">邮编 <span class="required">*</span></label>
+                    <div class="col-md-8">
+                        <div class="input-icon">
+                            <i class="fa fa-code"></i>
+                            <input type="text" class="form-control" placeholder="110001"  ng-model="entity.addPostcode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
                     <label class="control-label col-md-4">职级</label>
                     <div class="col-md-8">
                         <div class="input-icon">
@@ -96,51 +107,64 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <label class="control-label col-md-4">现住址(省) <span class="required">*</span></label>
                     <div class="col-md-8">
                         <div class="input-icon">
                             <i class="fa fa-map-marker"></i>
-                            <input type="text" class="form-control" placeholder="省份"  ng-model="entity.addProvince">
+                            <input type="text" class="form-control" ng-model="entity.addProvince">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <label class="control-label col-md-4">人员状态<span class="required">*</span></label>
                     <div class="col-md-8">
                         <div class="input-icon">
-                            <i class="fa fa-map-marker"></i>
-                            <input type="text" class="form-control" placeholder="城市"  ng-model="entity.addCity">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <select class="form-control" ng-model="entity.addRyzt">
+                                <option value="在职">在职</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4">现住址 <span class="required">*</span></label>
+                    <label class="control-label col-md-4">现住址 (市)<span class="required">*</span></label>
                     <div class="col-md-8">
                         <div class="input-icon">
                             <i class="fa fa-map-marker"></i>
-                            <input type="text" class="form-control" placeholder="区县"  ng-model="entity.addCountry">
+                            <input type="text" class="form-control" ng-model="entity.addCity">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-4">邮编 <span class="required">*</span></label>
+                    <label class="control-label col-md-4">现住址(区县) <span class="required">*</span></label>
                     <div class="col-md-8">
                         <div class="input-icon">
-                            <i class="fa fa-code"></i>
-                            <input type="text" class="form-control" placeholder="110001"  ng-model="entity.addPostcode">
+                            <i class="fa fa-map-marker"></i>
+                            <select class="form-control" ng-model="entity.addCountry">
+                                <option value="七星关区">七星关区</option>
+                                <option value="大方县">大方县</option>
+                                <option value="黔西县">黔西县</option>
+                                <option value="金沙县">金沙县</option>
+                                <option value="织金县">织金县</option>
+                                <option value="纳雍县">纳雍县</option>
+                                <option value="威宁县">威宁县</option>
+                                <option value="赫章县">赫章县</option>
+                                <option value="金海湖区">金海湖区</option>
+                                <option value="百里杜鹃">百里杜鹃</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <label class="control-label col-md-2">现住址 <span class="required">*</span></label>
+                    <label class="control-label col-md-2">现住址(详址) <span class="required">*</span></label>
                     <div class="col-md-10">
                         <div class="input-icon">
                             <i class="fa fa-map-marker"></i>

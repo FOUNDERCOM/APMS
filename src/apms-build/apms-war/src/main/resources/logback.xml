@@ -21,7 +21,7 @@
     <logger name="org.hibernate.cfg.Environment" level="WARN" />
     <logger name="org.hibernate.Version" level="WARN" />
     <logger name="org.hibernate.annotations.common.Version" level="WARN" />
-    <logger name="org.hibernate.SQL" level="WARN" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
     <logger name="org.hibernate.type" level="WARN" />
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" />
     <logger name="org.hibernate.tool.hbm2ddl" level="INFO" />

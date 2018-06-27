@@ -53,12 +53,14 @@ angular.module('WebApp').controller('AuthallCtrl', ['$rootScope', '$scope', "$li
     $scope.load();
 
     $scope.queryAuth = function(item) {
+    	var user = $rootScope.token['user'];
         $scope.currentUser = item;
         $ajaxCall.post({
             data: {
                 controller: "AuthController",
                 method: "queryAuth",
-                userId: item.id
+                userId: item.id,
+                uid: user.id
             },
             success: function(res) {
                 $scope.funcList = res.result;

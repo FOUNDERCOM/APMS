@@ -48,4 +48,13 @@ public interface Org extends Serializable {
      * @param name the name to set.
      */
     void setName(String name);
+    /**
+     * @return the isManage.
+     */
+    Boolean getIsManage();
+
+    /**
+     * @param name the name to set.
+     */
+    void setIsManage(Boolean b);
 }

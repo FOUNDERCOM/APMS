@@ -33,7 +33,7 @@ angular.module('WebApp').controller('AuxApproveListCtrl', ['$rootScope', '$scope
     $ajaxCall.getDictList($scope, "PROCESS_STATUS", 'statusList');
 
     $scope.condition = {
-        isEnabled: true,
+        isEnabled: "1",
         station: {bureau: {id: $rootScope.token['user']['org']['bureau']['id']}}
     };
 
@@ -60,6 +60,9 @@ angular.module('WebApp').controller('AuxApproveListCtrl', ['$rootScope', '$scope
      * 准备查看实体
      */
     $scope.prepareToView = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "viewAuxploiceMgmtModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "查看辅警信息";

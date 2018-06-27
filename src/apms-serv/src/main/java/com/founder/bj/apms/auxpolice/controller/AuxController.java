@@ -119,9 +119,6 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
     @Override
     public void create() throws ServiceException {
         final AuxInfo entity = workDTO.convertJsonToBeanByKey("entity", AuxInfo.class);
-
-        entity.setIsEnabled(true);
-
         entity.setLastUpdateUser(new SysUser());
         entity.getLastUpdateUser().setId(sessionDTO.currentToken().user().getId());
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
@@ -131,9 +128,6 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
 
     public void createPass() throws ServiceException {
         final AuxInfo entity = workDTO.convertJsonToBeanByKey("entity", AuxInfo.class);
-
-        entity.setIsEnabled(true);
-
         entity.setLastUpdateUser(new SysUser());
         entity.getLastUpdateUser().setId(sessionDTO.currentToken().user().getId());
         entity.setLastUpdateDate(DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss"));
@@ -158,13 +152,13 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
     @Override
     public void remove() {
         infoService.setStatus(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.<String>get("id"), false);
+            workDTO.<String>get("id"), "0", workDTO.<String>get("ryzt"));
     }
 
     @Override
     public void resume() {
         infoService.setStatus(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
-            workDTO.<String>get("id"), true);
+            workDTO.<String>get("id"), "1", "在职");
     }
 
     /**
@@ -221,7 +215,10 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
         infoService.changeSalary(sessionDTO.currentToken(), ClientIPUtils.getClientIp(servletRequest),
             workDTO.<String>get("id"), workDTO.getInteger("salaryBase"), workDTO.getInteger("salaryBonus"),
             workDTO.getInteger("salaryTax"), workDTO.getInteger("salarySSS"), workDTO.getInteger("salarySFund"),
-            workDTO.getInteger("salaryCSS"), workDTO.getInteger("salaryCFund"));
+            workDTO.getInteger("salaryCSS"), workDTO.getInteger("salaryCFund"), workDTO.getInteger("salarySSW"),
+            workDTO.getInteger("salarySSY"), workDTO.getInteger("salarySGS"), workDTO.getInteger("salarySYW"), 
+            workDTO.getInteger("salarySGet"), workDTO.getInteger("salaryCPay"), workDTO.getInteger("salaryGwgz"), 
+            workDTO.getInteger("salaryGlgz"), workDTO.getInteger("salaryZjgz"), workDTO.getInteger("salaryJtgz"), workDTO.<String>get("salaryJfly"));
     }
 
     /**
@@ -229,12 +226,28 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
      */
     @SuppressWarnings("CheckStyle")
     public void exportSalary() {
+    	StationDTO unit = (StationDTO) sessionDTO.currentToken().user().getOrg();
         final AuxInfo condition = new AuxInfo();
-        condition.setIsEnabled(true);
+        condition.setIsEnabled("1");
         condition.setStation(new DeptStation());
         condition.getStation().setBureau(new DeptBureau());
-        condition.getStation().getBureau().setId(((StationDTO) sessionDTO.currentToken().user().getOrg()).getBureau().getId());
-        final List<AuxInfo> result = infoService.query(condition, 0, -1);
+        String sal = workDTO.<String>get("salarySGet");
+        if(!"".equals(sal) && sal != null){
+        	condition.setSalarySGet(Integer.parseInt(workDTO.<String>get("salarySGet")));
+        }
+        String stationId = workDTO.<String>get("stationId");
+        String bureauId = workDTO.<String>get("bureauId");
+        if(!"".equals(stationId) && stationId != null){
+        	condition.getStation().setId(stationId);
+        }else if(!"".equals(bureauId) && bureauId != null){
+        	condition.getStation().getBureau().setId(bureauId);
+        }else if(unit.getIsManage()){
+        	condition.getStation().getBureau().setId(((StationDTO) sessionDTO.currentToken().user().getOrg()).getBureau().getId());
+        }else if(!unit.getId().equals(unit.getBureau().getId())){
+        	condition.getStation().setId(((StationDTO) sessionDTO.currentToken().user().getOrg()).getId());
+        }
+        
+        final List<AuxInfo> result = infoService.queryAll(condition);
 
         //noinspection CheckStyle
         HSSFWorkbook wb = null;
@@ -253,14 +266,23 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
             row.createCell(3).setCellValue("性别");
             row.createCell(4).setCellValue("身份证号");
             row.createCell(5).setCellValue("基本工资");
-            row.createCell(6).setCellValue("绩效奖金");
-            row.createCell(7).setCellValue("所得税");
-            row.createCell(8).setCellValue("个付社保");
-            row.createCell(9).setCellValue("个付公积金");
-            row.createCell(10).setCellValue("司付社保");
-            row.createCell(11).setCellValue("司付公积金");
-            row.createCell(12).setCellValue("实发工资");
-            row.createCell(13).setCellValue("司付工资");
+            row.createCell(6).setCellValue("岗位工资");
+            row.createCell(7).setCellValue("工龄工资");
+            row.createCell(8).setCellValue("职级工资");
+            row.createCell(9).setCellValue("绩效奖金");
+            row.createCell(10).setCellValue("津贴");
+            row.createCell(11).setCellValue("经费来源");
+            row.createCell(12).setCellValue("所得税");
+            row.createCell(13).setCellValue("养老保险");
+            row.createCell(14).setCellValue("医疗保险");
+            row.createCell(15).setCellValue("失业保险");
+            row.createCell(16).setCellValue("工伤保险");
+            row.createCell(17).setCellValue("生育保险");
+            row.createCell(18).setCellValue("意外伤亡险");
+            row.createCell(19).setCellValue("个付公积金");
+            row.createCell(20).setCellValue("公付公积金");
+            row.createCell(21).setCellValue("实发工资");
+            row.createCell(22).setCellValue("公付工资");
 
             for (AuxInfo item : result) {
                 row = sheet.createRow(count++);
@@ -270,14 +292,23 @@ public class AuxController extends AbstractControllerSupport implements CRUDCont
                 row.createCell(3).setCellValue(item.getSex().getValue());
                 row.createCell(4).setCellValue(item.getIdentityCard());
                 row.createCell(5).setCellValue(ObjectUtils.isEmpty(item.getSalaryBase()) ? 0 : item.getSalaryBase());
-                row.createCell(6).setCellValue(ObjectUtils.isEmpty(item.getSalaryBonus()) ? 0 : item.getSalaryBonus());
-                row.createCell(7).setCellValue(ObjectUtils.isEmpty(item.getSalaryTax()) ? 0 : item.getSalaryTax());
-                row.createCell(8).setCellValue(ObjectUtils.isEmpty(item.getSalarySSS()) ? 0 : item.getSalarySSS());
-                row.createCell(9).setCellValue(ObjectUtils.isEmpty(item.getSalarySFund()) ? 0 : item.getSalarySFund());
-                row.createCell(10).setCellValue(ObjectUtils.isEmpty(item.getSalaryCSS()) ? 0 : item.getSalaryCSS());
-                row.createCell(11).setCellValue(ObjectUtils.isEmpty(item.getSalaryCFund()) ? 0 : item.getSalaryCFund());
-                row.createCell(12).setCellValue(ObjectUtils.isEmpty(item.getSalarySGet()) ? 0 : item.getSalarySGet());
-                row.createCell(13).setCellValue(ObjectUtils.isEmpty(item.getSalaryCPay()) ? 0 : item.getSalaryCPay());
+                row.createCell(6).setCellValue(ObjectUtils.isEmpty(item.getSalaryGwgz()) ? 0 : item.getSalaryGwgz());
+                row.createCell(7).setCellValue(ObjectUtils.isEmpty(item.getSalaryGlgz()) ? 0 : item.getSalaryGlgz());
+                row.createCell(8).setCellValue(ObjectUtils.isEmpty(item.getSalaryZjgz()) ? 0 : item.getSalaryZjgz());
+                row.createCell(9).setCellValue(ObjectUtils.isEmpty(item.getSalaryBonus()) ? 0 : item.getSalaryBonus());
+                row.createCell(10).setCellValue(ObjectUtils.isEmpty(item.getSalaryJtgz()) ? 0 : item.getSalaryJtgz());
+                row.createCell(11).setCellValue(ObjectUtils.isEmpty(item.getSalaryJfly()) ? "无" : item.getSalaryJfly());
+                row.createCell(12).setCellValue(ObjectUtils.isEmpty(item.getSalaryTax()) ? 0 : item.getSalaryTax());
+                row.createCell(13).setCellValue(ObjectUtils.isEmpty(item.getSalarySSS()) ? 0 : item.getSalarySSS());
+                row.createCell(14).setCellValue(ObjectUtils.isEmpty(item.getSalaryCSS()) ? 0 : item.getSalaryCSS());
+                row.createCell(15).setCellValue(ObjectUtils.isEmpty(item.getSalarySSW()) ? 0 : item.getSalarySSW());
+                row.createCell(16).setCellValue(ObjectUtils.isEmpty(item.getSalarySSY()) ? 0 : item.getSalarySSY());
+                row.createCell(17).setCellValue(ObjectUtils.isEmpty(item.getSalarySGS()) ? 0 : item.getSalarySGS());
+                row.createCell(18).setCellValue(ObjectUtils.isEmpty(item.getSalarySYW()) ? 0 : item.getSalarySYW());
+                row.createCell(19).setCellValue(ObjectUtils.isEmpty(item.getSalarySFund()) ? 0 : item.getSalarySFund());
+                row.createCell(20).setCellValue(ObjectUtils.isEmpty(item.getSalaryCFund()) ? 0 : item.getSalaryCFund());
+                row.createCell(21).setCellValue(ObjectUtils.isEmpty(item.getSalarySGet()) ? 0 : item.getSalarySGet());
+                row.createCell(22).setCellValue(ObjectUtils.isEmpty(item.getSalaryCPay()) ? 0 : item.getSalaryCPay());
             }
 
             super.servletResponse.setContentType("application/x-excel");

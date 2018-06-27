@@ -30,7 +30,9 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
         "method": "query",
         callback: function (success) {
             $scope.list = success.data.result;
-        }
+        },
+        pageSizeList: [12, 18, 24, 48],
+        pageSize: 12
     });
 
     // 科所队列表

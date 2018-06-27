@@ -23,5 +23,26 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('AuxMgmtModifyCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
-
+	/**
+     * 离职保存
+     */
+    $scope.removeAux = function(){
+        if ($scope.entity["addRyzt"] === "" || $scope.entity["addRyzt"] === null || $scope.entity["addRyzt"] === "在职") {
+        	alert("请选择离职原因！");
+            return;
+        }
+    	$ajaxCall.post({
+            data: {
+                controller: "AuxController",
+                method: "remove",
+                id: $scope.entity.id,
+                ryzt: $scope.entity.addRyzt
+            },
+            success: function () {
+            	alert("注销辅警数据成功！");
+            	$("#removeAuxDiv").modal('hide');
+                $scope.load();
+            }
+        });
+    };
 }]);

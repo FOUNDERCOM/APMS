@@ -20,10 +20,16 @@
 package com.founder.bj.apms.att.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.activation.MimetypesFileTypeMap;
@@ -118,6 +124,85 @@ public class AttController extends AbstractControllerSupport {
             throw new ServiceException("无法解析文件。", ex);
             // CSON: RegexpSinglelineJava
         }
+    }
+    
+    /**
+     * 文件上传
+     * @throws ServiceException
+     */
+    public void uploadFile() throws ServiceException {
+    	try{
+    		final MultipartHttpServletRequest fileReq = (MultipartHttpServletRequest) servletRequest;
+            final MultipartFile file = fileReq.getFile("file");
+            final Attachment att = createEntity(file);
+            String path = servletRequest.getSession().getServletContext().getRealPath("/") + "upload";
+            File pfile = new File(path);
+            if(!pfile.exists()){
+            	pfile.mkdir();
+            }
+            String fileName = att.getName();  
+
+            InputStream in = file.getInputStream();  
+            byte[] buffer = new byte[1024];  
+            int len = 0;  
+
+            fileName = path + "\\" + fileName + new Date().getTime() + "." + att.getSuffix();  
+            OutputStream out = new FileOutputStream(fileName);  
+
+            while ((len = in.read(buffer)) != -1) {
+                out.write(buffer, 0, len);  
+            }
+
+            out.close();  
+            in.close();  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    /**
+     * 帮助文件列表
+     * @throws ServiceException
+     */
+    public void getFileList() throws ServiceException {
+    	try{
+    		String path = "http://"+servletRequest.getLocalAddr()+":"+servletRequest.getServerPort() + servletRequest.getContextPath() + "/upload/";
+    		String filePath = servletRequest.getSession().getServletContext().getRealPath("/") + "upload";
+    		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+            File baseFile = new File(filePath);
+            if (baseFile.isFile() || !baseFile.exists()) {
+                return;
+            }
+            File[] files = baseFile.listFiles();
+            for (File file : files) {
+            	HashMap<String, String> map = new HashMap<>();
+            	String fpath = file.getAbsolutePath();
+            	String name = fpath.replace(filePath+"\\", "");
+            	map.put("name", name);
+            	map.put("path", path + name);
+            	map.put("fpath", fpath);
+                list.add(map);
+            }
+            workDTO.setResult(list);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    /**
+     * 删除帮助文件
+     * @throws ServiceException
+     */
+    public void deleteFile() throws ServiceException {
+    	try{
+    		String path = workDTO.<String>get("path");
+    		File file = new File(path);
+    		if (file.isFile() || !file.exists()) {
+    			file.delete();
+            }
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
     }
 
     /**

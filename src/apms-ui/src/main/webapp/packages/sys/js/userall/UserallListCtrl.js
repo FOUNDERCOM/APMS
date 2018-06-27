@@ -56,7 +56,9 @@ angular.module('WebApp').controller('UserallListCtrl', ['$rootScope', '$scope', 
         "method": "query",
         callback: function (success) {
             $scope.list = success.data.result;
-        }
+        },
+        pageSizeList: [12, 18, 24, 48],
+        pageSize: 12
     });
 
     /**

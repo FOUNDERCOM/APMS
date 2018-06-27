@@ -72,7 +72,7 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
         }
     });
 
-    $scope.condition = {isEnabled: true};
+    $scope.condition = {isEnabled: "1"};
     $listService.init($scope, {
         "controller": "AuxController",
         "method": "query",
@@ -90,6 +90,27 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
         $scope.pageRequest.getResponse();
     };
     $scope.load();
+    
+    /**
+     * 导出花名册
+     */
+    $scope.downloadExl = function () {
+    	var station = $scope.condition.station;
+    	var href = "mvc/dispatch?controller=AuxExpController&method=exportAllAuxInfo&isEnabled="+$scope.condition.isEnabled;
+    	if($scope.condition.name != null){
+    		href += "&name="+$scope.condition.name;
+    	}
+    	if(station == null || station.id == null){
+    		try{
+    			var bureau = $scope.condition.station.bureau.id;
+    			href += "&bureauId="+bureau;
+    		}catch(e){
+    		}
+    	}else{
+    		href += "&stationId="+station.id;
+    	}
+    	document.location.href = href;
+    };
 
     /**
      * 修改给定实体的状态
@@ -97,30 +118,40 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
      * @param isEnabled 新状态
      */
     $scope.changeStatus = function (item, isEnabled) {
-        bootbox.dialog({
-            title: "请确认",
-            message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
-            buttons: {
-                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
-                danger: {
-                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
-                    className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
-                    callback: function () {
-                        $ajaxCall.post({
-                            data: {
-                                controller: "AuxController",
-                                method: isEnabled ? "resume" : "remove",
-                                id: item.id
-                            },
-                            success: function () {
-                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
-                                $scope.load();
-                            }
-                        });
-                    }
-                }
-            }
-        });
+    	if(isEnabled){
+	        bootbox.dialog({
+	            title: "请确认",
+	            message: isEnabled ? "是否确认恢复该辅警？" : "是否确认注销该辅警？",
+	            buttons: {
+	                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+	                danger: {
+	                    label: isEnabled ? " 确  定 ！ " : " 注 销 ！",
+	                    className: isEnabled ? "fa fa-recycle green" : "fa fa-ban red",
+	                    callback: function () {
+	                        $ajaxCall.post({
+	                            data: {
+	                                controller: "AuxController",
+	                                method: isEnabled ? "resume" : "remove",
+	                                id: item.id
+	                            },
+	                            success: function () {
+	                            	alert(isEnabled ? "恢复辅警数据成功！" : "注销辅警数据成功！");
+	                                $scope.load();
+	                            }
+	                        });
+	                    }
+	                }
+	            }
+	        });
+    	}else{
+			var scope = $("#removeAuxDiv").scope();
+	        scope.title = "注销辅警信息";
+	        scope.entity = item;
+	
+	        scope.$on("submitted", function () {
+	            $scope.load();
+	        });
+		}
     };
 
     /**
@@ -150,8 +181,9 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
             "major": "",
             "birthday": "",
             "nativePlace": "",
-            "addProvince": "",
-            "addCity": "",
+            "addProvince": "贵州省",
+            "addCity": "毕节市",
+            "addRyzt": "在职",
             "addCountry": "",
             "addDetail": "",
             "postCode": "",
@@ -183,6 +215,9 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
      * 准备修改实体
      */
     $scope.prepareToModify = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "modifyAuxploiceMgmtallModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "修改辅警信息";
@@ -199,6 +234,9 @@ angular.module('WebApp').controller('AuxMgmtallListCtrl', ['$rootScope', '$scope
      * 准备查看实体
      */
     $scope.prepareToView = function (item) {
+    	item.appraiseList.sort(function(a, b){
+            return parseInt(a.num)-parseInt(b.num);  
+        });
         var divId = "viewAuxploiceMgmtallModalDiv";
         var scope = $("#" + divId).scope();
         scope.title = "查看辅警信息";

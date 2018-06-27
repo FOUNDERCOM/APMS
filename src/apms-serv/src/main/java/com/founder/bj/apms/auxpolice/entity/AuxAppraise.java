@@ -51,6 +51,12 @@ public class AuxAppraise implements AuxStuff {
     /** Year period. */
     @Column(name = "APPR_YEAR")
     private String year;
+    
+    @Column(name = "APPR_TYPE")
+    private String type;
+    
+    @Column(name = "APPR_NUM")
+    private String num;
 
     /** Appraise Level. */
     // CSOFF: LineLength
@@ -119,7 +125,23 @@ public class AuxAppraise implements AuxStuff {
         this.year = year;
     }
 
-    /**
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getNum() {
+		return num;
+	}
+
+	public void setNum(String num) {
+		this.num = num;
+	}
+
+	/**
      * Get the level.
      *
      * @return return the level

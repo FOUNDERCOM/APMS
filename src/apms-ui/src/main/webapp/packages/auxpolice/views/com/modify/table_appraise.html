@@ -5,14 +5,14 @@
             <th class="text-center bold wid160px"><i class="icon-trophy"></i> 评级 </th>
             <th class="text-center bold wid260px"><i class="icon-info"></i> 特殊说明 </th>
             <th class="text-right bold wid90px">
-                <a href="javascript:" ng-click="entity.appraiseList.push({});">
+                <a href="javascript:" ng-click="entity.appraiseList.push({type:1});">
                     <i class="fa fa-plus"></i> 增加
                 </a>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in entity['appraiseList']">
+        <tr ng-repeat="item in entity['appraiseList']" ng-if="item.type == 1">
             <td>
                 <select class="form-control" ng-model="item.year"  title="年度">
                     <option value="2017">2017</option>

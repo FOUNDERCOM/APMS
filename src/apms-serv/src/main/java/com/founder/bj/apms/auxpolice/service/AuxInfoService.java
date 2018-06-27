@@ -101,7 +101,7 @@ public interface AuxInfoService {
      * @param id        aux id
      * @param isEnabled isEnabled
      */
-    void setStatus(Token token, String ip, String id, Boolean isEnabled);
+    void setStatus(Token token, String ip, String id, String isEnabled, String ryzt);
 
     /**
      * Change Salary.
@@ -117,7 +117,8 @@ public interface AuxInfoService {
      * @param css   司付社保
      * @param cFund 司付公积金
      */
-    void changeSalary(Token token, String ip, String id, Integer base, Integer bonus, Integer tax, Integer sss, Integer sFund, Integer css, Integer cFund);
+    void changeSalary(Token token, String ip, String id, Integer base, Integer bonus, Integer tax, Integer sss, Integer sFund, Integer css, 
+    		Integer cFund, Integer ssw, Integer ssy, Integer sgs, Integer syw, Integer sget, Integer cpay, Integer gwgz, Integer glgz, Integer zjgz, Integer jtgz, String jfly);
 
     /**
      * Check Duplicated Identity Card.
@@ -127,5 +128,6 @@ public interface AuxInfoService {
      * @return true for duplicated
      */
     boolean checkDuplicatedIdentityCare(String id, String card);
-
+    
+    List<String> getAppraiseStat(String bool, String bureauId, String year);
 }

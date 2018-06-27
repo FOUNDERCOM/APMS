@@ -109,6 +109,7 @@ public class AuthServiceImpl implements AuthService {
         // org
         token.org().setId(user.getStation().getId());
         token.org().setName(user.getStation().getName());
+        token.org().setIsManage(user.getStation().getIsManage());
         ((StationDTO) token.org()).setBureau(new BureauDTO());
         ((StationDTO) token.org()).getBureau().setId(user.getStation().getBureau().getId());
         ((StationDTO) token.org()).getBureau().setName(user.getStation().getBureau().getName());

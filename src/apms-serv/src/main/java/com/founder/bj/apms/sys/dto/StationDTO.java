@@ -52,7 +52,16 @@ public class StationDTO implements Org, Serializable {
     private String contactMobile;
     /** 联系人的邮箱. */
     private String contactMail;
+    
+    private Boolean isManage;
+    
+    public Boolean getIsManage() {
+		return isManage;
+	}
 
+	public void setIsManage(Boolean isManage) {
+		this.isManage = isManage;
+	}
     /**
      * Get the id.
      *

@@ -3,11 +3,53 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <div class="row">
+                	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">分局</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                    <ui-select ng-model="condition.station.bureau" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in bureauList | filter: $select.search">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                            <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">科所队</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right">
+                                    <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.station = undefined"></i>
+                                    <ui-select ng-model="condition.station" theme="bootstrap">
+                                        <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                        <ui-select-choices repeat="item in stationList | filter: {bureau: {id : condition.station.bureau.id }}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                            <small ng-bind-html="'电话：' + item.contactTel | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label class="control-label col-md-4">姓名</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">最低工资</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="最低工资" ng-model="condition.salarySGet">
                             </div>
                         </div>
                     </div>
@@ -30,7 +72,7 @@
         </div>
         <div class="actions">
             <!--suppress HtmlUnknownTarget -->
-            <a href="mvc/dispatch?controller=AuxController&method=exportSalary" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出工资报表</a>
+            <a ng-click="downloadGzExl()" target="_blank" class="btn btn-sm green-seagreen"><i class="fa fa-download"></i> 导出工资报表</a>
         </div>
     </div>
     <div class="portlet-body">
@@ -38,36 +80,54 @@
             <table class="table table-bordered table-hover table-advance">
                 <thead>
                     <tr>
-                        <th class="text-center wid260px">分局</th>
+                        <th class="text-center wid120px">分局</th>
                         <th class="text-center wid260px">科所队</th>
                         <th class="text-center wid100px">姓名</th>
                         <th class="text-center wid100px">性别</th>
-                        <th class="text-center wid260px">身份证号</th>
+                        <th class="text-center wid140px">身份证号</th>
                         <th class="text-center wid90px">基本工资</th>
+                        <th class="text-center wid90px">岗位工资</th>
+                        <th class="text-center wid90px">工龄工资</th>
+                        <th class="text-center wid90px">职级工资</th>
                         <th class="text-center wid90px">绩效奖金</th>
+                        <th class="text-center wid90px">津贴</th>
+                        <th class="text-center wid140px">经费来源</th>
                         <th class="text-center wid90px">所得税</th>
-                        <th class="text-center wid90px">个付社保</th>
+                        <th class="text-center wid90px">养老保险</th>
+                        <th class="text-center wid90px">医疗保险</th>
+                        <th class="text-center wid90px">失业保险</th>
+                        <th class="text-center wid90px">工伤保险</th>
+                        <th class="text-center wid90px">生育保险</th>
+                        <th class="text-center wid90px">意外伤亡险</th>
                         <th class="text-center wid90px">个付公积金</th>
-                        <th class="text-center wid90px">司付社保</th>
-                        <th class="text-center wid90px">司付公积金</th>
+                        <th class="text-center wid90px">公付公积金</th>
                         <th class="text-center wid90px">实付工资</th>
-                        <th class="text-center wid90px">司付总额</th>
+                        <th class="text-center wid90px">公付总额</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="item in list">
-                        <td class="text-center wid260px">{{item['station']['bureau']['name']}} </td>
+                        <td class="text-center wid120px">{{item['station']['bureau']['name']}} </td>
                         <td class="text-center wid100px">{{item['station']['name']}}</td>
                         <td class="text-center wid100px">{{item['name']}}</td>
                         <td class="text-center wid100px">{{item['sex']['value']}}</td>
                         <td class="text-center wid100px">{{item['identityCard']}}</td>
                         <td class="text-center">{{item['salaryBase'] ? item['salaryBase'] : 0}}</td>
+                        <td class="text-center">{{item['salaryGwgz'] ? item['salaryGwgz'] : 0}}</td>
+                        <td class="text-center">{{item['salaryGlgz'] ? item['salaryGlgz'] : 0}}</td>
+                        <td class="text-center">{{item['salaryZjgz'] ? item['salaryZjgz'] : 0}}</td>
                         <td class="text-center">{{item['salaryBonus'] ? item['salaryBonus'] : 0}}</td>
+                        <td class="text-center">{{item['salaryJtgz'] ? item['salaryJtgz'] : 0}}</td>
+                        <td class="text-center">{{item['salaryJfly'] ? item['salaryJfly'] : "无"}}</td>
                         <td class="text-center">{{item['salaryTax'] ? item['salaryTax'] : 0}}</td>
                         <td class="text-center">{{item['salarySSS'] ? item['salarySSS'] : 0}}</td>
-                        <td class="text-center">{{item['salarySFund'] ? item['salarySFund'] : 0}}</td>
                         <td class="text-center">{{item['salaryCSS'] ? item['salaryCSS'] : 0}}</td>
+                        <td class="text-center">{{item['salarySSW'] ? item['salarySSW'] : 0}}</td>
+                        <td class="text-center">{{item['salarySSY'] ? item['salarySSY'] : 0}}</td>
+                        <td class="text-center">{{item['salarySGS'] ? item['salarySGS'] : 0}}</td>
+                        <td class="text-center">{{item['salarySYW'] ? item['salarySYW'] : 0}}</td>
+                        <td class="text-center">{{item['salarySFund'] ? item['salarySFund'] : 0}}</td>
                         <td class="text-center">{{item['salaryCFund'] ? item['salaryCFund'] : 0}}</td>
                         <td class="text-center">{{item['salarySGet'] ? item['salarySGet'] : 0}}</td>
                         <td class="text-center">{{item['salaryCPay'] ? item['salaryCPay'] : 0}}</td>

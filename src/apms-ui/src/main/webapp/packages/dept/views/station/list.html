@@ -59,6 +59,7 @@
                         <th class="text-center wid180px">科所队名称</th>
                         <th class="text-center wid90px">编制</th>
                         <th class="text-center wid90px">联系人</th>
+                        <th class="text-center wid90px">是否管理单位</th>
                         <th class="text-center wid90px">状态</th>
                         <th class="text-center wid120px">最后一次操作</th>
                         <th class="text-center wid160px">操作</th>
@@ -77,6 +78,10 @@
                                             <b><i class='icon-envelope-open'></i> 邮箱</b>: <a href='tel:{{item.contactMail}}'>{{item['contactMail']}}</a>">
                                 {{item['contactName']}}
                             </a>
+                        </td>
+                        <td class="text-center">
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-danger': !item.isEnabled}">{{item['isManage'] ? '是' : '否'}}</span>
                         </td>
                         <td class="text-center">
                             <span class="label label-sm"

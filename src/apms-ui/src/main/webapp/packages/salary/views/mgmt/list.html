@@ -66,14 +66,23 @@
                         <th class="text-center wid60px">学历</th>
                         <th class="text-center wid120px">手机</th>
                         <th class="text-center wid90px">基本工资</th>
+                        <th class="text-center wid90px">岗位工资</th>
+                        <th class="text-center wid90px">工龄工资</th>
+                        <th class="text-center wid90px">职级工资</th>
                         <th class="text-center wid90px">绩效奖金</th>
+                        <th class="text-center wid90px">津贴</th>
+                        <th class="text-center wid120px">经费来源</th>
                         <th class="text-center wid90px">所得税</th>
-                        <th class="text-center wid90px">个付社保</th>
+                        <th class="text-center wid90px">养老保险</th>
+                        <th class="text-center wid90px">医疗保险</th>
+                        <th class="text-center wid90px">失业保险</th>
+                        <th class="text-center wid90px">工伤保险</th>
+                        <th class="text-center wid90px">生育保险</th>
+                        <th class="text-center wid90px">意外伤亡险</th>
                         <th class="text-center wid90px">个付公积金</th>
-                        <th class="text-center wid90px">司付社保</th>
-                        <th class="text-center wid90px">司付公积金</th>
+                        <th class="text-center wid90px">公付公积金</th>
                         <th class="text-center wid90px">实付工资</th>
-                        <th class="text-center wid90px">司付总额</th>
+                        <th class="text-center wid90px">公付总额</th>
                         <th class="text-center wid90px">操作</th>
                     </tr>
                 </thead>
@@ -93,41 +102,99 @@
                         <td class="text-center">{{item['mobile']}}</td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salaryBase']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryBase']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salaryBonus']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryGwgz']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salaryTax']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryGlgz']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salarySSS']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryZjgz']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salarySFund']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryBonus']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salaryCSS']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <input type="text" class="form-control" ng-model="item['salaryJtgz']" placeholder="￥-">
                             </div>
                         </td>
                         <td class="text-center">
                             <div class="input-group ">
-                                <input type="text" class="form-control" ng-model="item['salaryCFund']" placeholder="￥-" ng-change="computeSalary(item);">
+                                <select class="form-control" ng-model="item['salaryJfly']">
+	                                <option value="政府财政">政府财政</option>
+	                                <option value="公安经费自支">公安经费自支</option>
+	                                <option value="所队自筹">所队自筹</option>
+	                                <option value="其它">其它</option>
+	                            </select>
                             </div>
                         </td>
-                        <td class="text-center">{{item['salarySGet'] ? item['salarySGet'] : "-"}}</td>
-                        <td class="text-center">{{item['salaryCPay'] ? item['salaryCPay'] : "-"}}</td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salaryTax']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySSS']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salaryCSS']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySSW']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySSY']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySGS']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySYW']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySFund']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salaryCFund']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                        	<div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salarySGet']" placeholder="￥-">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                        	<div class="input-group ">
+                                <input type="text" class="form-control" ng-model="item['salaryCPay']" placeholder="￥-">
+                            </div>
+                        </td>
                         <td class="text-center wid90px">
                             <button type="button" class="btn " ng-click="changeSalary(item)"
                                     ng-class="{'btn-danger': !item['isSalaryNormal'], 'btn-success': item['isSalaryNormal']}">保存</button>
