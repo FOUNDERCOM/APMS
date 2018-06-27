@@ -48,7 +48,7 @@
               type="javax.sql.DataSource"
               driverClassName="oracle.jdbc.driver.OracleDriver"
               username="C##APMS" password="APMS"
-              url="jdbc:oracle:thin:@192.168.2.4:1521:ORCL" />
+              url="jdbc:oracle:thin:@192.168.43.128:1521:ORCL" />
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
