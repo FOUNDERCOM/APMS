@@ -1,0 +1,44 @@
+<div class="modal fade" id="removeAuxDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="AuxApplyModifyCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true"></a>
+                <h4 class="modal-title"><i class="icon-layers"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form action="#" class="form-horizontal removeAuxForm">
+                    	<div id="modifyErrorMsgDiv"></div>
+                        <div class="form-boy">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">离职原因<span class="required"> * </span></label>
+                                        <div class="col-md-9">
+                                            <div class="input-icon">
+					                            <i class="fa fa-exclamation-circle"></i>
+					                            <select class="form-control" ng-model="entity.addRyzt">
+					                                <option value="辞职">辞职</option>
+					                                <option value="辞退">辞退</option>
+					                                <option value="因公伤亡">因公伤亡</option>
+					                                <option value="退休">退休</option>
+					                                <option value="病故">病故</option>
+					                                <option value="意外死亡">意外死亡</option>
+					                            </select>
+					                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-soft" aria-hidden="true" ng-click="removeAux()">
+                    <i class="fa fa-ban"></i> 保存</button>
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
