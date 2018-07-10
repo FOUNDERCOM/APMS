@@ -14,6 +14,7 @@
         <class>com.founder.bj.apms.auxpolice.entity.AuxPunish</class>
         <class>com.founder.bj.apms.auxpolice.entity.AuxStuffFile</class>
         <class>com.founder.bj.apms.auxpolice.entity.AuxWork</class>
+        <class>com.founder.bj.apms.auxpolice.entity.AuxCasualty</class>
 
         <!-- Dept Entities -->
         <class>com.founder.bj.apms.dept.entity.DeptBureau</class>

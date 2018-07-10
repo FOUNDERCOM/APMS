@@ -155,6 +155,9 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             "job": "",
             "identityCard": "",
             "joinDate": "",
+            "workDate": "",
+            "organizeDate": "",
+            "employUnit": "",
             "standing": 0,
             "oldIdentity": {},
             "sex": {},
@@ -187,6 +190,7 @@ angular.module('WebApp').controller('AuxApplyListCtrl', ['$rootScope', '$scope',
             "punishList": [],
             "workList": [],
             "fileList": [],
+            "casList": [],
             "appraiseList": []
         };
 

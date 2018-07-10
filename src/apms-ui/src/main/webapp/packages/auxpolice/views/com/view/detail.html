@@ -17,6 +17,9 @@
     <li bs-tooltip data-title="入职前身份">
         <i class="fa fa-user"></i> {{entity['oldIdentity']['value']}}
     </li>
+    <li bs-tooltip data-title="参加工作时间">
+        <i class="fa fa-calendar"></i> {{entity['workDate']}}
+    </li>
     <li bs-tooltip data-title="性别">
         <i class="fa fa-smile-o"></i> {{entity['sex']['value']}}
     </li>
@@ -37,6 +40,12 @@
     </li>
     <li bs-tooltip data-title="政治面貌">
         <i class="fa fa-exclamation-circle"></i> {{entity['politicalStatus']['value']}}
+    </li>
+    <li bs-tooltip data-title="参加组织时间">
+        <i class="fa fa-calendar"></i> {{entity['organizeDate']}}
+    </li>
+    <li bs-tooltip data-title="聘用主体信息">
+        <i class="fa fa-briefcase"></i> {{entity['employUnit']}}
     </li>
     <li bs-tooltip data-title="文化程度">
         <i class="fa fa-graduation-cap"></i> {{entity['eduDegree']['value']}}

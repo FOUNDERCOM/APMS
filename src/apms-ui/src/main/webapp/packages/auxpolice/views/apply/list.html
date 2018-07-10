@@ -93,7 +93,7 @@
                                             <i class="fa fa-picture-o"></i>
                                         </a>
                                     </li>
-                                    <li ng-if="(item['status']['code'] === 'TO_APPLY'||item['status']['code'] === 'REJECTED')&&item.isEnabled!=0">
+                                    <li ng-if="(item['status']['code'] === 'TO_APPLY'||item['status']['code'] === 'REJECTED')&&item.isEnabled==1">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn btn-xs btn-outline yellow-gold"
                                            href="/#modifyAuxploiceApplyModalDiv" data-toggle="modal"

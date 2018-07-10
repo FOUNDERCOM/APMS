@@ -23,6 +23,10 @@
         <!--suppress HtmlUnknownAnchorTarget -->
         <a href="/#punishViewTabDiv" data-toggle="tab"> 惩罚情况 <span class="badge badge-danger">{{entity['punishList']['length']}}</span> </a>
     </li>
+    <li class="casulty">
+        <!--suppress HtmlUnknownAnchorTarget -->
+        <a href="/#casultyModifyTabDiv" data-toggle="tab"> 伤亡信息 <span class="badge badge-info">{{entity['casList']['length']}}</span> </a>
+    </li>
     <li>
         <!--suppress HtmlUnknownAnchorTarget -->
         <a href="/#appraiseViewTabDiv" data-toggle="tab"> 考核情况 <span class="badge badge-success">{{entity['appraiseList']['length']}}</span> </a>
@@ -41,6 +45,8 @@
     <div class="tab-pane" id="awardViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_award.html'+cacheVersion"></div>
     <!--tab-pane-->
     <div class="tab-pane" id="punishViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_punish.html'+cacheVersion"></div>
+    <!--tab-pane-->
+    <div class="tab-pane" id="casultyModifyTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_casualty.html'+cacheVersion"></div>
     <!--tab-pane-->
     <div class="tab-pane" id="appraiseViewTabDiv" data-ng-include="'packages/auxpolice/views/com/view/table_appraise.html'+cacheVersion"></div>
 </div>

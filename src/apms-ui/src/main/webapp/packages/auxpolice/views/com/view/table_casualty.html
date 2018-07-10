@@ -1,19 +1,23 @@
 <table class="table table-striped table-bordered table-advance table-hover">
     <thead>
         <tr>
-            <th class="text-center bold wid160px"><i class="icon-calendar"></i> 时间 </th>
-            <th class="text-center bold wid140px"><i class="icon-home"></i> 院校 </th>
-            <th class="text-center bold wid60px"><i class="icon-graduation"></i> 学历 </th>
-            <th class="text-center bold hidden-xs wid140px"><i class="icon-direction"></i> 专业 </th>
+            <th class="text-center bold wid90px"><i class="icon-calendar"></i> 时间 </th>
+            <th class="text-center bold wid100px"><i class="icon-home"></i> 地点 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 种类和性质 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 负伤程度 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 伤残程度 </th>
+            <th class="text-center bold wid100px"><i class="icon-info"></i> 详细情况 </th>
             <th class="text-center bold hidden-sm wid100px"><i class="icon-note"></i> 记录人 </th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in entity['eduList']">
-            <td class="text-center">{{item['start']}} - {{item['end']}}</td>
-            <td class="text-center">{{item['school']}}</td>
-            <td class="text-center">{{item['degree']['value']}}</td>
-            <td>{{item['major']}}</td>
+        <tr ng-repeat="item in entity['casList']">
+            <td class="text-center">{{item['date']}}</td>
+            <td class="text-center">{{item['place']}}</td>
+            <td class="text-center">{{item['type']}}</td>
+            <td class="text-center">{{item['fscd']}}</td>
+            <td class="text-center">{{item['sccd']}}</td>
+            <td class="text-center">{{item['remake']}}</td>
             <td class="text-center">
                 <a href="javascript:" bs-popover data-original-title="{{item['lastUpdateUser']['name']}}<a href='javascript:' class='close'>&times;</a>"
                    data-placement="left" data-content="<b><i class='fa fa-newspaper-o'></i> 操作人ID:</b> {{item['lastUpdateUser']['id']}}<br/>

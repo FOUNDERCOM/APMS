@@ -3,7 +3,7 @@
         <tr>
             <th class="text-center bold wid160px"><i class="icon-calendar"></i> 时间 </th>
             <th class="text-center bold wid140px"><i class="icon-home"></i> 院校 </th>
-            <th class="text-center bold wid60px"><i class="icon-graduation"></i> 学位 </th>
+            <th class="text-center bold wid60px"><i class="icon-graduation"></i> 学历 </th>
             <th class="text-center bold hidden-xs wid140px"><i class="icon-direction"></i> 专业 </th>
             <th class="text-right bold wid90px">
                 <a href="javascript:" ng-click="entity.eduList.push({});">
@@ -26,7 +26,7 @@
             </td>
             <td class="text-center"><input type="text" class="form-control" ng-model="item.school" bs-tooltip data-title="院校" placeholder="院校..."></td>
             <td class="text-center">
-                <select class="form-control" ng-model="item.degree"  title="学位" ng-options="d.value for d in eduDegreeList track by d.id"></select>
+                <select class="form-control" ng-model="item.degree"  title="学历" ng-options="d.value for d in eduDegreeList track by d.id"></select>
             </td>
             <td><input type="text" class="form-control" ng-model="item.major" bs-tooltip data-title="专业" placeholder="专业..."></td>
             <td class="text-center">

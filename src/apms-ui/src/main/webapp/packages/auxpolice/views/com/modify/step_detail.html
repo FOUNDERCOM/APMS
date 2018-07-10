@@ -10,7 +10,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-6">
         <div class="form-group">
             <label class="control-label col-md-3">身份证号 <span class="required">*</span></label>
@@ -18,6 +17,18 @@
                 <div class="input-icon">
                     <i class="fa fa-newspaper-o"></i>
                     <input type="text" class="form-control" placeholder="18位身份证号"  ng-model="entity.identityCard">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">民族 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-users"></i>
+                    <select id="nation" class="form-control" ng-model="entity.nation.id"
+                            ng-options="item.id as item.value for item in nationList"></select>
                 </div>
             </div>
         </div>
@@ -48,24 +59,12 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label class="control-label col-md-3">民族 <span class="required">*</span></label>
+            <label class="control-label col-md-3">参加工作时间<span class="required">*</span></label>
             <div class="col-md-8">
                 <div class="input-icon">
-                    <i class="fa fa-users"></i>
-                    <select id="nation" class="form-control" ng-model="entity.nation.id"
-                            ng-options="item.id as item.value for item in nationList"></select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label class="control-label col-md-3">健康状况 <span class="required">*</span></label>
-            <div class="col-md-8">
-                <div class="input-icon">
-                    <i class="fa fa-users"></i>
-                    <select id="health" class="form-control" ng-model="entity.health.id"
-                            ng-options="item.id as item.value for item in healthList"></select>
+                    <i class="fa fa-calendar"></i>
+                    <input id="joinDate" type="text" class="form-control" ng-model="entity.workDate"
+                           bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
                 </div>
             </div>
         </div>
@@ -84,23 +83,55 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label class="control-label col-md-3">文化程度 <span class="required">*</span></label>
+            <label class="control-label col-md-3">参加组织时间<span class="required">*</span></label>
             <div class="col-md-8">
                 <div class="input-icon">
-                    <i class="fa fa-graduation-cap"></i>
-                    <select id="educationDegree" class="form-control" ng-model="entity.eduDegree.id"
-                            ng-options="item.id as item.value for item in eduDegreeList"></select>
+                    <i class="fa fa-calendar"></i>
+                    <input id="joinDate" type="text" class="form-control" ng-model="entity.organizeDate"
+                           bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label class="control-label col-md-3">籍贯</label>
+            <label class="control-label col-md-3">聘用主体信息</label>
             <div class="col-md-8">
                 <div class="input-icon">
-                    <i class="fa fa-map-marker"></i>
-                    <input id="nativePlace" type="text" class="form-control" ng-model="entity.nativePlace">
+                    <i class="fa fa-briefcase"></i>
+                    <select class="form-control" ng-model="entity.employUnit">
+                        <option value="政府">政府</option>
+                        <option value="综治部门">综治部门</option>
+                        <option value="公安机关直接聘用">公安机关直接聘用</option>
+                        <option value="劳务公司派遣">劳务公司派遣</option>
+                        <option value="交警系统自行招聘">交警系统自行招聘</option>
+                        <option value="基层所队自行招聘">基层所队自行招聘</option>
+                        <option value="向社会力量购买">向社会力量购买</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">健康状况 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-users"></i>
+                    <select id="health" class="form-control" ng-model="entity.health.id"
+                            ng-options="item.id as item.value for item in healthList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">文化程度 <span class="required">*</span></label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-graduation-cap"></i>
+                    <select id="educationDegree" class="form-control" ng-model="entity.eduDegree.id"
+                            ng-options="item.id as item.value for item in eduDegreeList"></select>
                 </div>
             </div>
         </div>
@@ -123,6 +154,17 @@
                 <div class="input-icon">
                     <i class="fa fa-flask"></i>
                     <input id="major" type="text" class="form-control" ng-model="entity.major">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-3">籍贯</label>
+            <div class="col-md-8">
+                <div class="input-icon">
+                    <i class="fa fa-map-marker"></i>
+                    <input id="nativePlace" type="text" class="form-control" ng-model="entity.nativePlace">
                 </div>
             </div>
         </div>

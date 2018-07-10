@@ -178,6 +178,15 @@ public class AuxInfo implements Serializable {
     /** Address postcode. */
     @Column(name = "AUX_ADD_POSTCODE")
     private String addPostcode;
+    /** 参加组织时间. */
+    @Column(name = "AUX_ORGANIZE_DATE")
+    private String organizeDate;
+    /** 参加工作时间. */
+    @Column(name = "AUX_WORK_DATE")
+    private String workDate;
+    /** 聘用主体信息. */
+    @Column(name = "AUX_EMPLOY_UNIT")
+    private String employUnit;
 
     /** Base64 photo data. */
     @Lob
@@ -246,7 +255,6 @@ public class AuxInfo implements Serializable {
     @Column(name = "AUX_SALARY_C_PAY")
     private Integer salaryCPay;
     
-    //*********新增字段*********//
     /** Salary 岗位工资. */
     @Column(name = "AUX_SALARY_GWGZ")
     private Integer salaryGwgz;
@@ -270,7 +278,6 @@ public class AuxInfo implements Serializable {
     /** Salary 人员状态. */
     @Column(name = "AUX_RYZT")
     private String addRyzt;
-    //*********新增字段*********//
     
     /** 是否是正常工资 .*/
     @Formula("(SELECT CASE WHEN (AUX_SALARY = B.BUREAU_STD_SALARY) THEN 1 ELSE 0 END FROM APMS_DEPT_BUREAU B, APMS_DEPT_STATION S WHERE B.BUREAU_ID = S.BUREAU_ID AND S.STATION_ID = STATION_ID)")
@@ -334,6 +341,10 @@ public class AuxInfo implements Serializable {
     /** List of appraise. */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
     private Set<AuxAppraise> appraiseList;
+    
+    /** List of CASUALTY. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aux", cascade = {CascadeType.ALL})
+    private Set<AuxCasualty> casList;
 
     /**
      * Get the id.
@@ -614,7 +625,31 @@ public class AuxInfo implements Serializable {
         return major;
     }
 
-    /**
+    public String getOrganizeDate() {
+		return organizeDate;
+	}
+
+	public void setOrganizeDate(String organizeDate) {
+		this.organizeDate = organizeDate;
+	}
+
+	public String getWorkDate() {
+		return workDate;
+	}
+
+	public void setWorkDate(String workDate) {
+		this.workDate = workDate;
+	}
+
+	public String getEmployUnit() {
+		return employUnit;
+	}
+
+	public void setEmployUnit(String employUnit) {
+		this.employUnit = employUnit;
+	}
+
+	/**
      * Set major.
      *
      * @param major the major to set
@@ -1312,7 +1347,15 @@ public class AuxInfo implements Serializable {
         return appraiseList;
     }
 
-    /**
+    public Set<AuxCasualty> getCasList() {
+		return casList;
+	}
+
+	public void setCasList(Set<AuxCasualty> casList) {
+		this.casList = casList;
+	}
+
+	/**
      * Set appraiseList.
      *
      * @param appraiseList the appraiseList to set

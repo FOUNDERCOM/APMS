@@ -4,6 +4,7 @@
             <th class="text-center bold wid100px"><i class="icon-calendar"></i> 时间 </th>
             <th class="text-center bold wid120px"><i class="icon-home"></i> 工作单位 </th>
             <th class="text-center bold wid60px"><i class="icon-badge"></i> 职务 </th>
+            <th class="text-center bold wid60px"><i class="icon-badge"></i> 职位 </th>
             <th class="text-right bold wid90px">
                 <a href="javascript:" ng-click="entity.workList.push({});">
                     <i class="fa fa-plus"></i> 增加
@@ -25,6 +26,15 @@
             </td>
             <td class="text-center"><input type="text" class="form-control" ng-model="item.dept" bs-tooltip data-title="工作单位" placeholder="工作单位..."></td>
             <td class="text-center"><input type="text" class="form-control" ng-model="item.job" bs-tooltip data-title="职务" placeholder="职务..."></td>
+           	<td class="text-center">
+           		<div class="input-icon">
+                    <i class="fa fa-briefcase"></i>
+                    <select class="form-control" ng-model="item.post">
+                        <option value="文职辅警">文职辅警</option>
+                        <option value="勤务辅警">勤务辅警</option>
+                    </select>
+                </div>
+           	</td>
             <td class="text-center">
                 <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除"
                    ng-click="remove($index, 'workList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxWork');">

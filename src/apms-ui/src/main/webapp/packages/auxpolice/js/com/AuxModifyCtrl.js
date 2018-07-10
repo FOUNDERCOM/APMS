@@ -50,6 +50,12 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             	$('#form_wizard').find('.button-submitmb').show();
             }
         } else {
+        	//判断是否显示伤亡信息
+	        if(obj.isEnabled === "1"){
+	        	$(".casulty").show();
+	        }else{
+	        	$(".casulty").hide();
+	        }
             $('#form_wizard').find('.button-next').show();
             $('#form_wizard').find('.button-submit').hide();
             $('#form_wizard').find('.button-submitmb').hide();
@@ -159,8 +165,6 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             // 现住址 详细地址
             check("addDetail", "现住址 详细地址");
         } else if (idx === 2) {
-            // detail
-
             // 姓名
             check("name", "姓名");
             // 身份证号
@@ -172,6 +176,10 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
             }
             // 入职时间
             check("joinDate", "任现职时间");
+            // 参加组织时间
+            check("organizeDate", "参加组织时间");
+            // 参加工作时间
+            check("workDate", "参加工作时间");
             // 入职前身份
             check("oldIdentity", "入职前身份", true);
             // 民族
@@ -216,6 +224,9 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 if (data.job === undefined || data.job.length === 0) {
                     message += "职务不能为空。<br>";
                 }
+                if (data.post === undefined || data.post.length === 0) {
+                    message += "职位不能为空。<br>";
+                }
             });
             // 年度考核
             $.each($scope.entity.appraiseList, function(key, data) {
@@ -238,11 +249,14 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                 if (data.name === undefined || data.name.length === 0) {
                     message += "姓名不能为空。<br>";
                 }
-                if (data.mobile === undefined || data.mobile.length === 0) {
-                    message += "手机号不能为空。<br>";
+                if (data.mobile === undefined || data.mobile.length !== 11) {
+                    message += "手机号长度错误。<br>";
                 }
                 if (data.identityCard === undefined || data.identityCard.length === 0) {
                     message += "身份证号不能为空。<br>";
+                }
+                if (data.dept === undefined || data.dept.length === 0) {
+                    message += "工作单位不能为空。<br>";
                 }
             });
             // 奖励情况
@@ -272,15 +286,50 @@ angular.module('WebApp').controller('AuxModifyCtrl', ['$state', '$rootScope', '$
                     message += "惩罚说明不能为空。<br>";
                 }
             });
-            // 确认页
-            $.each($scope.entity.eduList, function(foo, edu) {
+            // 教育背景
+            $.each($scope.entity.eduList, function(foo, data) {
+            	if (data.start === undefined || data.start.length === 0 || data.end === undefined || data.end.length === 0) {
+                    message += "时间不能为空。<br>";
+                    return;
+                }
+                if (data.school === undefined || data.school.length === 0) {
+                    message += "教育院校不能为空。<br>";
+                    return;
+                }
+                if (data.degree === undefined) {
+                    message += "学历不能为空。<br>";
+                    return;
+                }
+                if (data.major === undefined || data.major.length === undefined) {
+                    message += "专业不能为空。<br>";
+                    return;
+                }
                 $.each($scope.eduDegreeList, function(key, dict) {
-                    if (edu.degree.id === dict.id) {
-                        edu.degree.value = dict.value;
-                        edu.degree.nature = dict.nature;
-                        edu.degree.code = dict.code;
+                    if (data.degree.id === dict.id) {
+                    	data.degree.value = dict.value;
+                    	data.degree.nature = dict.nature;
+                    	data.degree.code = dict.code;
                     }
                 });
+            });
+            // 伤亡信息
+            $.each($scope.entity.casList, function(key, data) {
+                if (data.date === undefined || data.date.length === 0) {
+                    message += "伤亡时间不能为空。<br>";
+                }
+                if (data.place === undefined || data.place.length === 0) {
+                    message += "伤亡地点不能为空。<br>";
+                }
+                if (data.type === undefined || data.type.length === undefined) {
+                    message += "伤亡种类和性质不能为空。<br>";
+                }else{
+                	if (data.type === "因公负伤" && (data.fscd === undefined || data.fscd.length === undefined)) {
+                        message += "负伤程度不能为空。<br>";
+                    }
+                	if (data.type === "因公致残" && (data.sccd === undefined || data.sccd.length === undefined)) {
+                        message += "伤残程度不能为空。<br>";
+                    }
+                }
             });
         }
 

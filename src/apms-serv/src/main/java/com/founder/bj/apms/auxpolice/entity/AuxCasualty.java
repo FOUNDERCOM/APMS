@@ -26,45 +26,42 @@ import org.hibernate.annotations.GenericGenerator;
 import com.founder.bj.apms.sys.entity.SysUser;
 
 /**
- * Description: Aux Work Entity.<br>
- * Created by Jimmybly Lee on 2017/10/9.
+ * Description: Aux Casualty Entity.<br>
+ * Created by hekun on 2018/7/10.
  *
- * @author Jimmybly Lee
+ * @author hekun
  */
 @Entity
-@Table(name = "APMS_AUX_WORK")
+@Table(name = "APMS_AUX_CASUALTY")
 @SuppressWarnings("unused")
-public class AuxWork implements AuxStuff {
+public class AuxCasualty implements AuxStuff {
 
-    private static final long serialVersionUID = 3938721311908893826L;
+    private static final long serialVersionUID = 3931231311908893826L;
 
-    /** Id. */
     @Id
-    @Column(name = "WORK_ID")
+    @Column(name = "CAS_ID")
     @GeneratedValue(generator = "apms_uuid")
     @GenericGenerator(name = "apms_uuid", strategy = "uuid2")
     private String id;
-
-    /** Work for department name. */
-    @Column(name = "WORK_DEPT")
-    private String dept;
-
-    /** Job title. */
-    @Column(name = "WORK_JOB")
-    private String job;
     
-    /** post title. */
-    @Column(name = "WORK_POST")
-    private String post;
-
-    /** Start date. */
     @OrderBy
-    @Column(name = "WORK_START")
-    private String start;
+    @Column(name = "CAS_DATE")
+    private String date;
 
-    /** End date. */
-    @Column(name = "WORK_END")
-    private String end;
+    @Column(name = "CAS_PLACE")
+    private String place;
+    
+    @Column(name = "CAS_TYPE")
+    private String type;
+
+    @Column(name = "CAS_REMAKE")
+    private String remake;
+
+    @Column(name = "CAS_FSCD")
+    private String fscd;
+    
+    @Column(name = "CAS_SCCD")
+    private String sccd;
 
     /** 最近更新人ID与用户表关联. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -100,87 +97,55 @@ public class AuxWork implements AuxStuff {
         this.id = id;
     }
 
-    public String getPost() {
-		return post;
+    public String getDate() {
+		return date;
 	}
 
-	public void setPost(String post) {
-		this.post = post;
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getRemake() {
+		return remake;
+	}
+
+	public void setRemake(String remake) {
+		this.remake = remake;
+	}
+
+	public String getFscd() {
+		return fscd;
+	}
+
+	public void setFscd(String fscd) {
+		this.fscd = fscd;
+	}
+
+	public String getSccd() {
+		return sccd;
+	}
+
+	public void setSccd(String sccd) {
+		this.sccd = sccd;
 	}
 
 	/**
-     * Get the dept.
-     *
-     * @return return the dept
-     */
-    public String getDept() {
-        return dept;
-    }
-
-    /**
-     * Set dept.
-     *
-     * @param dept the dept to set
-     */
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
-
-    /**
-     * Get the job.
-     *
-     * @return return the job
-     */
-    public String getJob() {
-        return job;
-    }
-
-    /**
-     * Set job.
-     *
-     * @param job the job to set
-     */
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    /**
-     * Get the start.
-     *
-     * @return return the start
-     */
-    public String getStart() {
-        return start;
-    }
-
-    /**
-     * Set start.
-     *
-     * @param start the start to set
-     */
-    public void setStart(String start) {
-        this.start = start;
-    }
-
-    /**
-     * Get the end.
-     *
-     * @return return the end
-     */
-    public String getEnd() {
-        return end;
-    }
-
-    /**
-     * Set end.
-     *
-     * @param end the end to set
-     */
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    /**
      * Get the lastUpdateUser.
      *
      * @return return the lastUpdateUser

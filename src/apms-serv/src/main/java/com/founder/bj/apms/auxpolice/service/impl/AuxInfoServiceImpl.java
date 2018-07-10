@@ -172,6 +172,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         hql += " left join fetch i.familyList";
         hql += " left join fetch i.punishList";
         hql += " left join fetch i.workList";
+        hql += " left join fetch i.casList";
         hql += " left join fetch i.fileList";
         hql += " left join fetch i.appraiseList";
         hql += " left join fetch i.status";
@@ -367,7 +368,6 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         entity.setSalarySYW(0);
         entity.setSalaryZjgz(0);
         entity.setStatus(dictService.getSysDictByNatureAndCode("PROCESS_STATUS", "TO_APPLY"));
-
         validate(entity);
 
         fillEntity(entity);
@@ -397,6 +397,7 @@ public class AuxInfoServiceImpl implements AuxInfoService {
         setInfo(entity.getFamilyList(), entity);
         setInfo(entity.getPunishList(), entity);
         setInfo(entity.getWorkList(), entity);
+        setInfo(entity.getCasList(), entity);
         setInfo(entity.getFileList(), entity);
         setInfo(entity.getAppraiseList(), entity);
 

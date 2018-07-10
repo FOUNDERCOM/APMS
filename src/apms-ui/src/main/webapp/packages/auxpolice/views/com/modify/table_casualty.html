@@ -1,0 +1,72 @@
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th class="text-center bold wid90px"><i class="icon-calendar"></i> 时间 </th>
+            <th class="text-center bold wid100px"><i class="icon-home"></i> 地点 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 种类和性质 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 负伤程度 </th>
+            <th class="text-center bold wid60px"><i class="icon-question"></i> 伤残程度 </th>
+            <th class="text-center bold wid100px"><i class="icon-info"></i> 详细情况 </th>
+            <th class="text-right bold wid90px">
+                <a href="javascript:" ng-click="entity.casList.push({});">
+                    <i class="fa fa-plus"></i> 增加
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in entity['casList']">
+            <td class="text-center">
+                <input type="text" class="form-control" ng-model="item.date" bs-tooltip data-title="时间" placeholder="yyyy-MM-dd"
+                       bs-datepicker data-date-format="yyyy-MM-dd" data-max-date="today" data-date-type="string">
+            </td>
+            <td class="text-center"><input type="text" class="form-control" ng-model="item.place" bs-tooltip data-title="地点" placeholder="地点..."></td>
+           	<td class="text-center">
+           		<div class="input-icon">
+                    <i class="fa fa-briefcase"></i>
+                    <select class="form-control" ng-model="item.type">
+                        <option value="因公负伤">因公负伤</option>
+                        <option value="因公致残">因公致残</option>
+                        <option value="因公死亡">因公死亡</option>
+                        <option value="病故">病故</option>
+                        <option value="意外死亡">意外死亡</option>
+                    </select>
+                </div>
+           	</td>
+           	<td class="text-center">
+           		<div class="input-icon">
+                    <i class="fa fa-briefcase"></i>
+                    <select class="form-control" ng-model="item.fscd">
+                        <option value="重伤">重伤</option>
+                        <option value="轻伤">轻伤</option>
+                        <option value="轻微伤">轻微伤</option>
+                    </select>
+                </div>
+           	</td>
+           	<td class="text-center">
+           		<div class="input-icon">
+                    <i class="fa fa-briefcase"></i>
+                    <select class="form-control" ng-model="item.sccd">
+                        <option value="1级">1级</option>
+                        <option value="2级">2级</option>
+                        <option value="3级">3级</option>
+                        <option value="4级">4级</option>
+                        <option value="5级">5级</option>
+                        <option value="6级">6级</option>
+                        <option value="7级">7级</option>
+                        <option value="8级">8级</option>
+                        <option value="9级">9级</option>
+                        <option value="10级">10级</option>
+                    </select>
+                </div>
+           	</td>
+           	<td class="text-center"><input type="text" class="form-control" ng-model="item.remake" bs-tooltip data-title="详细情况" placeholder="详细情况..."></td>
+            <td class="text-center">
+                <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除"
+                   ng-click="remove($index, 'casList', item.id, 'com.founder.bj.apms.auxpolice.entity.AuxCasualty');">
+                    <i class="fa fa-close"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
